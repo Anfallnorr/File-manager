@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+    
+	# RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+	# RewriteRule ^ http://%1%{REQUEST_URI} [L,R=301]
+
+	RewriteBase /
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+	
+	# RewriteCond %{HTTPS} off [OR]
+	# RewriteCond %{HTTP_HOST} ^www. [NC]
+	# RewriteRule (.*) http://file-manager/$1 [R=301,L]
+</IfModule>
