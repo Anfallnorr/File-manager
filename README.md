@@ -13,10 +13,10 @@
 </ol>
 <h3>Démo :</h3>
 <ol>
-<li>https://file.js-info.fr/datas/data</li>
+<li><a href="https://file.js-info.fr/datas/data" target="_blank">file.js-info.fr</a></li>
 </ol>
 <h3>Contact :</h3>
 <ol>
 <li>Julien Senechal</li>
-<li>contact@js-info.fr</li>
+<li><a href="mailto:contact@js-info.fr">contact@js-info.fr</a></li>
 </ol>
