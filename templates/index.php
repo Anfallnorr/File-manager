@@ -1,12 +1,5 @@
 <?php
 
-// debug(http_response_code());
-// debug($this->theme);
-// debug($this->customer);
-// debug(gettype($this->customer));
-// debug($customer);
-// die;
-
 $themeBg = (!empty($customer['theme_bg'])) ? $customer['theme_bg'] : "theme0";
 $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hotkeys-enabled" : "";
 ?>
@@ -17,10 +10,10 @@ $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hot
 		<?php include _ROOTURL_ ."/templates/tpls/head.php" ?>
 	</head>
 	
-	<body requests="" theme="<?php echo $this->theme ?>" bgtheme="bg-<?php echo $themeBg ?>" class="bg-theme <?php echo $this->requests->view ?>-page <?php echo $this->requests->controller .'-'. $this->requests->view . $device['class']; echo $hotkeys ?>">
+	<body requests="" theme="js-info" bgtheme="bg-<?php echo $themeBg ?>" class="bg-theme <?php echo $this->requests->view ?>-page <?php echo $this->requests->controller .'-'. $this->requests->view; echo $hotkeys ?>">
 		<?php if( $params['pre_loader'] !== 0 ) { ?>
 			<div id="loading-wrapper"><div class="spinner"><div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div><div class="line5"></div><div class="line6"></div></div></div>
-		<?php }/**/ ?>
+		<?php } ?>
 		<div class="page-wrapper no-sidebar">
 			<?php /* include _ROOTURL_ ."/templates/tpls/sidebar.php" */ ?>
 			<div class="main-container">
