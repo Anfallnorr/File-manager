@@ -1,9 +1,4 @@
 <?php
-// debug($totalSize);
-// debug($expander);
-// debug($personnalAllDirs);
-// debug($doc_src);
-// debug($docBasename);
 
 if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
 	if( !empty($path) ) {
@@ -123,7 +118,6 @@ if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
 			</div>
 		</div>
 	</div>
-	
 	<?php if( $nbDocFiles > 0 ) {
 		include $dataDir ."/data_modal-doc-files.php";
 	}
@@ -279,7 +273,7 @@ else : ?>
 	</div>
 <?php endif; ?>
 
-<div class="modal fade" id="modal_upload" tabindex="-1" aria-hidden="true"> <!-- modal-upload show -->
+<div class="modal fade" id="modal_upload" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -325,13 +319,6 @@ else : ?>
 		</div>
 	</div>
 </div>
-<!-- END MODAL COMPRESS -->
-<!-- BEGIN MODAL SHARE -->
-<div class="modal fade" id="modal_share" tabindex="-1" aria-hidden="true">
-	
-</div>
-<!-- END MODAL SHARE -->
-	
 <!-- BEGIN MODAL VIEWER -->
 <div class="modal fade" id="modal_viewer" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -349,7 +336,6 @@ else : ?>
 		</div>
 	</div>
 </div>
-<!-- END MODAL VIEWER -->
 <!-- BEGIN MODAL DOWNLOAD -->
 <div class="modal fade" id="modal_download" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -371,4 +357,3 @@ else : ?>
 		</div>
 	</div>
 </div>
-<!-- END MODAL DOWNLOAD -->
