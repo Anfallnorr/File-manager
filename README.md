@@ -1,12 +1,13 @@
 # File manager
-<h1> Un simple gestionnaire de fichier</h1>
-
-<h2>Prérequis</h2>
-<p>PHP 8.1 ou supérieur</p>
-
-<h2>Installation</h2>
-<p>Modifier le fichier htaccess et modifier le domaine à cette ligne : RewriteRule (.*) https://file.js-info.fr/$1 [R=301,L]</p>
-<p>Modifier le fichier de configuration et changer la valeur de $root_path par le chemin du serveur jusqu'au dossier final</p>
-<br />
-<p>Modifier toute les valeurs de la fonction PHP array_slice dans les fichier du templates html, le numéro doit correspondre au nombre de dossier jusqu'au dossier personnel inclus (actuelement la valeur est : 10)</p>
-<p>Modifier toute les valeurs du 2ème paramètre de FileSystems::getSliceDirs, le numéro doit correspondre au nombre de dossier jusqu'au dossier personnel inclus (actuelement la valeur est : 10)</p>
+<h2>Un simple gestionnaire de fichiers</h2>
+<h3>Prérequis :</h3>
+<ol>
+<li>PHP 8.1 ou version supérieure</li>
+</ol>
+<h3>Installation :</h3>
+<ol>
+<li>Modifier le fichier htaccess en remplaçant le domaine par cette ligne : RewriteRule (.*) https://file.js-info.fr/$1 [R=301,L]</li>
+<li>Modifier le fichier de configuration et changer la valeur de $root_path avec le chemin du serveur jusqu'au dossier final.</li>
+<li>Modifier toutes les occurrences de la fonction PHP array_slice dans les fichiers du template HTML. Le numéro doit correspondre au nombre de dossiers jusqu'au dossier personnel inclus (actuellement la valeur est : 10).</li>
+<li>Modifier toutes les occurrences du 2ème paramètre de FileSystems::getSliceDirs. Le numéro doit correspondre au nombre de dossiers jusqu'au dossier personnel inclus (actuellement la valeur est : 10).</li>
+</ol>
