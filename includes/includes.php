@@ -3,29 +3,19 @@
 defined('_EXEC') or die;
 
 if( file_exists(_ROOTURL_ .'/includes/functions.php') ) {
-	require _ROOTURL_ ."/includes/functions.php"; /* Liste des fonctions */
+	require _ROOTURL_ ."/includes/functions.php";
 }
 if( file_exists(_ROOTURL_ .'/includes/router.php') ) {
-	require _ROOTURL_ ."/includes/router.php"; /* Reçois les URLs */
+	require _ROOTURL_ ."/includes/router.php";
 }
 if( file_exists(_ROOTURL_ .'/includes/dispatchers.php') ) {
-	require _ROOTURL_ ."/includes/dispatchers.php"; /* Traite les URLs */
-}
-if( file_exists(_ROOTURL_ .'/includes/models.php') ) {
-	require _ROOTURL_ ."/includes/models.php"; /* Requetes SQL */
+	require _ROOTURL_ ."/includes/dispatchers.php";
 }
 if( file_exists(_ROOTURL_ .'/includes/controllers.php') ) {
-	require _ROOTURL_ ."/includes/controllers.php"; /* Liaison entre le models et la vue */
+	require _ROOTURL_ ."/includes/controllers.php";
 }
 
-if( file_exists(_ROOTURL_ .'/classes/images.php') ) {
-	require _ROOTURL_ ."/classes/images.php"; // Traitement d'images
-}
-if( file_exists(_ROOTURL_ .'/classes/uploader.php') ) {
-	require _ROOTURL_ ."/classes/uploader.php"; // Traitement d'uploads
-}
 if( file_exists(_ROOTURL_ .'/classes/filesystems.php') ) {
-	// debug('/classes/filesystems.php');
 	require _ROOTURL_ ."/classes/filesystems.php"; // Traitement de dossier/fichier
 }
 if( file_exists(_ROOTURL_ .'/classes/archiver.php') ) {
