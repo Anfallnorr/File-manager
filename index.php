@@ -7,30 +7,20 @@ if (version_compare(PHP_VERSION, MINIMUM_PHP, "<")) {
 	die("Votre version de php : ". PHP_VERSION ." doit être supérieur à ". MINIMUM_PHP ." pour exécuter cette version de Js-info !");
 }
 
-// $myFolder = $_SERVER['ORIG_PATH_INFO'];
-
-// if($_SERVER['ORIG_PATH_INFO'] == "/index.php") {
 if( in_array($_SERVER['ORIG_PATH_INFO'], array("", "/index.php")) ) {
 	header('Location: /datas/data');
 	exit;
 }
 
-/* ***** DOCUMENT_ROOT ***** */
 define('_EXEC', 1);
-// phpinfo();
-// die;
 
 require "configuration.php";
 $config = new Config();
 
+/* ***** DOCUMENT_ROOT ***** */
 define('_ROOTURL_', $config->root_path);
-
 require "includes/includes.php";
 
-// debug(_ROOTURL_);
-// debug($config);
-
-// die;
 if( $config->debug === 1 ) {
 	$mod_debug = $config->error_reporting;
 	
