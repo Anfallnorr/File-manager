@@ -1,5 +1,7 @@
 # File manager
 <p>Un simple gestionnaire de fichiers sans base de données</p>
+<p>Cette version du gestionnaire est limitée en fonctionnalités.</p>
+<p>Ce gestionnaire de fichiers est issu du site <a href="https://crm.js-info.fr" target="_blank">crm.js-info.fr</a>.</p>
 <h3>Prérequis :</h3>
 <ol>
 <li>PHP 8.1 ou version supérieure</li>
