@@ -4,50 +4,22 @@ defined('_EXEC') or die;
 
 class com_datas extends Controllers {
 	
-    protected $personnalFolder;
-    protected $personnalRoot;
-    protected $personnalThumbRoot;
-    protected $tmpRoot;
-	
-	public function __construct(object $requests, object $session, object $config) {
-		// debug($this->customer);
-		// debug($session->readSession('user')['datas']['personnal_folder']);
-		$this->personnalFolder = $session->readSession('user')['datas']['personnal_folder'];
-		$this->personnalRoot = _ROOTURL_ ."/uploads/datas/". $this->personnalFolder;
-		$this->personnalThumbRoot = $this->personnalRoot ."/thumbnails";
-		$this->tmpRoot = _ROOTURL_ ."/uploads/tmp/";
-		
-		parent::__construct($requests, $session, $config);
-	}
-	
 	public function data(): void {
-		/* if( $this->session->readSession('user') === null ) {
-			header('Location: /');
-			exit;
-		} */
 		$myFolder = $_SERVER['ORIG_PATH_INFO'];
-		
-		// if($myFolder == "/index.php") {
-			// header('Location: /datas/data');
-			// exit;
-		// }
-		
 		$userSession = $this->session->readSession('user');
-		$idCustomer = $this->customer['id'];
 		
 		if( !class_exists('Customers') ) {
 			$this->loadModels('Customers');
 		}
-		// Récupérer les informations du client actuel et tous les clients
-		$getCustomer = $this->Customers->getCustomer($idCustomer);
-		$getCustomers = $this->Customers->getCustomers();
-		// Récupérer le chemin du dossier personnel de l'utilisateur depuis la variable $_SERVER['ORIG_PATH_INFO']
+		// Récupérer les informations du client actuel
+		$getCustomer = $this->Customers->getCustomer($userSession['id']);
 		
 		if( !empty($userSession['datas']['expander']) ) {
 			$expander = $userSession['datas']['expander'];
 		} else {
 			$expander = "true";
 		}
+		// debug($expander, true);
 		
 		if( is_dir($this->personnalRoot) ) {
 			/* Récupère la liste des dossiers dans l'espace personnel */
@@ -116,10 +88,7 @@ class com_datas extends Controllers {
 				$this->globalVars(
 					array(
 						'dataDir' => _ROOTURL_ ."/templates/html/datas/views/blocks/data",
-						'getCustomers' => $getCustomers,
 						'myFolder' => $myFolder,
-						// 'datasshares' => $datasshares,
-						// 'foldersshares' => $getDatasshareSharedBy,
 						'personnalFolder' => $this->personnalFolder,
 						'personnalAllDirs' => $personnalAllDirs,
 						'personnalAllDepthDirs' => $personnalAllDepthDirs,
@@ -150,8 +119,7 @@ class com_datas extends Controllers {
 						'nbVidFiles' => count($vidSrc),
 						'otherBasename' => $otherBasename,
 						'otherBasePath' => $otherBasePath,
-						'nbOtherFiles' => count($otherSrc),
-						'shared' => ""
+						'nbOtherFiles' => count($otherSrc)
 					)
 				);
 			} else {
@@ -185,8 +153,7 @@ class com_datas extends Controllers {
 						'nbImgFiles' => count($imgSrc),
 						'nbAudioFiles' => count($audioSrc),
 						'nbVidFiles' => count($vidSrc),
-						'nbOtherFiles' => count($otherSrc),
-						'shared' => ""
+						'nbOtherFiles' => count($otherSrc)
 					)
 				);
 			}
@@ -196,8 +163,7 @@ class com_datas extends Controllers {
 			$this->globalVars(
 				array(
 					'dataDir' => _ROOTURL_ ."/templates/html/datas/views/blocks/data",
-					'personnalFolder' => $this->personnalFolder,
-					'shared' => ""
+					'personnalFolder' => $this->personnalFolder
 				)
 			);
 		}
@@ -206,7 +172,7 @@ class com_datas extends Controllers {
 			$breadcrumb = $this->requests->params;
 			$path = $this->requests->params;
 			$pathImploded = implode("/", $path);
-			// debug($this->requests->params);
+			
 			$this->globalVars(
 				array(
 					'breadcrumb' => $breadcrumb,
@@ -224,74 +190,7 @@ class com_datas extends Controllers {
 		if( !empty($this->requests->get) ) {
 			$get = get_object_vars($this->requests->get);
 			
-			// Si l'action est "save_share_form", traiter le formulaire de partage
-			if( $get['action'] == "save_share_form" ) {
-				if( !empty($this->requests->post) ) {
-					$post = $this->requests->post;
-					$post->token = ""; // Initialiser le jeton de partage à une chaîne vide
-					
-					// Récupérer tous les partages de données existants depuis la base de données
-					$getDatasshares = $this->Datasshare->getDatasshares();
-					
-					// Parcourir les partages de données existants pour trouver un partage correspondant aux données POST
-					foreach($getDatasshares as $datasshare) {
-						if($post->shared_by == $datasshare['shared_by'] && 
-						$post->shared_path == $datasshare['shared_path'] && 
-						$post->shared_target == $datasshare['shared_target'] && 
-						$post->shared_type == $datasshare['shared_type']) {
-							// Si un partage correspondant est trouvé, récupérer son ID et son jeton
-							$post->id = $datasshare['id'];
-							$post->token = $datasshare['token'];
-						}
-					}
-					
-					// Si aucun jeton de partage n'a été trouvé, générer un nouveau jeton aléatoire et l'affecter à la variable $token
-					if( empty($post->token) ) {
-						$token = base64_encode(random_bytes(32));
-						$post->token = $token;
-					}
-					
-					// Enregistrer les données de partage dans la base de données
-					if( $this->Datasshare->saveDatasshares($post) ) {
-						// Si l'enregistrement est réussi, préparer des variables pour afficher un message de succès
-						// Déterminer le type d'accès (lecture ou édition) en fonction de la valeur de 'access_type' et traduire la valeur en texte
-						$post->access_type = ($post->access_type == "reader") ? $this->langs->lang("READER", "forms", true) : $this->langs->lang("EDITOR", "forms", true);
-						// Générer l'URL de partage avec le jeton encodé pour le lien de téléchargement
-						$post->token = "/?c=datas&v=data&f=". base64_encode('dataShare') ."&t=". urlencode($post->token);
-						// Construire le nom de l'utilisateur à partir de son nom et prénom stockés dans la session
-						$post->by_name = $userSession['name'] ." ". $userSession['firstname'];
-						
-						// Si le nom de partageur n'est pas défini, récupérer le nom d'utilisateur du destinataire depuis la base de données
-						if( $post->sharing_username == "" ) {
-							$getUsername = $this->Customers->getCustomer($post->shared_to, array('username'));
-							$post->sharing_username = $getUsername['username'];
-						}
-						
-						// Envoyer un e-mail de notification de partage, si l'envoi est réussi, afficher un message de succès, sinon, afficher un message d'avertissement
-						if( gettype($sendMail = $this->mails->dataShare($post)) !== "array" ) {
-							if( $sendMail ) {
-								$message = "Le partage a réussi, le destinataire a été averti par email !";
-								$type = "success";
-							} else {
-								$message = "Le partage a réussi, sans envoie de mail !";
-								$type = "danger";
-							}
-						} else {
-							$message = "Le partage a réussi ! ". $sendMail['message'];
-							$type = $sendMail['type'];
-						}
-					} else {
-						// Si l'enregistrement échoue, afficher un message d'erreur
-						$message = "Une erreur est survenue lors du partage !";
-						$type = "danger";
-					}
-					
-					// Afficher le résultat en format JSON pour une utilisation dans la partie frontend
-					echo json_encode(array($message, $type));
-					exit;
-				}
-			}
-			elseif( $get['action'] == "upload" || $get['action'] == "uploadAjax" ) {
+			if( $get['action'] == "upload" || $get['action'] == "uploadAjax" ) {
 				// Vérifier si l'action dans les requêtes GET est "upload" ou "uploadAjax"
 				// Vérifier si des données POST et des fichiers (file_documents) sont présents
 				if( !empty($this->requests->post) && (isset($this->requests->files->file_documents) && !empty($this->requests->files->file_documents)) ) {
@@ -367,19 +266,9 @@ class com_datas extends Controllers {
 			}
 			// Si l'action dans les requêtes GET est "remove"
 			elseif( $get['action'] == "remove" ) {
-				// Vérifier si le paramètre 'shared_by' est défini et non vide
-				if( isset($get['shared_by']) && !empty($get['shared_by']) ) {
-					// Si 'shared_by' est défini, obtenir le chemin du dossier partagé à partir de la fonction getPersonnalFolder()
-					$sharedRoot = getPersonnalFolder($get['shared_by']);
-					$pathToRoot = _ROOTURL_ ."/uploads/datas/". $sharedRoot;
-				} else {
-					// Si 'shared_by' n'est pas défini, utiliser le chemin du dossier personnel de l'utilisateur connecté
-					$pathToRoot = $this->personnalRoot;
-				}
-				
 				// Appeler la méthode remove() de la classe FileSystems pour supprimer le fichier ou dossier spécifié
 				// Les paramètres passés sont le chemin du fichier/dossier à supprimer, le nom du fichier/dossier, le type (file/directory), et le chemin racine
-				$getAction = FileSystems::remove($get['path'], $get['file'], $get['type'], $pathToRoot);
+				$getAction = FileSystems::remove($get['path'], $get['file'], $get['type'], $this->personnalRoot);
 			}
 			// Si l'action dans les requêtes GET est "download"
 			elseif( $get['action'] == "download" ) {
@@ -400,14 +289,8 @@ class com_datas extends Controllers {
 						$getAction = array($e->getMessage(), "danger");
 					}
 				} elseif( $get['type'] == "file" ) {
-					// Vérifier si 'shared_by' est défini pour télécharger le fichier à partir du dossier partagé
-					if( isset($get['shared_by']) && !empty($get['shared_by']) ) {
-						$sharedRoot = getPersonnalFolder($get['shared_by']);
-						$pathToFile = _ROOTURL_ ."/uploads/datas/". $sharedRoot . $get['path'] ."/". $get['file'];
-					} else {
-						// Utiliser le chemin du fichier à télécharger depuis le dossier personnel de l'utilisateur connecté
-						$pathToFile = $this->personnalRoot . $get['path'] ."/". $get['file'];
-					}
+					// Utiliser le chemin du fichier à télécharger depuis le dossier personnel de l'utilisateur connecté
+					$pathToFile = $this->personnalRoot . $get['path'] ."/". $get['file'];
 					
 					try {
 						// Créer un objet Downloader pour gérer le téléchargement du fichier
@@ -681,13 +564,11 @@ class com_datas extends Controllers {
 				if( isset($fileRenamerKey) ) {
 					$fileRenamer['oldname'] = $this->personnalRoot . $post->file_renamer['path'][$fileRenamerKey];
 					$pdt = gettype($personnalDriveTotal) != "boolean" ? $personnalDriveTotal : array();
-					// $outputAction = FileSystems::renamer($fileRenamer['oldname'], $fileRenamer['newname'], $personnalDriveTotal, $this->personnalRoot);
 					$outputAction = FileSystems::renamer($fileRenamer['oldname'], $fileRenamer['newname'], $pdt, $this->personnalRoot);
 				} 
 				elseif( isset($dirRenamerKey) ) {
 					$dirRenamer['oldname'] = $this->personnalRoot . $post->dir_renamer['path'][$dirRenamerKey];
 					$pdt = gettype($personnalDriveTotal) != "boolean" ? $personnalDriveTotal : array();
-					// $outputAction = FileSystems::renamer($dirRenamer['oldname'], $dirRenamer['newname'], $personnalDriveTotal, $this->personnalRoot);
 					$outputAction = FileSystems::renamer($dirRenamer['oldname'], $dirRenamer['newname'], $pdt, $this->personnalRoot);
 				} 
 				elseif( isset($fileMoveKey) ) {
@@ -809,110 +690,6 @@ class com_datas extends Controllers {
 		
 		return $message;
 	}
-	
-	/* public function massUploadsAjax(): array|string {
-		// AJAX | DROPZONE
-		$getCustomer = $this->session->readSession('user');
-		
-		if( $this->requests->get->max_size_folder < 100 ) {
-			set_time_limit(3600);
-			
-			$file_format = $this->fileFormat();
-			$accept_file_format = FileSystems::ACCEPT_FILE_FORMAT;
-			
-			$datas = $this->requests->files->file_documents;
-			
-			if( is_array($datas) ) {
-				$file_counter = count($datas['name']);
-				$path = $getCustomer['datas']['path'];
-				
-				$get_files = FileSystems::getFiles($this->personnalRoot);
-				
-				if( !empty($path) ) {
-					$target_dir = $this->personnalRoot ."/". implode("/", $path) ."/";
-				} else {
-					$target_dir = $this->personnalRoot ."/";
-				}
-				
-				for( $i = 0; $i < $file_counter; $i++ ) {
-					$datas['name'][$i] = FileSystems::strReplace($datas['name'][$i]);
-					
-					$target_file[$i] = $target_dir . basename($datas['name'][$i]);
-					$imageFileType[$i] = strtolower(pathinfo($target_file[$i], PATHINFO_EXTENSION));
-					
-					// Vérifier si le fichier existe déjà
-					// if( !empty($get_files) ) {
-						// foreach($get_files as $get_file) {
-							// if( basename($get_file) === basename($target_file[$i]) ) {
-								// $slice_file = array_slice(explode("/", $get_file), 10);
-								// $message = array("Un fichier du même nom existe déjà, '". implode("/", $slice_file) ."'", "warning");
-								
-								// echo json_encode($message);
-								// exit;
-							// }
-						// }
-					// }
-					
-					// Vérifier la taille du fichier en octets (ex: 20000o = 20Ko), (ex: 19300357o = 19.3Mo)
-					if( $getCustomer['access'] > 2 ) {
-						if( $datas['size'][$i] > 8000000 ) {
-							$message = array("Désolé, le fichier est trop volumineux, taille max. 8Mo", "warning");
-							
-							echo json_encode($message);
-							exit;
-						}
-					}
-					
-					// Autoriser certains formats de fichiers
-					if( empty(array_search($imageFileType[$i], $file_format)) ) {
-						$message = array("Désolé, les fichiers autorisé sont de type ". implode(", ", $file_format), "warning");
-						
-						echo json_encode($message);
-						exit;
-					}
-					
-					if( move_uploaded_file($datas['tmp_name'][$i], $target_file[$i]) ) {
-						// Si tout va bien, on vérifie le type mime du fichier
-						if( !empty(array_search(mime_content_type($target_file[$i]), $accept_file_format)) ) {
-							// Si tout va bien, essayez de télécharger le fichier
-							if( $file_counter > 1 ) {
-								$message = array("L'enregistrement des fichiers s'est déroulé avec succès", "success");
-							} else {
-								$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($datas['name'][$i])) ." s'est déroulé avec succès", "success");
-							}
-						} else {
-							// Pas bon, on supprime le fichier
-							// debug(mime_content_type($target_file[$i]));
-							// die;
-							unlink($target_file[$i]);
-							$message = array("L'enregistrement des fichiers doit être de type ". implode(', ', $accept_file_format) ." !", "danger");
-							
-							echo json_encode($message);
-							exit;
-						}
-					}
-					
-					if( in_array($imageFileType[$i], array("jpg", "jpeg", "png", "bmp", "gif")) ) {
-						$imageData = getimagesize($target_file[$i]);
-						$datas['width'][$i] = $imageData[0];
-						$datas['height'][$i] = $imageData[1]; // debug($datas, true);
-					} else {
-						$datas['width'][$i] = "";
-						$datas['height'][$i] = "";
-					}
-				}
-				
-				$merge_datas = array_merge($datas, $message);
-				echo json_encode($merge_datas);
-				exit;
-			}
-		} else {
-			$message = array("Votre espace de stockage est plein, veuillez supprimer des fichiers avant de continuer !", "danger");
-			
-			echo json_encode($message);
-			exit;
-		}
-	} */
 	
 	function fileFormat(): ?array {
 		if( !class_exists('Params') ) {
