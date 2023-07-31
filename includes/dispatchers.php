@@ -26,8 +26,7 @@ class Dispatchers {
 		
 		if( !in_array($views, $arrayDiffResult, true) ) {
 			$this->error404("La méthode ". $views ." n'existe pas dans le controller ". $this->requests->controller);
-		} 
-		else {
+		} else {
 			if( is_array($params) ) {
 				call_user_func_array(array($controllers, $views), $params);
 			} else {
