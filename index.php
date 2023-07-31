@@ -1,7 +1,7 @@
 <?php
 // die;
 if( !defined('MINIMUM_PHP') ) {
-	define('MINIMUM_PHP', "8.0.0");
+	define('MINIMUM_PHP', "8.1.0");
 }
 if (version_compare(PHP_VERSION, MINIMUM_PHP, "<")) {
 	die("Votre version de php : ". PHP_VERSION ." doit être supérieur à ". MINIMUM_PHP ." pour exécuter cette version de Js-info !");
