@@ -52,14 +52,8 @@ class FileSystems {
 		"wbk","wbt","wIz","wk?","wml","wms","wpc","wpd","ws","wsc","wsf","wsh","ww?",
 		"xsl","xlam","xlsm","xlt","xltm"
 	);
-	// $extensions = array('doc_src' => array("doc","docx","odf","odp","ods","odt","otf","pdf","ppt","csv","pps","pptx","xls","xlsx","rtf","txt"));
-	// $extensions = array('audio_src' => array("mp3","wav","wave","wma","aac","mid","midi","ogg"));
-	// $extensions = array('img_src' => array("jpg","jpeg","png","tif","webp","bmp","ico","svg","gif"));
-	// $extensions = array('vid_src' => array("mp4","mpg","mpeg","mov","3gp","avi"));
-	// $extensions = array('other_src' => array("apk","exe","msi","html","css","js","sql","psd","raw","xcf","ai","aif","dxf","zip","7z"));
 	
     protected $unite;
-    // protected $basePath;
     protected $path;
     private $requests;
 	
@@ -69,22 +63,6 @@ class FileSystems {
         $this->requests = $requests;
     }
 	
-	// La fonction getContents() récupère les fichiers et répertoires contenus dans le répertoire spécifié par 
-	// l'instance de la classe Directory. Elle retourne un tableau associatif contenant les informations sur les 
-	// fichiers et répertoires trouvés, trié ou non selon le paramètre $sortByDate.
-	
-	// Si $sortByDate est défini sur true, la fonction trie les résultats par date de modification décroissante, 
-	// sinon les résultats sont renvoyés dans l'ordre dans lequel ils ont été trouvés. Les informations récupérées 
-	// pour chaque élément sont :
-	
-	// name : le nom du fichier ou du répertoire
-	// date : la date de modification du fichier ou du répertoire
-	// size : la taille du fichier en octets (pour les fichiers seulement)
-	// extension : l'extension de fichier (pour les fichiers seulement)
-	// path : le chemin d'accès complet à l'élément, relatif au répertoire racine.
-	
-	// La fonction ignore les fichiers et répertoires cachés (dont le nom commence par un point) et retourne 
-	// un tableau vide si aucun élément n'a été trouvé dans le répertoire.
 	/**
 	 * Récupère les fichiers et répertoires contenus dans le répertoire spécifié,
 	 * avec des informations sur leur nom, date de modification, taille et extension de fichier le cas échéant.
@@ -101,7 +79,7 @@ class FileSystems {
         $files = array();
 		// Tableau pour stocker les fichiers
         $directories = array();
-		// debug();
+		
 		// Parcours le contenu
         foreach ($contents as $content) {
 			// Ignore les répertoires "." et ".."
@@ -109,8 +87,6 @@ class FileSystems {
                 continue;
             }
 			
-			// debug($content);
-			// debug($this->path);
 			// Si le contenu est un dossier
             if (is_dir($this->path . "/" . $content)) {
 				// Ajoute le dossier au tableau de dossiers avec son nom, date de modification, et son chemin
@@ -118,8 +94,7 @@ class FileSystems {
                     "name" => $content,
                     "date" => filemtime($this->path . "/" . $content),
                     "size" => 0,
-                    "extension" => "",
-                    // "path" => $this->requests->buildPath($content)
+                    "extension" => ""
                 );
             } else {
 				// Sinon, si le contenu est un fichier, ajoute le fichier au tableau de fichiers avec son nom, date de modification, sa taille, son extension, et son chemin
@@ -127,8 +102,7 @@ class FileSystems {
                     "name" => $content,
                     "date" => filemtime($this->path . "/" . $content),
                     "size" => filesize($this->path . "/" . $content),
-                    "extension" => pathinfo($this->path . "/" . $content, PATHINFO_EXTENSION),
-                    // "path" => $this->requests->buildPath($content)
+                    "extension" => pathinfo($this->path . "/" . $content, PATHINFO_EXTENSION)
                 );
             }
         }
@@ -242,9 +216,6 @@ class FileSystems {
 	 * Si aucun fichier n'est trouvé dans le chemin, la fonction retourne une chaîne vide.
 	 */
 	public static function getExtractedFolder(string $folder): string {
-		// $folder = "/folder1/folder2/folder3/folder4/folder5/folder5/uploads/datas/personnal-folder-dynamique/toto/titi/tete/gros-minet/10-styles-of-metal.mp4";
-		// $folder = "/folder1/folder2/folder3/folder4/folder5/folder5/uploads/datas/personnal-folder-dynamique/videos/musiques/toto/10-styles-of-metal.mp4";
-		// $uploads_datas = "/uploads/datas/";
 		$uploads_datas = "datas";
 		$folder_parts = explode("/", $folder);
 		$uploads_datas_index = array_search($uploads_datas, $folder_parts);
@@ -254,6 +225,7 @@ class FileSystems {
 		$next_is_dir = true;
 		$i = $personal_folder_index + 1;
 		$extracted_folder = "";
+		
 		while ($next_is_dir && $i < count($folder_parts) - 1) {
 			if (strpos($folder_parts[$i], ".") === false) {
 				$extracted_folder .= "/" . $folder_parts[$i];
@@ -262,20 +234,9 @@ class FileSystems {
 			}
 			$i++;
 		}
+		
 		return $extracted_folder;
 	}
-	
-	/* public static function getPersonalDriveTotal($folder) {
-		$personalDriveTotal = array();
-		// $dir = _ROOTURL_ . '/uploads/datas/' . $folder;
-		// if (is_dir($dir)) {
-		if (is_dir($folder)) {
-			$files = self::getFiles($folder);
-			$personalDriveTotal = self::categorizeFiles($files);
-			// debug($personalDriveTotal, true);
-		}
-		return $personalDriveTotal;
-	} */
 	
 	/**
 	 * Récupère les extensions de fichier associées à un type donné.
@@ -284,74 +245,14 @@ class FileSystems {
 	 * @return array Les extensions de fichier associées au type spécifié, ou un tableau vide si le type n'existe pas.
 	 */
 	public static function getExtByType(string $type): array {
-		// debug($type);
-		// debug(self::EXTENSIONS[$type]);
-		// die;
 		if (array_key_exists($type, self::EXTENSIONS)) {
 			return self::EXTENSIONS[$type];
 		}
+		
 		return array();
-		// return self::EXTENSIONS[$type];
 	}
-	
-    /**
-     * Parcours un répertoire de manière récursive et renvoie un tableau de tous les fichiers contenus dans ce répertoire et ses sous-répertoires.
-     * 
-     * @param string $dir Le répertoire à parcourir
-     * @return array Un tableau contenant tous les fichiers contenus dans le répertoire et ses sous-répertoires.
-     */
-    /* public static function getFilesRecursively(string $dir): array {
-        $files = array();
-		
-        $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
-            RecursiveIteratorIterator::SELF_FIRST,
-            RecursiveIteratorIterator::CATCH_GET_CHILD // Ignore les erreurs "Permission denied"
-        );
-		
-        foreach ($iterator as $file) {
-            if ($file->isFile()) {
-                $files[] = $file->getPathname();
-            }
-        }
-		
-        return $files;
-    } */
-	
-    /**
-     * Supprime un fichier ou un répertoire de manière récursive.
-     * 
-     * @param string $path Le chemin du fichier ou du répertoire à supprimer.
-     * @return bool Vrai si le fichier ou le répertoire a été supprimé, faux sinon.
-     */
-    /* public static function deleteRecursively(string $path): bool {
-        if (!file_exists($path)) {
-            return false;
-        }
-		
-        if (is_dir($path)) {
-            $iterator = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
-            $files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
-			
-            foreach ($files as $file) {
-                if ($file->isDir()) {
-                    rmdir($file->getPathname());
-                } else {
-                    unlink($file->getPathname());
-                }
-            }
-			
-            rmdir($path);
-        } else {
-            unlink($path);
-        }
-		
-        return true;
-    } */
   
     public static function getSize(string|array $files, int $totalFileSize = 0): int|float {
-		// $totalFileSize = 0;
-		
 		if( is_string($files) ) {
 			$totalFileSize = $totalFileSize + filesize($files);
 		} else {
@@ -371,7 +272,7 @@ class FileSystems {
      */
     public static function getSizeName(int|float $size): string {
         $unite = array("Octets","Ko","Mo","Go");
-		// debug($size);324998864
+		
         if ($size < 1000) {
             // Octets
             return $size ." " .$unite[0];
@@ -430,12 +331,11 @@ class FileSystems {
         $dirIterator = new RecursiveDirectoryIterator($dirDest);
         $iterator = new RecursiveIteratorIterator($dirIterator);
         $allFile = [];
-		// debug($excludeDir);
 		
 		if (!empty($excludeDir)) {
 			foreach($iterator as $file) {
 				$isExclude = strpos($file->getRealpath(), $excludeDir);
-				// if ($file->isFile() && $file->getFilename() != "." && $file->getFilename() != ".." && $file->getFilename() != "index.php") {
+				
 				if ($file->isFile() && $isExclude === false && !in_array($file->getFilename(), array(".", "..", "index.php", "index.html"), false)) {
 					$allFile[] = $file->getPathname();
 				}
@@ -448,9 +348,6 @@ class FileSystems {
 			}
 		}
 		
-		// debug($allFile);
-		// die;
-		
         return empty($allFile) ? false : $allFile;
     }
 	
@@ -462,20 +359,16 @@ class FileSystems {
      * @param string $excludeDir Le nom d'un sous-répertoire à exclure
      * @return array|false Un tableau contenant tous les répertoires trouvés, ou false si aucun répertoire n'a été trouvé
      */
-	// Ces fonctions peuvent être appelées de la manière suivante :
-	// $all_directories = FileSystems::getAllDirectories('/path/to/directory', 'excluded_directory');
 	public static function getDirs(string $dir, string $rootFolder, string $excludeDir = ""): array|bool {
         $dirIterator = new RecursiveDirectoryIterator($dir);
         $iterator = new RecursiveIteratorIterator($dirIterator);
         $allDir = [];
-		// debug($excludeDir);
 		
 		if (!empty($excludeDir)) {
 			foreach($iterator as $file) {
 				if ($file->isDir()) {
 					$isRoot = strpos($file->getRealpath(), $rootFolder);
 					$isExclude = strpos($file->getRealpath(), $excludeDir);
-					// $isExclude = strpos($file->getRealpath(), "thumbnails");
 					
 					if ($isRoot !== false && $isExclude === false) {
 						$allDir[] = $file->getRealpath();
@@ -496,9 +389,6 @@ class FileSystems {
 		
         $allDir = array_unique($allDir);
         array_shift($allDir);
-		
-		// debug($allDir);
-		// die;
 		
         return empty($allDir) ? false : $allDir;
     }
@@ -523,32 +413,15 @@ class FileSystems {
 				}
 			} else {
 				$treeStructureImploded = "/". implode("/", $treeStructure);
-				// debug($treeStructureImploded, true);
 			}
 				
 			return $treeStructureImploded;
 		}
         return empty($treeStructure) ? false : $treeStructure;
-        // return $treeStructure;
     }
 	
 	public static function upload(array $file, string $targetDir, array $fileFormat = [], int $access = 1): string|array {
-		// debug($file);
-		// debug($targetDir);
-		// debug($fileFormat);
-		// debug($access, true);
 		set_time_limit(3600);
-		
-		// debug($targetDir);
-		// die;
-		
-		// $file_format = $this->fileFormat();
-		// $acceptFileFormat = self::ACCEPT_FILE_FORMAT;
-		// $personnalFolder = $getCustomer['datas']['personnal_folder'];
-		// if( is_string($file['name']) ) {
-			// debug($file);
-			// debug($file['name']);
-		// }
 		
 		if (!is_dir($targetDir)) {
 			mkdir($targetDir, 0705, true);
@@ -559,27 +432,12 @@ class FileSystems {
 			$filePath = array(
 				'src' => array()
 			);
-			// $getFiles = self::getFiles($this->config->root_path ."/uploads/datas/". $this->personnalFolder ."/");
-			
-			// if( !empty($file["file_path"]) ) {
-				// $targetDir = $this->config->root_path ."/uploads/datas/". $this->personnalFolder ."/". $file['file_path'] ."/";
-			// } else {
-				// $targetDir = $this->config->root_path ."/uploads/datas/". $this->personnalFolder ."/";
-			// }
 			
 			for ($i = 0; $i < $fileCounter; $i++) {
 				$file['name'][$i] = self::strReplace($file['name'][$i]);
 				
 				$targetFile[$i] = $targetDir ."/". basename($file['name'][$i]);
 				$imageFileType[$i] = strtolower(pathinfo($targetFile[$i], PATHINFO_EXTENSION));
-				
-				// debug($file);
-				// debug($targetDir);
-				// debug($targetFile[$i]);
-				// debug(strtolower(substr($targetFile[$i], strpos("/uploads/datas", '/') + 1)));
-				// debug(substr($targetFile[$i], strpos($targetFile[$i], "/uploads")));
-				// debug($imageFileType[$i]);
-				// die;
 				
 				// Vérifier si le fichier existe déjà
 				/* if( !empty($getFiles) ) {
@@ -618,9 +476,6 @@ class FileSystems {
 							$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($file['name'][$i])) ." s'est déroulé avec succès.", "success");
 						}
 						$filePath['src'][] = base64_encode(substr($targetFile[$i], strpos($targetFile[$i], "/uploads")));
-						// if( $imageFileType[$i] == "jpg" || $imageFileType[$i] == "jpeg" || $imageFileType[$i] == "png" ) {
-							// $redim['img'][] = $file['name'][$i];
-						// }
 					} else {
 						// Pas bon, on supprime le fichier
 						unlink($targetFile[$i]);
@@ -637,7 +492,7 @@ class FileSystems {
 				if( in_array($imageFileType[$i], array("jpg", "jpeg", "png", "bmp", "gif")) ) {
 					$imageData = getimagesize($targetFile[$i]);
 					$file['width'][$i] = $imageData[0];
-					$file['height'][$i] = $imageData[1]; // debug($datas, true);
+					$file['height'][$i] = $imageData[1];
 				} else {
 					$file['width'][$i] = "";
 					$file['height'][$i] = "";
@@ -650,14 +505,6 @@ class FileSystems {
 			
 			$targetFile = $targetDir ."/". basename($file['name']);
 			$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-			
-			// debug($file);
-			// debug($targetDir);
-			// debug($targetFile);
-			// debug(strtolower(substr($targetFile, strpos("/uploads/datas", '/') + 1)));
-			// debug(substr($targetFile, strpos($targetFile, "/uploads")));
-			// debug($imageFileType);
-			// die;
 			
 			// Vérifier si le fichier existe déjà
 			/* if( !empty($getFiles) ) {
@@ -692,9 +539,6 @@ class FileSystems {
 					// Si tout va bien, essayez de télécharger le fichier
 					$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($file['name'])) ." s'est déroulé avec succès.", "success");
 					$filePath['src'] = base64_encode(substr($targetFile, strpos($targetFile, "/uploads")));
-					// if( $imageFileType == "jpg" || $imageFileType == "jpeg" || $imageFileType == "png" ) {
-						// $redim['img'][] = $file['name'];
-					// }
 				} else {
 					// Pas bon, on supprime le fichier
 					unlink($targetFile);
@@ -716,35 +560,7 @@ class FileSystems {
 		
 		$mergeDatas = array_merge($file, $filePath, $message);
 		return $mergeDatas;
-		// return $message;
     }
-	
-	/* , string $sourceDir */
-	/* public static function resizeImagick(string $file, string $targetDir, int $width, int $height, int $quality): ?bool {
-		// $imagePath = $sourceDir . '/' . $file;
-		
-		// Créer une instance d'Imagick
-		$image = new \Imagick($file);
-		// debug();
-		// Redimensionner l'image
-		$image->resizeImage($width, $height, \Imagick::FILTER_LANCZOS, 1, true);
-		// $image->thumbnailImage( 100, null );
-		
-		// Créer le chemin de destination en conservant l'arborescence de l'image source
-		if (!is_dir($targetDir)) {
-			mkdir($targetDir, 0777, true);
-		}
-		
-		// Enregistrer l'image redimensionnée
-		$image->setImageCompressionQuality($quality);
-		$image->writeImage($targetDir ."/". basename($file));
-		
-		// Libérer la mémoire
-		$image->clear();
-		$image->destroy();
-		
-		return true;
-	} */
 	
 	public static function resizeLargeImage(array $files, string $sourceDir, string $targetDir, int $width, int $quality = 100): ?bool {
 		foreach ($files as $file) {
@@ -815,8 +631,6 @@ class FileSystems {
 			if ($oldWidth > 9000 || $oldHeight > 9000) {
 				throw new Exception("Le fichier image est trop grande : ". $oldWidth ."x". $oldHeight);
 				return false;
-				// self::resizeImagick($imagePath, $targetDir, $newWidth, $newHeight, $quality);
-				// self::resizeImagick($imagePath, $sourceDir , $targetDir, $newWidth, $newHeight, $quality);
 			}
 			
 			// Créer une nouvelle image en fonction du type de fichier
@@ -854,7 +668,6 @@ class FileSystems {
 				throw new Exception("Impossible de redimensionner l'image : ". $file);
 			}
 			
-			// Libérer la mémoire
 			imagedestroy($source);
 			imagedestroy($outputImage);
 		}
@@ -873,14 +686,11 @@ class FileSystems {
 	 * @return bool Retourne TRUE en cas de succès ou FALSE en cas d'échec.
 	 */
 	public static function renamer(string|array $oldname, string $newname, array $totalFiles = [], string $rootFolder = "", string $root = ""): array {
-		// $newname = self::strReplace($newname);
 		$newname = self::strReplace(trim($newname));
 		$fileNameExist = array();
 		$errorRename = array();
 		
 		if( is_array($oldname) ) {
-			// $message = array("Une erreur s'est produite lors du renommage", "danger");
-			
 			if( !empty($oldname['file']) ) {
 				$fileRename = $oldname['file'];
 				$fileCounter = count($oldname['file']);
@@ -916,7 +726,6 @@ class FileSystems {
 							continue;
 						} else {
 							$success = rename($pathFolder . $fileRename[$i], $pathFolder . $newFileName);
-							// miniatures => thumbnails
 							
 							if( file_exists($pathThumbFolder . $fileRename[$i]) ) {
 								rename($pathThumbFolder . $fileRename[$i], $pathThumbFolder . $newFileName);
@@ -998,7 +807,6 @@ class FileSystems {
 				array_pop($explodeOldPathname);
 				
 				$fileNewName = $newname .".". $pathInfo;
-				// $newname = implode("/", $explodeOldPathname) ."/". $newname .".". $pathInfo;
 				$newname = implode("/", $explodeOldPathname) ."/". $fileNewName;
 				
 				$arrayDiff = array_diff($explodeOldPathname, $explodeRootFolder);
@@ -1008,15 +816,12 @@ class FileSystems {
 				foreach($totalFiles as $getFile) {
 					if (basename($getFile) === basename($newname)) {
 						$sliceFile = array_slice(explode("/", $getFile), 10);
-						// $message = array("Un fichier du même nom existe déjà, '/". implode("/", $sliceFile) ."'", "warning");
-						
-						// return $message;
 						return array("Un fichier du même nom existe déjà, '/". implode("/", $sliceFile) ."'", "warning");
 					}
 				}
 				
 				$success = rename($oldname, $newname);
-				// miniatures => thumbnails
+				
 				if( file_exists($thumbOldName) ) {
 					rename($thumbOldName, $thumbNewName);
 				}
@@ -1037,13 +842,6 @@ class FileSystems {
 				$arrayDiff = array_diff($explodeOldPathname, $explodeRootFolder);
 				$thumbOldName = $rootFolder ."/thumbnails/". implode("/", $arrayDiff) ."/". $dirOldName;
 				$thumbNewName = $rootFolder ."/thumbnails/". implode("/", $arrayDiff) ."/". $dirNewName;
-				
-				// debug($arrayDiff);
-				// debug($thumbOldName);
-				// debug($thumbNewName);
-				// debug($dirOldName);
-				// debug($newname);
-				// die;
 				
 				$success = rename($oldname, $newname);
 				
@@ -1073,40 +871,30 @@ class FileSystems {
 	 */
 	public static function move(string|array $oldPath, string $newPath, string $rootFolder, array $moveFiles = []) {
 		// On récupère le dossier de destination en enlevant le nom du fichier de la variable $newPath
-		// $dirDest = str_replace(basename($newPath), "", $newPath);
 		$dirDest = explode("/", $newPath);
 		array_pop($dirDest);
 		$dirDest = implode("/", $dirDest) ."/";
-		// $dirDest3 = substr($newPath, 0, -(basename($newPath)));
-		// $dirMinDest = str_replace($rootFolder, $rootFolder ."/thumbnails", $dirDest);
 		
-		// debug(basename($newPath));
-		// debug($newPath);
-		// debug($newPath);
-		// debug($dirDest);
-		// debug($dirDest2);
-		// debug(count(basename($newPath)));
-		// die;
-		
-		if( !empty($moveFiles) ) { // Si on a des fichiers ou dossiers à déplacer
+		// Si on a des fichiers ou dossiers à déplacer
+		if( !empty($moveFiles) ) {
 			$errorTransfert = array(); // On initialise un tableau d'erreur de transfert
-			$rootOldPath = $rootFolder . $oldPath ."/"; // On crée le chemin complet de l'ancien dossier ou fichier
-			$rootNewPath = $rootFolder . $newPath ."/"; // On crée le chemin complet du nouveau dossier ou fichier
+			$rootOldPath = $rootFolder . $oldPath ."/";
+			$rootNewPath = $rootFolder . $newPath ."/";
 			
 			// Si on a des dossiers à déplacer
 			if( isset($moveFiles['dir']) ) {
 				foreach($moveFiles['dir'] as $movingDir) {
-					$moveOldFiles[] = $rootOldPath . $movingDir; // On ajoute le chemin complet de l'ancien dossier dans un tableau
-					$moveNewFiles[] = $rootNewPath . $movingDir; // On ajoute le chemin complet du nouveau dossier dans un tableau
+					$moveOldFiles[] = $rootOldPath . $movingDir; 
+					$moveNewFiles[] = $rootNewPath . $movingDir;
 				}
 			}
 			
 			// Si on a des fichiers à déplacer
 			if( isset($moveFiles['file']) ) {
 				foreach($moveFiles['file'] as $movingFile) {
-					if( $movingFile != "on" ) { // Si on ne veut pas déplacer tous les fichiers
-						$moveOldFiles[] = $rootOldPath . $movingFile; // On ajoute le chemin complet de l'ancien fichier dans un tableau
-						$moveNewFiles[] = $rootNewPath . $movingFile; // On ajoute le chemin complet du nouveau fichier dans un tableau
+					if( $movingFile != "on" ) {
+						$moveOldFiles[] = $rootOldPath . $movingFile;
+						$moveNewFiles[] = $rootNewPath . $movingFile;
 					}
 				}
 			}
@@ -1160,21 +948,11 @@ class FileSystems {
 					$fileNewpath = basename($dirDest);
 				}
 				
-				// Ajouter l'ancien nom de base au nouveau chemin
-				// $newPath = rtrim($newPath, '/') . '/' . $fileOldpath;
-				
 				// Déplacez le fichier ou le répertoire vers le nouveau chemin
 				$fileTypeLabel = is_file($oldPath) ? "fichier" : "dossier";
 				
 				// Détermine le type de fichier en fonction du chemin
 				$fileType = is_file($oldPath) ? "file" : "folder";
-				
-				// debug($dirDest);
-				// debug($oldPath);
-				// debug($oldThumbpath);
-				// debug($newPath);
-				// debug($newThumbpath);
-				// die;
 				
 				// Tente de déplacer le fichier ou le répertoire
 				if (rename($oldPath, $newPath)) {
@@ -1215,14 +993,6 @@ class FileSystems {
 				$fileDeleted[] = $file;
 			}
 			
-			// debug($pathFolder . $fileRename[$i]);
-			// debug($pathThumbFolder . $fileRename[$i]);
-			// debug($pathThumbFolder . $newFileName);
-			// debug($newname ."-". $i .".". $pathInfo);
-			// debug($newFileName);
-			// debug($fileNewname);
-			// die;
-			
 			// Si c'est un fichier, on le supprime directement
 			unlink($targetFile);
 			
@@ -1258,10 +1028,9 @@ class FileSystems {
 				}
 			}
 		} else {
-			// Si le type n'est ni 'file', ni 'dir', ni un tableau, on lance une exception
+			// Si le type n'est ni 'file', ni 'dir', ni un tableau
 			$message = "Le paramètre $type doit être 'file', 'dir' ou $file un tableau";
 			$successType = "danger";
-			// throw new Exception('Le paramètre $type doit être "file", "dir" ou un tableau');
 		}
 		
 		$message = "La suppression à réussi.";
@@ -1278,73 +1047,6 @@ class FileSystems {
     }
 	
 	/**
-	 * Supprime de manière récursive tous les fichiers et dossiers dans le répertoire spécifié.
-	 *
-	 * @param string $dir Le répertoire à supprimer.
-	 * @return bool True si la suppression est réussie, sinon false.
-	 */
-	/* public static function remove(string $path): bool {
-        if (!file_exists($path)) {
-            return false;
-        }
-        if (is_dir($path)) {
-            $files = scandir($path);
-            foreach ($files as $file) {
-                if ($file !== '.' && $file !== '..') {
-                    self::remove("$path/$file");
-                }
-            }
-            return rmdir($path);
-        } else {
-            return unlink($path);
-        }
-    } */
-    
-	/**
-	 * Déplace de manière récursive tous les fichiers et dossiers du répertoire source vers le répertoire destination.
-	 * Si le répertoire destination n'existe pas, il sera créé.
-	 * Si le fichier ou le dossier de destination existe déjà, il sera remplacé.
-	 *
-	 * @param string $src Le répertoire source.
-	 * @param string $dest Le répertoire destination.
-	 * @return bool True si le déplacement est réussi, sinon false.
-	 */
-    /* public static function move(string $source, string $destination): bool {
-        if (!file_exists($source)) {
-            return false;
-        }
-        if (is_dir($source)) {
-            if (!file_exists($destination)) {
-                mkdir($destination, 0777, true);
-            }
-            $files = scandir($source);
-            foreach ($files as $file) {
-                if ($file !== '.' && $file !== '..') {
-                    self::move("$source/$file", "$destination/$file");
-                }
-            }
-            // return rmdir($source);
-			return true;
-        } else {
-            return rename($source, $destination);
-        }
-    } */
-	
-    /**
-     * Crée un nouveau répertoire.
-     * 
-     * @param string $path Le chemin du nouveau répertoire à créer.
-     * @return bool Vrai si le répertoire a été créé, faux sinon.
-     */
-    /* public static function createDirectory(string $path): bool {
-        if (!file_exists($path)) {
-            // return mkdir($path, 0777, true);
-            return mkdir($path, 0705, true);
-        }
-        return false;
-	} */
-	
-	/**
 	 * Crée un dossier dans un répertoire personnel avec un message de retour
 	 *
 	 * @param string $folderName Le nom du dossier à créer
@@ -1353,7 +1055,6 @@ class FileSystems {
 	 */
     public static function createDir(string $folderName, string $rootFolder, bool $addThumbsDir = true): array {
 		// Supprime tous les caractères de la chaîne de caractères indésirables du nom du dossier
-		// $folderName = self::strReplace($folderName);
 		$folderName = self::strReplace(trim($folderName));
 		
 		// Si le premier caractère est "/", retire-le du nom du dossier
@@ -1394,16 +1095,13 @@ class FileSystems {
 						self::addFile($targetArrayDir);
 					}
 				}
+				
 				$message = array("Le dossier ". basename($folderName) ." a été créé avec succès", "success");
-				// Enregistre une entrée de journal avec le message de succès
-				// logs($this->session->readSession('user')['id'] ."|". $message[1] ."|". $message[0] ."|". __METHOD__ ."|". __LINE__);
 			} else {
 				$message = array("Le dossier ". basename($folderName) ." n'a pas pu être créé !", "danger");
-				// logs($this->session->readSession('user')['id'] ."|". $message[1] ."|". $message[0] ."|". __METHOD__ ."|". __LINE__);
 			}
 		} else {
 			$message = array("Le dossier ". basename($folderName) ." existe déjà !", "warning");
-			// logs($this->session->readSession('user')['id'] ."|". $message[1] ."|". $message[0] ."|". __METHOD__ ."|". __LINE__);
 		}
 		
 		// Retourner le message correspondant à l'action effectuée
@@ -1420,7 +1118,6 @@ class FileSystems {
 		$total_file_size = 0;
 		
 		foreach($files as $size) {
-			// debug($total_file_size);
 			$total_file_size = $total_file_size + filesize($size);
 		}
 		
@@ -1480,12 +1177,7 @@ class FileSystems {
 			"y", "y", 
 			"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"
 		);
-		// $replaced = strtolower(str_replace($search, $replace, $string));
-		// $replaced = str_replace(array("’", "-."), array("-", "."), $replaced);
 		
-		// debug($replaced, true);
-		
-		// return $replaced;
 		return str_replace("-.", ".", strtolower(str_replace($search, $replace, $string)));
 	}
 	
@@ -1524,56 +1216,6 @@ class FileSystems {
 		return $str;
 	}
 	
-    // Ajouter d'autres fonctions utiles ici...
-	
 }
-
-/*
-// Bien sûr, voici un exemple d'utilisation de la classe FileSystems pour lister récursivement tous les fichiers d'un répertoire et de ses sous-répertoires :
-// Inclure la classe FileSystems
-require_once 'FILESYSTEMS.php';
-
-// Créer une instance de la classe FileSystems
-$directory = new FileSystems();
-
-// Récupérer tous les fichiers récursivement dans le répertoire /var/www/html
-$files = $directory->getFilesRecursively('/var/www/html');
-
-// Parcourir les fichiers et les afficher
-foreach ($files as $file) {
-    echo $file . '<br>';
-}
-
-
-// Et voici un exemple d'utilisation de la classe FileSystems pour supprimer récursivement un répertoire :
-// Inclure la classe FileSystems
-require_once 'filesystems.php';
-
-// Créer une instance de la classe FileSystems
-$directory = new FileSystems();
-
-// Supprimer récursivement le répertoire /var/www/html/test
-$directory->deleteRecursive('/var/www/html/test');
-
-
-// Cette méthode peut être appelée directement en utilisant le nom de la classe, comme ceci :
-$size = 1024 * 1024 * 5; // 5 Mo
-echo FileSystems::getSizeName($size); // affiche "5 Mo"
-
-// Dans cet exemple, nous appelons la fonction getScanFiles en utilisant la notation 
-// de classe statique FileSystems::getScanFiles. Nous passons le chemin du répertoire 
-// que nous voulons scanner en argument et stockons le résultat dans la variable $files. 
-// Ensuite, nous vérifions si le tableau n'est pas vide, et si c'est le cas, nous 
-// parcourons le tableau et imprimons chaque nom de fichier. Si la fonction renvoie false, 
-// nous affichons un message indiquant qu'aucun fichier n'a été trouvé.
-$files = FileSystems::getScanFiles('/path/to/directory');
-if ($files !== false) {
-    foreach ($files as $file) {
-        echo $file . "\n";
-    }
-} else {
-    echo "No files found.\n";
-}
-*/
 
 ?>
