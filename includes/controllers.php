@@ -4,15 +4,15 @@ defined('_EXEC') or die;
 
 class Controllers {
 	
-	public $notifications;
-	public $Customers;
-	public $Params;
+	// public $Customers;
+	// public $Params;
 	
 	public $requests;
 	public $session;
 	public $config;
-	public $params;
-	public $customer;
+	public $notifications;
+	// public $params;
+	// public $customer;
 	
 	private $vars = [];
 	
@@ -22,12 +22,32 @@ class Controllers {
 		$this->config = $config;
 		$this->notifications = $this->session->getNotifications();
 		
-		$this->customer = $this->session->readSession('user');
+		if($this->session->readSession('user') !== null) {
+			$this->customer = $this->session->readSession('user');
+			
+			if( $this->customer['datas']['personnal_folder'] != session_id() ) {
+				$this->customer['datas']['personnal_folder'] = session_id();
+				$this->session->writeSession('user', $this->customer);
+			}
+		} else {
+			if( !class_exists('Customers') ) {
+				$this->loadModels('Customers');
+			}
+			$this->customer = $this->Customers->getCustomer(1);
+			$this->customer['datas']['personnal_folder'] = session_id();
+			
+			$this->session->writeSession('user', $this->customer);
+		}
 		
 		if( !class_exists('Params') ) {
 			$this->loadModels('Params');
 		}
 		$this->params = $this->Params->getParams();
+		
+		$this->personnalFolder = $this->session->readSession('user')['datas']['personnal_folder'];
+		$this->personnalRoot = _ROOTURL_ ."/uploads/datas/". $this->personnalFolder;
+		$this->personnalThumbRoot = $this->personnalRoot ."/thumbnails";
+		$this->tmpRoot = _ROOTURL_ ."/uploads/tmp/";
 		
 		$this->globalVars(
 			array(
