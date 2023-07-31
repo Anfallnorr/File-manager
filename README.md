@@ -8,7 +8,7 @@
 </ol>
 <h3>Installation :</h3>
 <ol>
-<li>Modifier le fichier htaccess en remplaçant le domaine par cette ligne : <u>https://file.js-info.fr</u>/$1</li>
+<li>Modifier le fichier htaccess en remplaçant le domaine par cette ligne : <u>file.js-info.fr</u>/$1</li>
 <li>Modifier le fichier de configuration et changer la valeur de $root_path avec le chemin du serveur jusqu'au dossier final.</li>
 <li>Modifier toutes les occurrences de la fonction PHP array_slice dans les fichiers du template HTML. Le numéro doit correspondre au nombre de dossiers jusqu'au dossier personnel inclus (actuellement la valeur est : 10).</li>
 <li>Modifier toutes les occurrences du 2ème paramètre de FileSystems::getSliceDirs. Le numéro doit correspondre au nombre de dossiers jusqu'au dossier personnel inclus (actuellement la valeur est : 10).</li>
