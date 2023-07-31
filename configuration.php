@@ -6,7 +6,7 @@ class Config {
 	public $debug = 0;
 	public $error_reporting = "devloppment";
 	public $default_lang = "fr-FR";
-	public $siteurl = "https://file.js-info.fr";
+	public $siteurl = "https://crm.js-info.fr";
 	public $contact_siteurl = "https://js-info.fr/nous-contacter";
 	public $root_path = $_SERVER['DOCUMENT_ROOT'];
 	public $sitename = "Js info";
