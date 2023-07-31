@@ -11,3 +11,12 @@
 <li>Modifier toutes les occurrences de la fonction PHP array_slice dans les fichiers du template HTML. Le numéro doit correspondre au nombre de dossiers jusqu'au dossier personnel inclus (actuellement la valeur est : 10).</li>
 <li>Modifier toutes les occurrences du 2ème paramètre de FileSystems::getSliceDirs. Le numéro doit correspondre au nombre de dossiers jusqu'au dossier personnel inclus (actuellement la valeur est : 10).</li>
 </ol>
+<h3>Démo :</h3>
+<ol>
+<li>https://file.js-info.fr/datas/data</li>
+</ol>
+<h3>Contact :</h3>
+<ol>
+<li>Julien Senechal</li>
+<li>contact@js-info.fr</li>
+</ol>
