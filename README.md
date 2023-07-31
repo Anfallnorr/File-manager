@@ -1,5 +1,5 @@
 # File manager
-<h2>Un simple gestionnaire de fichiers</h2>
+<p>Un simple gestionnaire de fichiers</p>
 <h3>Prérequis :</h3>
 <ol>
 <li>PHP 8.1 ou version supérieure</li>
