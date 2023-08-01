@@ -1,8 +1,3 @@
-<?php
-// debug($this);
-// debug($this_view);
-?>
-<!-- context menu -->
 <div id="context_menu" class="card radius-10 overflow-hidden context-menu context-menu-normal">
 	<div class="card-body">
 		<h5 class="card-title mb-0">Drive</h5>
@@ -103,4 +98,3 @@
 		</div>
 	</div>
 </div>
-<!-- end context menu -->
