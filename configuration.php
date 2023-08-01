@@ -3,6 +3,7 @@
 defined('_EXEC') or die;
 
 class Config {
+	public $theme = "vivo";
 	public $debug = 0;
 	public $error_reporting = "devloppment";
 	public $default_lang = "fr-FR";
