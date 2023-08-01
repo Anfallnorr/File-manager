@@ -12,12 +12,13 @@ class Dispatchers {
 		$this->session = new Sessions();
 		$this->requests = new Requests();
 		$this->config =  new Config();
+		$theme = $this->config->theme;
 		
 		Router::parseUrl($this->requests);
 		
 		$views = $this->requests->view;
 		$params = $this->requests->params;
-		$controllers = $this->loader($this->requests->controller);
+		$controllers = $this->loader($this->requests->controller, $theme);
 		
 		$getClassMethods = get_class_methods($controllers);
 		$getClassMethodsControllers = get_class_methods('Controllers');
@@ -37,11 +38,11 @@ class Dispatchers {
 		$controllers->templates($views);
 	}
 	
-	public function loader($loader) {
+	public function loader(string $loader, string $theme) {
 		$comLoader = "com_". $loader;
 		
-		if( file_exists(_ROOTURL_ ."/templates/html/". $this->requests->controller ."/". $comLoader .".php") ) {
-			require _ROOTURL_ ."/templates/html/". $this->requests->controller ."/". $comLoader .".php";
+		if( file_exists(_ROOTURL_ ."/templates/systems/html/". $comLoader .".php") ) {
+			require _ROOTURL_ ."/templates/systems/html/". $comLoader .".php";
 			$controller = new $comLoader($this->requests, $this->session, $this->config);
 			return $controller;
 		} else {
