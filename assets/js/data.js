@@ -1,51 +1,3 @@
-// if( $("#show_hide_password").length > 0 ) {
-	// $("#show_hide_password a").on('click', function (event) {
-		// event.preventDefault();
-		// if ($('#show_hide_password input').attr("type") == "text") {
-			// $('#show_hide_password input').attr('type', 'password');
-			// $('#show_hide_password i').addClass("bx-hide");
-			// $('#show_hide_password i').removeClass("bx-show");
-		// } else if ($('#show_hide_password input').attr("type") == "password") {
-			// $('#show_hide_password input').attr('type', 'text');
-			// $('#show_hide_password i').removeClass("bx-hide");
-			// $('#show_hide_password i').addClass("bx-show");
-		// }
-	// });
-// }
-// if( $("#show_hide_confirmed_password").length > 0 ) {
-	// $("#show_hide_confirmed_password a").on('click', function (event) {
-		// event.preventDefault();
-		// if ($('#show_hide_confirmed_password input').attr("type") == "text") {
-			// $('#show_hide_confirmed_password input').attr('type', 'password');
-			// $('#show_hide_confirmed_password i').addClass("bx-hide");
-			// $('#show_hide_confirmed_password i').removeClass("bx-show");
-		// } else if ($('#show_hide_confirmed_password input').attr("type") == "password") {
-			// $('#show_hide_confirmed_password input').attr('type', 'text');
-			// $('#show_hide_confirmed_password i').removeClass("bx-hide");
-			// $('#show_hide_confirmed_password i').addClass("bx-show");
-		// }
-	// });
-// }
-
-// $('#date_material_start').bootstrapMaterialDatePicker({
-	// format: "DD/MM/YYYY HH:mm",
-	// weekStart: 1,
-	// minDate: new Date(),
-	// switchOnClick: true,
-	// clearButton: true,
-	// cancelText: "Annuler",
-	// clearText: "Vider"
-// });
-// $('#date_material_end').bootstrapMaterialDatePicker({
-	// format: "DD/MM/YYYY HH:mm",
-	// weekStart: 1,
-	// minDate: new Date(),
-	// switchOnClick: true,
-	// clearButton: true,
-	// cancelText: "Annuler",
-	// clearText: "Vider"
-// });
-
 /* ********************************************** */
 /* ****************** CHECKALL ****************** */
 /* ********************************************** */
@@ -425,14 +377,14 @@ $(document).on('click', '#data_folders-list .download-item', function downloadFo
 			$('#download_link').html(`<a href="/uploads/tmp/`+ response[2] +`" type="button" class="btn btn-success mb-3">Télécharger</a>`);
 		}
 		
-		getAlert(response[0], response[1], icon).then(html => {
+		getAlert("vivo", response[0], response[1], icon).then(html => {
 			$('#download_result').html(html);
 		}).catch((error) => {
 			console.error(error);
 		});
 	})
 	.fail(function(jqXHR, textStatus, response) {
-		getAlert("Erreur", "danger", "bi bi-x-circle").then(html => {
+		getAlert("vivo", "Erreur", "danger", "bi bi-x-circle").then(html => {
 			$('#download_result').html(html);
 		}).catch((error) => {
 			console.error(error);
@@ -452,7 +404,7 @@ $(document).on('click', '#data_folders-list .compress-item', function downloadFo
 	.done(function(response) {
 		var icon = getResponseIcon(response[1]);
 		
-		getAlert(response[0], response[1], icon).then(html => {
+		getAlert("vivo", response[0], response[1], icon).then(html => {
 			$('#compress_result').html(html);
 		}).catch((error) => {
 			console.error(error);
@@ -465,7 +417,7 @@ $(document).on('click', '#data_folders-list .compress-item', function downloadFo
 			message += " 500 - Erreur interne du serveur";
 		}
 		
-		getAlert(message, "danger", "bx bx-x-circle").then(html => {
+		getAlert("vivo", message, "danger", "bx bx-x-circle").then(html => {
 			$('#compress_result').html(html);
 		}).catch((error) => {
 			console.error(error);
@@ -523,7 +475,7 @@ $(document).on('click', '#file_zone .massdownload-item', function massDownload(e
 			$('#download_link').html(`<a href="/uploads/tmp/`+ response[2] +`" type="button" class="btn btn-success mb-3">Télécharger</a>`);
 		}
 		
-		getAlert(response[0], response[1], icon).then(html => {
+		getAlert("vivo", response[0], response[1], icon).then(html => {
 			$('#download_result').html(html);
 		}).catch((error) => {
 			console.error(error);
@@ -537,7 +489,7 @@ $(document).on('click', '#file_zone .massdownload-item', function massDownload(e
 			message += " 500 - Erreur interne du serveur";
 		}
 		
-		getAlert(message, "danger", "bi bi-x-circle").then(html => {
+		getAlert("vivo", message, "danger", "bi bi-x-circle").then(html => {
 			$('#download_result').html(html);
 		}).catch((error) => {
 			console.error(error);
