@@ -4,15 +4,10 @@ defined('_EXEC') or die;
 
 class Controllers {
 	
-	// public $Customers;
-	// public $Params;
-	
 	public $requests;
 	public $session;
 	public $config;
 	public $notifications;
-	// public $params;
-	// public $customer;
 	
 	private $vars = [];
 	
@@ -20,6 +15,7 @@ class Controllers {
 		$this->requests = $requests;
 		$this->session = $session;
 		$this->config = $config;
+		$this->theme = $this->config->theme;
 		$this->notifications = $this->session->getNotifications();
 		
 		if($this->session->readSession('user') !== null) {
@@ -54,6 +50,7 @@ class Controllers {
 				'params' => $this->params,
 				'config' => $this->config,
 				'customer' => $this->customer,
+				'theme' => $this->theme,
 				'lang' => "fr"
 			)
 		);
@@ -72,15 +69,15 @@ class Controllers {
 		$controller = $this->requests->controller;
 		extract($this->vars);
 		
-		if( file_exists(_ROOTURL_ ."/templates/html/". $controller ."/views/". $view .".php") ) {
+		if( file_exists(_ROOTURL_ ."/templates/". $this->theme ."/html/". $controller ."/views/". $view .".php") ) {
 			ob_start();
-				require _ROOTURL_ ."/templates/html/". $controller ."/views/". $view .".php";
+				require _ROOTURL_ ."/templates/". $this->theme ."/html/". $controller ."/views/". $view .".php";
 					$view_out = ob_get_clean();
 		} else {
 			$this->error404Controller("La vue ". $view ." n'existe pas dans le controller ". $controller);
 		}
 		
-		require _ROOTURL_ ."/templates/index.php";
+		require _ROOTURL_ ."/templates/". $this->theme ."/index.php";
 	}
 	
 	public function error404Controller($errorMessage): void {
