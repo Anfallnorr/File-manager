@@ -251,8 +251,8 @@ function switchModal(selectorHidden, selectorShown) {
 /* ********************* GET ALERT FILE ******************** */
 /* ********************************************************* */
 // function displayAlert(file, message, type = "success", icon = "bx bx-check-circle") {
-function getAlert(message, type = "success", icon = "bx bx-check-circle") {
-	return fetch("/templates/tpls/alert.html")
+function getAlert(theme, message, type = "success", icon = "bx bx-check-circle") {
+	return fetch("/templates/"+ theme +"/tpls/alert.html")
 	.then(response => response.text())
 	.then(html => {
 		html = html.replace(/{{type}}/g, type);
