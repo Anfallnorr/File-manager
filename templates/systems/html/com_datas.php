@@ -88,7 +88,7 @@ class com_datas extends Controllers {
 				// Définir des variables pour les données qui seront utilisées dans la vue
 				$this->globalVars(
 					array(
-						'dataDir' => _ROOTURL_ ."/templates/html/datas/views/blocks/data",
+						'dataDir' => _ROOTURL_ ."/templates/". $this->theme ."/html/datas/views/blocks/data",
 						'myFolder' => $myFolder,
 						'personnalFolder' => $this->personnalFolder,
 						'personnalAllDirs' => $personnalAllDirs,
@@ -137,7 +137,7 @@ class com_datas extends Controllers {
 				// Définir des variables pour les données qui seront utilisées dans la vue
 				$this->globalVars(
 					array(
-						'dataDir' => _ROOTURL_ ."/templates/html/datas/views/blocks/data",
+						'dataDir' => _ROOTURL_ ."/templates/". $this->theme ."/html/datas/views/blocks/data",
 						'myFolder' => $myFolder,
 						'personnalFolder' => $this->personnalFolder,
 						'personnalAllDirs' => $personnalAllDirs,
@@ -163,7 +163,7 @@ class com_datas extends Controllers {
 			// Définir des variables pour les données qui seront utilisées dans la vue
 			$this->globalVars(
 				array(
-					'dataDir' => _ROOTURL_ ."/templates/html/datas/views/blocks/data",
+					'dataDir' => _ROOTURL_ ."/templates/". $this->theme ."/html/datas/views/blocks/data",
 					'personnalFolder' => $this->personnalFolder
 				)
 			);
