@@ -32,8 +32,21 @@
 				</div>
 			</div>
 		</li>
+		<li class="dropdown d-none d-md-block">
+			<a href="#" id="theme" data-toggle="dropdown" aria-haspopup="true">
+				<i class="bi bi-brush" class="flag-img" alt="vivo"></i>
+			</a>
+			<div class="dropdown-menu dropdown-menu-end" aria-labelledby="theme">
+				<a href="#" class="dropdown-item" title="vivo">
+					Thème : Vivo
+				</a>
+				<a href="#" class="dropdown-item" title="js-info">
+					Thème : Js info
+				</a>
+			</div>
+		</li>
 		<li class="dropdown">
-			<a href="#" class="refresh-page" onclick="document.location.reload(true)" title="REFRESH_THE_PAGE">
+			<a href="#" class="refresh-page" onclick="document.location.reload(true)" title="Reload">
 				<i class="bi bi-arrow-repeat"></i>
 			</a>
 		</li>
