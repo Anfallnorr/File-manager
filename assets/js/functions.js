@@ -34,83 +34,6 @@ function getDate2Digits(date) {
 	return date;
 }
 
-/* ****************************************************************** */
-/* ************************ GET WEEKEND DATES *********************** */
-/* ****************************************************************** */
-/* function getWeekendRanges() {
-	const currentDate = new Date(); // Date actuelle
-	const endDate = new Date(); // Date de fin (2 mois plus tard)
-	endDate.setMonth(endDate.getMonth() + 2);
-	
-	const weekendRanges = [];
-	
-	while (currentDate <= endDate) {
-		// const start = new Date(currentDate);
-		const start = new Date(currentDate.getTime());
-		let end = new Date(currentDate);
-		
-		// Trouver le prochain samedi
-		// console.log(end.getDay());
-		while (end.getDay() !== 6) {
-			end.setDate(end.getDate() + 1);
-		}
-		
-		if (end > endDate) {
-			break; // Si le prochain samedi est après la date de fin, sortir de la boucle
-		}
-		
-		const weekendRange = {
-			start: formatDate(start),
-			end: formatDate(end),
-		};
-		
-		weekendRanges.push(weekendRange);
-		
-		currentDate.setDate(end.getDate() + 86400000); // Passer au jour suivant après la fin du week-end
-	}
-	
-	return weekendRanges;
-}
-
-function formatDate(date) {
-	const year = date.getFullYear();
-	const month = (date.getMonth() + 1).toString().padStart(2, '0');
-	const day = date.getDate().toString().padStart(2, '0');
-	return `${year}-${month}-${day}`;
-}
-
-// Utilisation de la fonction pour récupérer les périodes de week-end
-const weekendRanges = getWeekendRanges();
-
-// Affichage des périodes de week-end
-weekendRanges.forEach(range => {
-	console.log(range);
-}); */
-
-/* ****************************************************************** */
-/* **************** CLEAR FOM FIELDS EMAIL / PASSWORD *************** */
-/* ****************************************************************** */
-// Désactiver l'autocomplétion des champs de formulaire
-/* function clearFields() {
-    let emailField = document.querySelectorAll('[type="email"]'),
-		passwordField = document.querySelectorAll('[type="password"]');
-	
-	if (emailField) {
-		Object.entries(emailField).forEach(([key, value]) => {
-			value.value = '';
-		});
-	}
-	
-	if (passwordField) {
-		Object.entries(passwordField).forEach(([key, value]) => {
-			value.value = '';
-		});
-	}
-}
-setTimeout(() => {
-	clearFields();
-}, 520); */
-
 /* ***************************************************************** */
 /* ************************** DRAGSELECTOR ************************* */
 /* ***************************************************************** */
@@ -220,32 +143,6 @@ function switchModal(selectorHidden, selectorShown) {
 	$(selectorHidden).modal('hide');
 	$(selectorShown).modal('show');
 }
-
-/* ************************************************************* */
-/* *********************** DATE FORMATER *********************** */
-/* ************************************************************* */
-// dateFormater("19/05/2023 15:30");
-// console.log(dateFormater());
-// console.log(dateFormater("19/05/2023 15:30"));
-/* function dateFormater(dateOrigine) {
-	if (typeof dateOrigine != "undefined" && dateOrigine != "") {
-		// Divise la date en parties (jour, mois, année, heure, minute)
-		var partiesDate = dateOrigine.split(" "),
-			dateParts = partiesDate[0].split("/"),
-			// heureParties = partiesDate[1].split(":");
-			hourParts = partiesDate[1].split(":");
-		
-		// Crée un nouvel objet Date en utilisant les parties extraites
-		var newDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]);
-		
-		// Formate la date au format "YYYY-MM-DD HH:mm"
-		var dateFormatee = newDate.toISOString().slice(0, 16).replace("T", " ");
-		
-		return dateFormatee;
-	} else {
-		return "";
-	}
-} */
 
 /* ********************************************************* */
 /* ********************* GET ALERT FILE ******************** */
