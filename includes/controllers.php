@@ -56,7 +56,7 @@ class Controllers {
 				'customer' => $this->customer,
 				'theme' => $this->theme,
 				'langs' => $this->langs,
-				'lang' => "fr"
+				'lang' => substr($this->langs->lang, 0, 2)
 			)
 		);
 	}
