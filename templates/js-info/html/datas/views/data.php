@@ -180,40 +180,26 @@
 				
 				<div class="card">
 					<div class="card-body">
-						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item" role="presentation">
-								<a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab" aria-selected="true" title="Mon espace personnel">
-									<div class="d-flex align-items-center">
-										<div class="tab-icon"><i class="bx bx-lock"></i></div>
-										<div class="tab-title ms-1"><?php $langs->lang("DATA_TAB_MY_PERSONAL_SPACE", "datas") ?></div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<div class="tab-content pt-3">
-							<div class="tab-pane fade show active" id="tab1" role="tabpanel">
-								<h5 class="card-title mb-3"><?php $langs->lang("DATA_FOLDERS", "datas") ?></h5>
-								<div class="btn-group mb-3">
-									<div class="input-group input-group">
-										<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
-										<input type="text" id="search_folders" class="form-control" placeholder="Search the folders">
-									</div>
-								</div>
-								<div id="data_folders-list" class="row">
-									<?php include $dataDir ."/data_folders-list.php" ?>
-								</div>
-								<h5 class="card-title mt-3 mb-3"><?php $langs->lang("DATA_FILES", "datas") ?></h5>
-								<div class="btn-group mb-3">
-									<div class="input-group input-group">
-										<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
-										<input type="text" id="search_files" class="form-control" placeholder="Search the files">
-									</div>
-								</div>
-								<div id="ajax_upload_result" class="mb-3"><div class="row"></div></div>
-								<div id="data_files-list" class="_row">
-									<?php include $dataDir ."/data_files-list.php" ?>
-								</div>
+						<h5 class="card-title mb-3"><?php $langs->lang("DATA_FOLDERS", "datas") ?></h5>
+						<div class="btn-group mb-3">
+							<div class="input-group input-group">
+								<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
+								<input type="text" id="search_folders" class="form-control" placeholder="Search the folders">
 							</div>
+						</div>
+						<div id="data_folders-list" class="row">
+							<?php include $dataDir ."/data_folders-list.php" ?>
+						</div>
+						<h5 class="card-title mt-3 mb-3"><?php $langs->lang("DATA_FILES", "datas") ?></h5>
+						<div class="btn-group mb-3">
+							<div class="input-group input-group">
+								<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
+								<input type="text" id="search_files" class="form-control" placeholder="Search the files">
+							</div>
+						</div>
+						<div id="ajax_upload_result" class="mb-3"><div class="row"></div></div>
+						<div id="data_files-list" class="_row">
+							<?php include $dataDir ."/data_files-list.php" ?>
 						</div>
 					</div>
 				</div>
