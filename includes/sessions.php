@@ -59,9 +59,6 @@ class Sessions {
 	}
 	
 	public function editSession(string $key, string|array|object $valueChange, string $keyMerge = ""): ?array {
-		// $this->session->editSession("user", array("quick_access" => json_encode($post)), ?$string);
-		// $this->session->editSession("user", array('path' => $this->requests->params), "datas");
-		
 		if( !is_array($valueChange) ) {
 			$valueChange = get_object_vars($valueChange);
 		}
