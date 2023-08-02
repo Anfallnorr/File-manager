@@ -15,6 +15,9 @@ if( file_exists(_ROOTURL_ .'/includes/controllers.php') ) {
 	require _ROOTURL_ ."/includes/controllers.php";
 }
 
+if( file_exists(_ROOTURL_ .'/classes/langs/langs.php') ) {
+	require _ROOTURL_ ."/classes/langs/langs.php"; // Traductions
+}
 if( file_exists(_ROOTURL_ .'/classes/filesystems.php') ) {
 	require _ROOTURL_ ."/classes/filesystems.php"; // Traitement de dossier/fichier
 }
