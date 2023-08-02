@@ -52,14 +52,6 @@ class Dispatchers {
 	
 	public function error404($errorMessage) {
 		die($errorMessage);
-		$controllers = new Controllers($this->requests, $this->session, $this->config);
-		$controllers->error404Controller($errorMessage);
-	}
-	
-	public function error500($errorMessage) {
-		die($errorMessage);
-		$controllers = new Errors($this->requests, $this->session, $this->config);
-		$controllers->error404($errorMessage);
 	}
 	
 }
