@@ -198,39 +198,26 @@ if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
 		
 		<div class="card">
 			<div class="card-body">
-				<div class="custom-tabs-container">
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item" role="presentation">
-							<a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab" aria-selected="true" title="Mon espace personnel">
-								<i class="bi bi-lock"></i>Mon espace personnel
-							</a>
-						</li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane fade show active" id="tab1" role="tabpanel">
-							<div class="card-title mb-3">Dossiers</div>
-							<div class="search-container mb-3 w-300">
-								<div class="input-group">
-									<input type="text" id="search_folders" class="form-control border bg-light" placeholder="Chercher un dossier">
-									<button class="btn" type="button"><i class="bi bi-search"></i></button>
-								</div>
-							</div>
-							<div id="data_folders-list" class="row _mb-3">								
-								<?php include $dataDir ."/data_folders-list.php" ?>
-							</div>
-							<div class="card-title mt-3 mb-3">Fichiers</div>
-							<div class="search-container mb-3 w-300">
-								<div class="input-group">
-									<input type="text" id="search_files" class="form-control border bg-light" placeholder="Chercher un fichier">
-									<button class="btn" type="button"><i class="bi bi-search"></i></button>
-								</div>
-							</div>
-							<div id="ajax_upload_result" class="mb-3"><div class="row"></div></div>
-							<div id="data_files-list">
-								<?php include $dataDir ."/data_files-list.php" ?>
-							</div>
-						</div>
+				<div class="card-title mb-3">Dossiers</div>
+				<div class="search-container mb-3 w-300">
+					<div class="input-group">
+						<input type="text" id="search_folders" class="form-control border bg-light" placeholder="Chercher un dossier">
+						<button class="btn" type="button"><i class="bi bi-search"></i></button>
 					</div>
+				</div>
+				<div id="data_folders-list" class="row _mb-3">								
+					<?php include $dataDir ."/data_folders-list.php" ?>
+				</div>
+				<div class="card-title mt-3 mb-3">Fichiers</div>
+				<div class="search-container mb-3 w-300">
+					<div class="input-group">
+						<input type="text" id="search_files" class="form-control border bg-light" placeholder="Chercher un fichier">
+						<button class="btn" type="button"><i class="bi bi-search"></i></button>
+					</div>
+				</div>
+				<div id="ajax_upload_result" class="mb-3"><div class="row"></div></div>
+				<div id="data_files-list">
+					<?php include $dataDir ."/data_files-list.php" ?>
 				</div>
 			</div>
 		</div>
