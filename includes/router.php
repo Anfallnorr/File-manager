@@ -36,13 +36,6 @@ class Router {
 				'title' => "Get",
 				'description' => "Getter",
 				'robots' => "noindex,nofollow",
-			),
-			array(
-				'id' => 58,
-				'id_page_view' => 91,
-				'title' => "Set",
-				'description' => "Setter",
-				'robots' => "noindex,nofollow",
 			)
 		);
 		
@@ -141,19 +134,6 @@ class Router {
 					'name' => "get",
 					'label' => "get",
 					'short_label' => "get",
-					'icon' => "bx-right-arrow-alt",
-					'is_function' => 0,
-					'access' => 5,
-					'active' => 1,
-					'params' => ""
-				),
-				array(
-					'id' => 91,
-					'id_page_controller' => 15,
-					'position' => "0",
-					'name' => "set",
-					'label' => "set",
-					'short_label' => "set",
 					'icon' => "bx-right-arrow-alt",
 					'is_function' => 0,
 					'access' => 5,
