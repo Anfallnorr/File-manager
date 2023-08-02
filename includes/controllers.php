@@ -7,6 +7,7 @@ class Controllers {
 	public $requests;
 	public $session;
 	public $config;
+	public $langs;
 	public $notifications;
 	
 	private $vars = [];
@@ -16,6 +17,7 @@ class Controllers {
 		$this->session = $session;
 		$this->config = $config;
 		$this->theme = $this->config->theme;
+		$this->default_lang = $this->config->default_lang;
 		$this->notifications = $this->session->getNotifications();
 		
 		if($this->session->readSession('user') !== null) {
@@ -45,12 +47,15 @@ class Controllers {
 		$this->personnalThumbRoot = $this->personnalRoot ."/thumbnails";
 		$this->tmpRoot = _ROOTURL_ ."/uploads/tmp/";
 		
+		$this->langs = new Langs($this->config, $this->default_lang);
+		
 		$this->globalVars(
 			array(
 				'params' => $this->params,
 				'config' => $this->config,
 				'customer' => $this->customer,
 				'theme' => $this->theme,
+				'langs' => $this->langs,
 				'lang' => "fr"
 			)
 		);
