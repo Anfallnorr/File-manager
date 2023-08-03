@@ -8,12 +8,6 @@ class com_datas extends Controllers {
 		$myFolder = $_SERVER['ORIG_PATH_INFO'];
 		
 		$userSession = $this->session->readSession('user');
-		
-		// if( !class_exists('Customers') ) {
-			// $this->loadModels('Customers');
-		// }
-		// Récupérer les informations du client actuel
-		// $getCustomer = $this->Customers->getCustomer($userSession['id']);
 		$getCustomer = $userSession;
 		
 		if( !empty($userSession['datas']['expander']) ) {
