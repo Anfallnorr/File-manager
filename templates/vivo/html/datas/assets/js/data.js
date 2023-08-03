@@ -183,8 +183,9 @@ function insightView(data) {
 addEventListener('mousedown', function handleMouseDown(event) {
 	let eTarget = event.target;
 	let enableDragSelector = null;
+	let arrTarget = Array("BUTTON", "A", "INPUT");
 	
-	if (eTarget.tagName === 'BUTTON' || eTarget.tagName === 'A' || eTarget.tagName === 'INPUT' || eTarget.closest('.storage') || eTarget.closest('.shared-files-table') || eTarget.closest('.modal') || eTarget.closest('#dropzone_form')) {
+	if (arrTarget.includes(eTarget.tagName) || eTarget.closest('.storage') || eTarget.closest('.modal') || eTarget.closest('#dropzone_form')) {
 		return;
 	} else if (!eTarget.closest('.draggable')) {
 		enableDragSelector = dragSelector(event);
