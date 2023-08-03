@@ -1,4 +1,3 @@
-<!-- BEGIN MODAL GO TO -->
 <div class="modal fade" id="modal_go_to" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
@@ -21,9 +20,7 @@
 		</div>
 	</div>
 </div>
-<!-- END MODAL GO TO -->
-<!-- BEGIN MODAL MASS MOVE -->
-<?php /**/ ?>
+
 <div class="modal fade" id="modal_mass_move" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
@@ -62,8 +59,7 @@
 		</div>
 	</div>
 </div>
-<!-- END MODAL MASS MOVE -->
-<!-- BEGIN MODAL MASS RENAMER -->
+
 <div class="modal fade" id="modal_mass_renamer" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
@@ -76,8 +72,8 @@
 					<input name="mass_renamer[path]" type="hidden" id="mass_renamer_path" class="form-control" value="<?php echo $folderPath .'/' ?>" />
 				</div>
 				<div class="col-md-12">
-					<label for="mass_renamer" class="form-label">Renomer la sélection</label>
-					<input name="mass_renamer[name]" type="text" id="mass_renamer" class="form-control mb-3" placeholder="Renomer" aria-label="Renomer" autocomplete="off" value="" />
+					<label for="mass_renamer" class="form-label"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></label>
+					<input name="mass_renamer[name]" type="text" id="mass_renamer" class="form-control mb-3" placeholder="<?php $langs->lang("JSRENAME_SELECTION") ?>" aria-label="<?php $langs->lang("JSRENAME_SELECTION") ?>" autocomplete="off" value="" />
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -87,4 +83,3 @@
 		</div>
 	</div>
 </div>
-<!-- END MODAL MASS RENAMER -->
