@@ -8,7 +8,17 @@ class Controllers {
 	public $session;
 	public $config;
 	public $langs;
+	public $theme;
+	public $default_lang;
 	public $notifications;
+	public $Customers;
+	public $customer;
+	public $Params;
+	public $params;
+	public $personnalFolder;
+	public $personnalRoot;
+	public $personnalThumbRoot;
+	public $tmpRoot;
 	
 	private $vars = [];
 	
