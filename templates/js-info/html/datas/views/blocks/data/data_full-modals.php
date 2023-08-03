@@ -39,7 +39,7 @@
 				</div>
 				<?php foreach($personnalAllDirs as $allDirs) {
 					$exploDir = explode('/', $allDirs);
-					$sliceDir = array_slice($exploDir, 9);
+					$sliceDir = array_slice($exploDir, 10);
 					$allDirs = implode("/", $sliceDir);
 					$choseDir = end($exploDir);
 					
