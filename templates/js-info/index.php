@@ -47,6 +47,5 @@
 		
 		<?php include _ROOTURL_ ."/templates/". $this->theme ."/tpls/context_menu.php";
 		include _ROOTURL_ ."/templates/". $this->theme ."/tpls/script.php"; ?>
-		<div class="drag-selector"></div>
 	</body>
 </html>
