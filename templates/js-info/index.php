@@ -1,14 +1,9 @@
-<?php
-// debug("toto");
-$themeBg = "theme0";
-?>
-
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang ?>" lang="<?php echo $lang ?>">
 	<head>
 		<?php include _ROOTURL_ ."/templates/". $this->theme ."/tpls/head.php" ?>
 	</head>
-	<body requests="" theme="<?php echo $theme ?>" bgtheme="bg-<?php echo $themeBg ?>" class="hidden-x bg-theme data-page datas-data">
+	<body requests="" theme="<?php echo $theme ?>" bgtheme="bg-theme0" class="hidden-x bg-theme data-page datas-data">
 		<div class="wrapper">
 			<?php /* include _ROOTURL_ ."/templates/". $this->theme ."/tpls/sidebar.php"; */
 				include _ROOTURL_ ."/templates/". $this->theme ."/tpls/topbar.php"; ?>
