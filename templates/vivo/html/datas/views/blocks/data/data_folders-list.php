@@ -39,14 +39,14 @@ foreach($files as $file) :
 											<i class="bi bi-three-dots-vertical me-0"></i>
 										</button>
 										<ul class="dropdown-menu dropdown-folder">
-											<li><a href="#" class="dropdown-item download-item" data-url="<?php echo $downloadFile ?>" data-bs-toggle="modal" data-bs-target="#modal_download" title="Télécharger <?php echo $file ?>" context="download"><i class="bi bi-download"></i> Télécharger</a></li>
-											<li><a href="#" class="dropdown-item compress-item" data-url="<?php echo $compressFile ?>" data-bs-toggle="modal" data-bs-target="#modal_compress" title="Compresser <?php echo $file ?>" context="zip"><i class="bi bi-file-earmark-zip"></i> Compresser</a></li>
+											<li><a href="#" class="dropdown-item download-item" data-url="<?php echo $downloadFile ?>" data-bs-toggle="modal" data-bs-target="#modal_download" title="<?php $langs->lang("DATA_DOWNLOAD", "datas"); echo ' '. $file ?>" context="download"><i class="bi bi-download"></i> <?php $langs->lang("DATA_DOWNLOAD", "datas") ?></a></li>
+											<li><a href="#" class="dropdown-item compress-item" data-url="<?php echo $compressFile ?>" data-bs-toggle="modal" data-bs-target="#modal_compress" title="<?php $langs->lang("DATA_ZIP", "datas"); echo ' '. $file ?>" context="zip"><i class="bi bi-file-earmark-zip"></i> <?php $langs->lang("DATA_ZIP", "datas") ?></a></li>
 											<?php if( $personnalAllDirs != '' ) { ?>
-												<li><a href="#" class="dropdown-item move-item" data-bs-toggle="modal" data-bs-target="#modal_move_<?php echo $modal ?>" title="Déplacer <?php echo $file ?>" context="move"><i class="bi bi-arrows-move"></i> Déplacer</a></li>
+												<li><a href="#" class="dropdown-item move-item" data-bs-toggle="modal" data-bs-target="#modal_move_<?php echo $modal ?>" title="<?php $langs->lang("DATA_MOVE", "datas"); echo ' '. $file ?>" context="move"><i class="bi bi-arrows-move"></i> <?php $langs->lang("DATA_MOVE", "datas") ?></a></li>
 											<?php } ?>
-											<li><a href="#" class="dropdown-item rename-item" data-bs-toggle="modal" data-bs-target="#modal_rename_<?php echo $modal ?>" title="Renommer <?php echo $file ?>" context="rename"><i class="bi bi-input-cursor-text"></i> Renommer</a></li>
+											<li><a href="#" class="dropdown-item rename-item" data-bs-toggle="modal" data-bs-target="#modal_rename_<?php echo $modal ?>" title="<?php $langs->lang("DATA_RENAME", "datas"); echo ' '. $file ?>" context="rename"><i class="bi bi-input-cursor-text"></i> <?php $langs->lang("DATA_RENAME", "datas") ?></a></li>
 											<li><div class="dropdown-divider mb-1"></div></li>
-											<li><a href="<?php echo $removeFile ?>" class="dropdown-item delete-item" onclick="return confirm('Voulez-vous vraiment supprimer <?php echo $file ?> ?');" title="Supprimer <?php echo $file ?>" context="delete"><i class="bi bi-trash"></i> Supprimer</a></li>
+											<li><a href="<?php echo $removeFile ?>" class="dropdown-item delete-item" onclick="return confirm('<?php $langs->lang("JSARE_YOU_SURE_YOU_WANT_TO_DELETE"); echo ' '. $file ?> ?');" title="<?php $langs->lang("DATA_DELETE", "datas"); echo ' '. $file ?>" context="delete"><i class="bi bi-trash"></i> <?php $langs->lang("DATA_DELETE", "datas") ?></a></li>
 										</ul>
 									</div>
 									<div class="col-6">
@@ -67,21 +67,21 @@ foreach($files as $file) :
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Renomer <?php echo $file ?></h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" title="Fermer" aria-label="Close"></button>
+							<h5 class="modal-title"><?php $langs->lang("DATA_RENAME", "datas"); echo ' '. $file ?></h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 						</div>
 						<div class="modal-body">
 							<div class="block-form d-none">
 								<input name="dir_renamer[path][]" type="hidden" id="dir_renamer_path_<?php echo $modal ?>" value="<?php echo $folderPath ."/". $file ?>" />
 							</div>
 							<div class="col-md-12">
-								<label for="dir_renamer_<?php echo $modal ?>" class="form-label">Renomer un dossier</label>
+								<label for="dir_renamer_<?php echo $modal ?>" class="form-label"><?php $langs->lang("DATA_FOLDERS_LIST_RENAME_A_FOLDER", "datas") ?></label>
 								<input name="dir_renamer[dir][]" type="text" id="dir_renamer_<?php echo $modal ?>" class="form-control empty" placeholder="<?php echo $file ?>" aria-label="<?php echo $file ?>" data-value="<?php echo $file ?>" autocomplete="off" value="" />
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="Annuler"><i class="bi bi-arrow-left-circle"></i> Annuler</button>
-							<button type="submit" class="btn btn-success" title="Renommer"><i class="bi bi-input-cursor-text"></i> Renommer</button>
+							<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="<?php $langs->lang("JSCANCEL") ?>"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCANCEL") ?></button>
+							<button type="submit" class="btn btn-success" title="<?php $langs->lang("DATA_RENAME", "datas") ?>"><i class="bi bi-input-cursor-text"></i> <?php $langs->lang("DATA_RENAME", "datas") ?></button>
 						</div>
 					</div>
 				</div>
@@ -92,16 +92,16 @@ foreach($files as $file) :
 					<div class="modal-dialog modal-dialog-scrollable modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Déplacer <?php echo $file ?></h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" title="Fermer" aria-label="Close"></button>
+								<h5 class="modal-title"><?php $langs->lang("DATA_MOVE", "datas"); echo ' '. $file ?></h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 							</div>
 							<div class="modal-body text-end">
-								<p class="text-start">Sélectionner un dossier :</p>
+								<p class="text-start"><?php $langs->lang("DATA_FULL_MODAL_SELECT_A_FOLDER", "datas") ?> :</p>
 								<div class="radio radio-success btn btn-light my-1 wp-100 tree-before-0 mb-3 text-start">
 									<label>
 										<input type="radio" name="dir_move[old_path][]" id="<?php echo $modal ?>_old_path_datas" class="double-check md-radio old_path d-none" value="<?php echo $folderPath .'/'. $file ?>" />
 										<input type="radio" name="dir_move[new_path][]" id="<?php echo $modal ?>_new_path_datas" class="double-check md-radio new_path" value="/<?php echo $file ?>" />
-										Mes documents
+										<?php $langs->lang("DATA_FOLDERS_LIST_MY_DOCUMENTS", "datas") ?>
 									</label>
 								</div>
 								<?php foreach($personnalAllDirs as $allDirs) {
@@ -110,7 +110,7 @@ foreach($files as $file) :
 									$choseDir = end($exploDir);
 									
 									if( $choseDir == $personnalFolder ) {
-										$choseDir = "Mes documents";
+										$choseDir = $langs->lang("DATA_FOLDERS_LIST_MY_DOCUMENTS", "datas");
 									}
 									
 									if( $file != $choseDir ) {
@@ -126,8 +126,8 @@ foreach($files as $file) :
 								} ?>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="Annuler"><i class="bi bi-arrow-left-circle"></i> Annuler</button>
-								<button type="submit" class="btn btn-success" title="Déplacer"><i class="bi bi-arrows-move"></i> Déplacer</button>
+								<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="<?php $langs->lang("JSCANCEL") ?>"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCANCEL") ?></button>
+								<button type="submit" class="btn btn-success" title="<?php $langs->lang("DATA_MOVE", "datas") ?>"><i class="bi bi-arrows-move"></i> <?php $langs->lang("DATA_MOVE", "datas") ?></button>
 							</div>
 						</div>
 					</div>
