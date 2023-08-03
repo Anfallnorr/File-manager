@@ -68,16 +68,15 @@ foreach($files as $file) :
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">Renomer <?php echo $file ?></h5>
+						<h5 class="modal-title"><?php $langs->lang("DATA_RENAME", "datas"); echo ' '. $file ?></h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSED") ?>" aria-label="<?php $langs->lang("JSCLOSED") ?>"></button>
 					</div>
-					<div class="modal-body">
 					<div class="modal-body">
 						<div class="block-form d-none">
 							<input name="dir_renamer[path][]" type="hidden" id="dir_renamer_path_<?php echo $modal ?>" value="<?php echo $folderPath ."/". $file ?>" />
 						</div>
 						<div class="col-md-12">
-							<label for="dir_renamer_<?php echo $modal ?>" class="form-label">Renomer un dossier</label>
+							<label for="dir_renamer_<?php echo $modal ?>" class="form-label"><?php $langs->lang("DATA_FOLDERS_LIST_RENAME_A_FOLDER", "datas") ?></label>
 							<input name="dir_renamer[dir][]" type="text" id="dir_renamer_<?php echo $modal ?>" class="form-control" placeholder="<?php echo $file ?>" aria-label="<?php echo $file ?>" data-value="<?php echo $file ?>" autocomplete="off" value="telephone" />
 						</div>
 					</div>
@@ -94,7 +93,7 @@ foreach($files as $file) :
 				<div class="modal-dialog modal-dialog-scrollable modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Déplacer <?php echo $file ?></h5>
+							<h5 class="modal-title"><?php $langs->lang("DATA_MOVE", "datas"); echo ' '. $file ?></h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" title="Fermé" aria-label="Fermé"></button>
 						</div>
 						<div class="modal-body text-end">
