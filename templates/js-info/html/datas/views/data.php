@@ -1,6 +1,3 @@
-<?php 
-// debug("toto");
-?>
 <div class="data-view">
 	<script>
 		var DATA_DOWNLOAD = "<?php $langs->lang("DATA_DOWNLOAD", "datas") ?>";
@@ -21,7 +18,7 @@
 				$folderPath = "";
 				$files = scandir(_ROOTURL_ ."/uploads/datas/". $personnalFolder);
 			}
-
+			
 			if( $folderPath == "/" ) {
 				$folderPath = "";
 			}
@@ -29,9 +26,9 @@
 			$excludeScan = array(".", "..", "", "index.php", "index.html", "thumbnails", "miniatures"); ?>
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title mb-3">Informations</h5>
+					<h5 class="card-title mb-3"><?php $langs->lang("DATA_INFORMATIONS", "datas") ?></h5>
 					<div class="storage<?php if( $expander === "true" ) : echo " icon-reverse"; endif; ?>" data-expand="<?php echo ( $expander === "true" ) ? "false" : "true"; ?>">
-						<h5 class="mb-0 font-weight-bold"><?php echo $sizeName ?> <span class="float-end">1 GB</span></h5>
+						<h5 class="mb-0 font-weight-bold"><?php echo $sizeName ?> <span class="float-end">100 MO</span></h5>
 						<p class="mb-0 mt-2"><span class=""><?php $langs->lang("DATA_SPACE_USED", "datas") ?> <?php echo $totalSize ?>%</span><span class="float-end">100 %</span></p>
 						<div class="progress mt-3" style="height:15px;">
 							<div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $totalDocSizePercent ?>%" aria-valuenow="<?php echo $totalDocSizePercent ?>" aria-valuemin="0" aria-valuemax="100" aria-label="Espace documents totaux"></div>
@@ -118,9 +115,7 @@
 			} ?>
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title mb-3">
-						<?php $langs->lang("DATA_MY_DRIVE", "datas") ?>
-					</h5>
+					<h5 class="card-title mb-3"><?php $langs->lang("DATA_MY_DRIVE", "datas") ?></h5>
 					<form action="" method="post">
 						<div class="row">
 						</div>
@@ -130,8 +125,8 @@
 							</div>
 							<div class="col-md-12 mb-3">
 								<div class="input-group">
-									<input name="folder_name" type="text" id="fieldFolder_name" class="form-control add-folder" placeholder="Ajouter un dossier" aria-label="Ajouter un dossier" autocomplete="off" value="" />
-									<button type="submit" class="btn btn-light">Ajouter</button>
+									<input name="folder_name" type="text" id="fieldFolder_name" class="form-control add-folder" placeholder="<?php $langs->lang("DATA_ADD_FOLDER", "datas") ?>" aria-label="<?php $langs->lang("DATA_ADD_FOLDER", "datas") ?>" autocomplete="off" value="" />
+									<button type="submit" class="btn btn-light"><?php $langs->lang("DATA_ADD_FOLDER", "datas") ?></button>
 								</div>
 							</div>
 						</div>
@@ -146,7 +141,7 @@
 								<input name="file_path" type="hidden" id="file_path" class="form-control" value="<?php echo $jsPath ?>" />
 							</div>
 							<div class="dz-message needsclick">
-								<button type="button" class="dz-button" title="Déposez vos fichiers ici" aria-label="Déposez vos fichiers ici"></button>
+								<button type="button" class="dz-button" title="<?php $langs->lang("DATA_DROP_YOUR_FILES_HERE", "datas") ?>" aria-label="<?php $langs->lang("DATA_DROP_YOUR_FILES_HERE", "datas") ?>"></button>
 							</div>
 						</form>
 					</div>
@@ -184,7 +179,7 @@
 						<div class="btn-group mb-3">
 							<div class="input-group input-group">
 								<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
-								<input type="text" id="search_folders" class="form-control" placeholder="Search the folders">
+								<input type="text" id="search_folders" class="form-control" placeholder="<?php $langs->lang("DATA_SEARCH_FOR_A_FOLDER", "datas") ?>" />
 							</div>
 						</div>
 						<div id="data_folders-list" class="row">
@@ -194,7 +189,7 @@
 						<div class="btn-group mb-3">
 							<div class="input-group input-group">
 								<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
-								<input type="text" id="search_files" class="form-control" placeholder="Search the files">
+								<input type="text" id="search_files" class="form-control" placeholder="<?php $langs->lang("DATA_SEARCH_FOR_A_FILE", "datas") ?>" />
 							</div>
 						</div>
 						<div id="ajax_upload_result" class="mb-3"><div class="row"></div></div>
@@ -229,8 +224,8 @@
 							</div>
 							<div class="col-md-12">
 								<div class="input-group">
-									<input name="folder_name" type="text" id="fieldFolder_name" class="form-control add-folder" placeholder="Ajouter un premier dossier" aria-label="Ajouter un premier dossier" autocomplete="off" value="" />
-									<button type="submit" class="btn btn-light">Ajouter</button>
+									<input name="folder_name" type="text" id="fieldFolder_name" class="form-control add-folder" placeholder="<?php $langs->lang("DATA_ADD_FIRST_FOLDER", "datas") ?>" aria-label="<?php $langs->lang("DATA_ADD_FIRST_FOLDER", "datas") ?>" autocomplete="off" value="" />
+									<button type="submit" class="btn btn-light"><?php $langs->lang("DATA_ADD", "datas") ?></button>
 								</div>
 							</div>
 						</div>
@@ -246,7 +241,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title"><?php $langs->lang("DATA_MODAL_LOADING_PROGRESS", "datas") ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" title="Close" aria-label="Close"></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -273,7 +268,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title"><?php $langs->lang("DATA_MODAL_FILE_COMPRESSION", "datas") ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body bg-light">
 				<div id="compress_result"></div>
@@ -287,14 +282,13 @@
 		</div>
 	</div>
 </div>
-	
 <!-- BEGIN MODAL VIEWER -->
 <div class="modal fade" id="modal_viewer" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title"><?php $langs->lang("DATA_MODAL_INSIGHT", "datas") ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<h5 class="modal-title"><?php $langs->lang("DATA_INSIGHT", "datas") ?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body bg-light">
 				<div id="content_result"></div>
@@ -311,7 +305,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title"><?php $langs->lang("DATA_MODAL_COMPRESSION_IN_PROGRESS", "datas") ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body bg-light">
 				<div id="download_result"></div>
