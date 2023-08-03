@@ -1,7 +1,7 @@
 <div class="page-breadcrumb d-flex align-items-center">
 	<div class="breadcrumb-title pe-3 droptarget">
 		<input type="hidden" value="" class="drop-files-path">
-		<a href="/datas/data" title="Mes documents">Mes documents</a>
+		<a href="/datas/data" title="<?php $langs->lang("DATA_BREADCRUMB_MY_DOCUMENTS", "datas") ?>"><?php $langs->lang("DATA_BREADCRUMB_MY_DOCUMENTS", "datas") ?></a>
 	</div>
 	<div class="ps-3">
 		<nav aria-label="breadcrumb">
