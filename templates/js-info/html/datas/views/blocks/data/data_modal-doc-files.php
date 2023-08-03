@@ -1,4 +1,3 @@
-<!-- BEGIN MODAL DOC FILES -->
 <div class="modal fade" id="modal_doc_files" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
@@ -8,7 +7,6 @@
 			</div>
 			<div class="modal-body">
 				<?php foreach($docBasename as $key => $doc) {
-					/* debug($docBasePath[$key]); */
 					echo '<a href="/datas/data'. $docBasePath[$key] .'" class="btn btn-light text-start mb-1 w-100">'. basename($doc) .'<span class="float-end badge bg-light rounded-pill">'. basename($docBasePath[$key]) .'</span></a>';
 				} ?>
 			</div>
@@ -18,4 +16,3 @@
 		</div>
 	</div>
 </div>
-<!-- END MODAL DOC FILES -->
