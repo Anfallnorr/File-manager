@@ -36,8 +36,8 @@
 				<p class="text-start"><strong><?php $langs->lang("DATA_FULL_MODAL_SELECT_A_FOLDER", "datas") ?></strong> :</p>
 				<div class="radio radio-success btn btn-light my-1 wp-100 tree-before-0 mb-3 text-start">
 					<label>
-						<input type="radio" name="mass_move[old_path][]" id="old_path_datas" class="double-check md-radio old_path d-none" value="<?php echo $folderPath ?>/" />
-						<input type="radio" name="mass_move[new_path][]" id="new_path_datas" class="double-check md-radio new_path" value="/" />
+						<input type="radio" name="mass_move[old_path]" id="old_path_datas" class="double-check md-radio old_path d-none" value="<?php echo $folderPath ?>/" />
+						<input type="radio" name="mass_move[new_path]" id="new_path_datas" class="double-check md-radio new_path" value="/" />
 						<?php $langs->lang("DATA_FULL_MODAL_ROOT", "datas") ?>
 					</label>
 				</div>
