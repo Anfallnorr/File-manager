@@ -1111,7 +1111,7 @@ class FileSystems {
     /**
      * Récupère la taille d'un tableau de fichiers en octets.
      * 
-     * @param string $files Les fichiers dont on veut récupérer la taille.
+     * @param array $files Les fichiers dont on veut récupérer la taille.
      * @return int La taille des fichiers en octets.
      */
     public static function getFilesSize(array $files): int {
