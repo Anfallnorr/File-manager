@@ -363,68 +363,7 @@ class com_datas extends Controllers {
 					$type = "warning";
 				}
 				
-			}
-			/* elseif( !empty($post->file_upload) ) {
-				// Si l'utilisateur a soumis des fichiers à uploader
-				$files = $this->requests->files;
-				
-				if( $files->file_documents['error'][0] === UPLOAD_ERR_OK ) {
-					// Vérifier si l'espace de stockage maximum est inférieur à 100
-					if( $post->max_size_folder < 100 ) {
-						// Vérifier si tous les fichiers sélectionnés ont été téléchargés
-						foreach($files->file_documents['tmp_name'] as $value) {
-							if( empty($value) ) {
-								$isEmpty = true;
-								break;
-							} else {
-								$isEmpty = false;
-							}
-						}
-						
-						// Si au moins un fichier n'a pas été téléchargé correctement
-						if( $isEmpty !== true ) {
-							// Vérifier s'il y a eu des erreurs lors du téléchargement des fichiers
-							foreach($files->file_documents['error'] as $fileErrors) {
-								if( $fileErrors === true ) {
-									$fileError = true;
-									break;
-								} else {
-									$fileError = false;
-								}
-							}
-							
-							// Si aucun fichier n'a rencontré d'erreurs lors du téléchargement
-							if( $fileError === false ) {
-								// Récupérer les informations sur les fichiers téléchargés
-								$fileDocuments = $files->file_documents;
-								
-								// Si un chemin (breadcrumb) est défini, ajouter le chemin au téléchargement des fichiers
-								if( !empty($path) ) {
-									$fileDocuments['file_path'] = $pathImploded;
-								}
-								
-								// Appeler la méthode massUploads pour gérer le téléchargement des fichiers
-								$fileUploaded = $this->massUploads($fileDocuments, $getCustomer);
-								
-								$message = $fileUploaded[0];
-								$type = $fileUploaded[1];
-							} else {
-								$message = "Un fichier à rencontrer une erreur";
-								$type = "danger";
-							}
-						} else {
-							$message = "Aucun fichier séléctionné";
-							$type = "warning";
-						}
-					} else {
-						$message = "Votre espace de stockage est plein, veuillez supprimer des fichiers avant de continuer !";
-						$type = "danger";
-					}
-				} else {
-					$message = "Aucun fichier sélectionné !";
-					$type = "warning";
-				}
-			}  */
+			} 
 			elseif( !empty($post->action_mass_download) ) {
 				// Si l'utilisateur a soumis une action de téléchargement en masse
 				// Vérifier si des fichiers ont été sélectionnés pour le téléchargement en masse
