@@ -1,10 +1,10 @@
+<?php defined('_EXEC') or die; ?>
 <nav class="sidebar-wrapper">
 	<div class="sidebar-brand">
 		<a href="/" class="logo">
 			<img src="/assets/img/icon-dark-blue.png" class="logo-icon logo" alt="LOGO" title="LOGO" />
 		</a>
 	</div>
-	
 	<div class="sidebar-menu">
 		<div class="sidebarMenuScroll">
 			<ul>
