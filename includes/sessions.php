@@ -54,8 +54,6 @@ class Sessions {
 		} else {
 			return null;
 		}
-		
-		return $sessions[$key];
 	}
 	
 	public function editSession(string $key, string|array|object $valueChange, string $keyMerge = ""): ?array {
