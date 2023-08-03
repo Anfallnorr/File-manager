@@ -1,8 +1,4 @@
-<?php
-
-defined('_EXEC') or die;
-
-?>
+<?php defined('_EXEC') or die; ?>
 <div class="sidebar-wrapper" data-simplebar="true">
 	<div class="sidebar-header">
 		<div>
@@ -15,7 +11,6 @@ defined('_EXEC') or die;
 		</div>
 		<div class="toggle-icon ms-auto"><i class="bx bx-arrow-to-left"></i></div>
 	</div>
-	
 	<ul class="metismenu sidebar-menu_items ui-sortable" id="menu">
 		<li class="menu-label">Js info</li>
 		<li>
