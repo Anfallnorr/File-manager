@@ -179,7 +179,6 @@ function insightView(data) {
 /* ******************************************************** */
 /* ****************** DRAG AND DROP EVENT ***************** */
 /* ******************************************************** */
-// https://www.javascripttutorial.net/web-apis/javascript-drag-and-drop/
 addEventListener('mousedown', function handleMouseDown(event) {
 	let eTarget = event.target;
 	let enableDragSelector = null;
@@ -487,15 +486,6 @@ $(document).on('click', '#file_zone .massdownload-item', function massDownload(e
 		});
 	});
 });
-
-/* ************************************************* */
-/* ******************* SELECTABLE ****************** */
-/* ************************************************* */
-function selectClicked(e) {
-	e.preventDefault();
-	console.log($(this));
-	console.log(e.target);
-}
 
 /* ************************************************* */
 /* ****************** CONTEXT MENU ***************** */
