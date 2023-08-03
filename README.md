@@ -1,4 +1,4 @@
-# File manager <strong>V_1.2.1</strong>
+# File manager <strong>V_1.2.8</strong>
 <p>Un simple gestionnaire de fichiers</p>
 <p>Cette version du gestionnaire est limitée en fonctionnalités. Il a été adapté pour fonctionner avec les sessions. Ce code ne nécessite pas de base de données.</p>
 <p>Ce gestionnaire de fichiers est issu de mon CRM <a href="https://crm.js-info.fr" target="_blank">crm.js-info.fr</a>.</p>
