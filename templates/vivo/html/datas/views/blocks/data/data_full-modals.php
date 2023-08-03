@@ -1,10 +1,9 @@
-<!-- BEGIN MODAL GO TO -->
 <div class="modal fade" id="modal_go_to" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Choisir la déstination</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" title="Fermer" aria-label="Close"></button>
+				<h5 class="modal-title"><?php $langs->lang("DATA_FULL_MODAL_CHOOSING_DESTINATION", "datas") ?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body text-end">
 				<?php foreach($personnalAllDepthDirs as $allDirs) {
@@ -20,27 +19,26 @@
 				} ?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="Annuler"><i class="bi bi-arrow-left-circle"></i> Annuler</button>
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="<?php $langs->lang("JSCANCEL") ?>"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCANCEL") ?></button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- END MODAL GO TO -->
-<!-- BEGIN MODAL MASS MOVE -->
+
 <div class="modal fade" id="modal_mass_move" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Déplacer la sélection</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" title="Fermer" aria-label="Close"></button>
+				<h5 class="modal-title"><?php $langs->lang("DATA_FULL_MODAL_MOVE_SELECTION", "datas") ?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body text-end">
-				<p class="text-start"><strong>Sélectionner un dossier</strong> :</p>
+				<p class="text-start"><strong><?php $langs->lang("DATA_FULL_MODAL_SELECT_A_FOLDER", "datas") ?></strong> :</p>
 				<div class="radio radio-success btn btn-light my-1 wp-100 tree-before-0 mb-3 text-start">
 					<label>
 						<input type="radio" name="mass_move[old_path][]" id="old_path_datas" class="double-check md-radio old_path d-none" value="<?php echo $folderPath ?>/" />
 						<input type="radio" name="mass_move[new_path][]" id="new_path_datas" class="double-check md-radio new_path" value="/" />
-						Mes documents
+						<?php $langs->lang("DATA_FULL_MODAL_ROOT", "datas") ?>
 					</label>
 				</div>
 				<?php foreach($personnalAllDirs as $allDirs) {
@@ -60,35 +58,33 @@
 				} ?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="Annuler"><i class="bi bi-arrow-left-circle"></i> Annuler</button>
-				<button type="submit" name="action_mass_move" value="action_mass_move" class="btn btn-success"><i class="bi bi-arrows-move"></i> Déplacer la sélection</button>
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="<?php $langs->lang("JSCANCEL") ?>"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCANCEL") ?></button>
+				<button type="submit" name="action_mass_move" value="action_mass_move" class="btn btn-success"><i class="bi bi-arrows-move"></i> <?php $langs->lang("JSMOVE_SELECTION") ?></button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- END MODAL MASS MOVE -->
-<!-- BEGIN MODAL MASS RENAMER -->
+
 <div class="modal fade" id="modal_mass_renamer" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Renomer la sélection</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" title="Fermer" aria-label="Close"></button>
+				<h5 class="modal-title"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body">
 				<div class="block-form d-none">
 					<input name="mass_renamer[path]" type="hidden" id="mass_renamer_path" class="form-control empty" value="<?php echo $folderPath .'/' ?>" />
 				</div>
 				<div class="col-md-12">
-					<label for="mass_renamer" class="form-label">Renomer la sélection</label>
-					<input name="mass_renamer[name]" type="text" id="mass_renamer" class="form-control mb-3 empty" placeholder="Renomer la sélection" aria-label="Renomer la sélection" autocomplete="off" value="" />
+					<label for="mass_renamer" class="form-label"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></label>
+					<input name="mass_renamer[name]" type="text" id="mass_renamer" class="form-control mb-3 empty" placeholder="<?php $langs->lang("JSRENAME_SELECTION") ?>" aria-label="<?php $langs->lang("JSRENAME_SELECTION") ?>" autocomplete="off" value="" />
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="Annuler"><i class="bi bi-arrow-left-circle"></i> Annuler</button>
-				<button type="submit" name="action_mass_rename" value="action_mass_rename" class="btn btn-success"><i class="bi bi-input-cursor-text"></i> Renommer la sélection</button>
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="<?php $langs->lang("JSCANCEL") ?>"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCANCEL") ?></button>
+				<button type="submit" name="action_mass_rename" value="action_mass_rename" class="btn btn-success"><i class="bi bi-input-cursor-text"></i> <?php $langs->lang("JSRENAME_SELECTION") ?></button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- END MODAL MASS RENAMER -->
