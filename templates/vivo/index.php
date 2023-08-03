@@ -1,5 +1,4 @@
 <?php
-$themeBg = (!empty($customer['theme_bg'])) ? $customer['theme_bg'] : "theme0";
 $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hotkeys-enabled" : "";
 ?>
 
@@ -9,7 +8,7 @@ $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hot
 		<?php include _ROOTURL_ ."/templates/". $theme ."/tpls/head.php" ?>
 	</head>
 	
-	<body requests="" theme="<?php echo $theme ?>" bgtheme="bg-<?php echo $themeBg ?>" class="bg-theme <?php echo $this->requests->view ?>-page <?php echo $this->requests->controller .'-'. $this->requests->view; echo $hotkeys ?>">
+	<body requests="" theme="<?php echo $theme ?>" bgtheme="bg-theme0" class="bg-theme data-page datas-data <?php echo $hotkeys ?>">
 		<?php if( $params['pre_loader'] !== 0 ) { ?>
 			<div id="loading-wrapper"><div class="spinner"><div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div><div class="line5"></div><div class="line6"></div></div></div>
 		<?php } ?>
