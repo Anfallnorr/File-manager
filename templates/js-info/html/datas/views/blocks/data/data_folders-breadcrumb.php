@@ -10,7 +10,7 @@
 					$breadcrumbCount = count($breadcrumb);
 					$last = end($breadcrumb);
 					$pathLink = "";
-					// debug($breadcrumb);
+					
 					for( $i = 0; $i < $breadcrumbCount; $i++ ) {
 						$pathLink .= "/". $breadcrumb[$i];
 						if( $last != $breadcrumb[$i] ) {
