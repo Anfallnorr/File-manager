@@ -9,19 +9,18 @@ class com_datas extends Controllers {
 		
 		$userSession = $this->session->readSession('user');
 		
-		if( !class_exists('Customers') ) {
-			$this->loadModels('Customers');
-		}
-		// Récupérer les informations du client actuel et tous les clients
-		$getCustomer = $this->Customers->getCustomer($userSession['id']);
+		// if( !class_exists('Customers') ) {
+			// $this->loadModels('Customers');
+		// }
+		// Récupérer les informations du client actuel
+		// $getCustomer = $this->Customers->getCustomer($userSession['id']);
+		$getCustomer = $userSession;
 		
 		if( !empty($userSession['datas']['expander']) ) {
 			$expander = $userSession['datas']['expander'];
 		} else {
 			$expander = "true";
 		}
-		// debug($this->theme, true);
-		// debug($expander, true);
 		
 		if( is_dir($this->personnalRoot) ) {
 			/* Récupère la liste des dossiers dans l'espace personnel */
@@ -42,8 +41,8 @@ class com_datas extends Controllers {
 				$totalSize = FileSystems::getFilesSize($personnalDriveTotal);
 				// Convertir la taille en une chaîne lisible par l'homme (par ex. Ko, Mo, Go, etc.)
 				$sizeName = FileSystems::getSizeName($totalSize);
-				// Calculer le pourcentage de l'espace utilisé par rapport à 1 Go
-				$totalSizePercent = round(100 * $totalSize / 1000000000,2);
+				// Calculer le pourcentage de l'espace utilisé par rapport à 100 Mo
+				$totalSizePercent = round(100 * $totalSize / 100000000,2);
 				
 				// Categoriser les fichiers dans différentes catégories (documents, images, audios, vidéos, autres)
 				$filesCategorized = FileSystems::categorizeFiles($personnalDriveTotal, true, true); // FileSystems::categorizeFiles(array $src, false $basename, false $path);
@@ -79,12 +78,12 @@ class com_datas extends Controllers {
 				$vidSizeName = FileSystems::getSizeName($totalVidSize);
 				$otherSizeName = FileSystems::getSizeName($totalOtherSize);
 				
-				// Calculer le pourcentage de chaque catégorie de fichiers par rapport à 1 Go
-				$totalDocSizePercent = round(100 * $totalDocSize / 1000000000,2);
-				$totalImgSizePercent = round(100 * $totalImgSize / 1000000000,2);
-				$totalAudioSizePercent = round(100 * $totalAudioSize / 1000000000,2);
-				$totalVidSizePercent = round(100 * $totalVidSize / 1000000000,2);
-				$totalOtherSizePercent = round(100 * $totalOtherSize / 1000000000,2);
+				// Calculer le pourcentage de chaque catégorie de fichiers par rapport à 100 Mo
+				$totalDocSizePercent = round(100 * $totalDocSize / 100000000,2);
+				$totalImgSizePercent = round(100 * $totalImgSize / 100000000,2);
+				$totalAudioSizePercent = round(100 * $totalAudioSize / 100000000,2);
+				$totalVidSizePercent = round(100 * $totalVidSize / 100000000,2);
+				$totalOtherSizePercent = round(100 * $totalOtherSize / 100000000,2);
 				
 				// Définir des variables pour les données qui seront utilisées dans la vue
 				$this->globalVars(
@@ -371,7 +370,7 @@ class com_datas extends Controllers {
 				}
 				
 			}
-			elseif( !empty($post->file_upload) ) {
+			/* elseif( !empty($post->file_upload) ) {
 				// Si l'utilisateur a soumis des fichiers à uploader
 				$files = $this->requests->files;
 				
@@ -431,7 +430,7 @@ class com_datas extends Controllers {
 					$message = "Aucun fichier sélectionné !";
 					$type = "warning";
 				}
-			} 
+			}  */
 			elseif( !empty($post->action_mass_download) ) {
 				// Si l'utilisateur a soumis une action de téléchargement en masse
 				// Vérifier si des fichiers ont été sélectionnés pour le téléchargement en masse
