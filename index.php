@@ -1,5 +1,5 @@
 <?php
-// die;
+
 if( !defined('MINIMUM_PHP') ) {
 	define('MINIMUM_PHP', "8.1.0");
 }
