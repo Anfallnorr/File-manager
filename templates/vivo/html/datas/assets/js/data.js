@@ -186,7 +186,7 @@ addEventListener('mousedown', function handleMouseDown(event) {
 	
 	if (eTarget.tagName === 'BUTTON' || eTarget.tagName === 'A' || eTarget.tagName === 'INPUT' || eTarget.closest('.storage') || eTarget.closest('.shared-files-table') || eTarget.closest('.modal') || eTarget.closest('#dropzone_form')) {
 		return;
-	} else if (!eTarget.closest('.draggable') && eTarget.closest('.tab-pane')) {
+	} else if (!eTarget.closest('.draggable')) {
 		enableDragSelector = dragSelector(event);
 	} else {
 		return;
