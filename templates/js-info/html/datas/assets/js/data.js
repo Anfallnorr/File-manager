@@ -12,11 +12,6 @@ $('#check_all').on('click',function() {
 		});
 	}
 });
-/* $('.radio.radio-success').on('click',function() {
-	$(this).find('input.old_path, input.new_path').prop('checked', true);
-	// $(this).find('input').prop('checked', true);
-	$(this).find('input').addClass('checked');
-}); */
 
 /* *********************************************** */
 /* ***************** EXPAND DATA ***************** */
@@ -67,9 +62,7 @@ $(document).on('dblclick', '#dataFilesTable tbody tr, #data_shared_files-list tb
 /* *************** ENTER TO SUBMIT *************** */
 /* *********************************************** */
 $('#file_zone').on('keydown', function enterPreventDefault(e) {
-	// Vérifier si la touche pressée est la touche "Entrée"
 	if (event.keyCode === 13) {
-		// Empêcher le comportement par défaut de la touche "Entrée"
 		event.preventDefault();
 		return false;
 	}
@@ -194,7 +187,7 @@ addEventListener('mousedown', function handleMouseDown(event) {
 	let enableDragSelector = null;
 	let arrTarget = Array("BUTTON", "A", "INPUT");
 	
-	if (arrTarget.includes(eTarget.tagName) || eTarget.closest('.storage') || eTarget.closest('.modal') || eTarget.closest('#dropzone_form')) {
+	if (arrTarget.includes(eTarget.tagName) || eTarget.closest('.storage') || eTarget.closest('.shared-files-table') || eTarget.closest('.modal') || eTarget.closest('#dropzone_form')) {
 		return;
 	} else if (!eTarget.closest('.draggable')) {
 		enableDragSelector = dragSelector(event);
@@ -502,22 +495,6 @@ $(document).on('hidden.bs.modal', '#modal_compress', function downloadModalHidde
 });
 
 /* ************************************************* */
-/* ******************* SELECTABLE ****************** */
-/* ************************************************* */
-function selectClicked(e) {
-	e.preventDefault();
-	// let selectables = document.querySelectorAll('.selectable');
-	// selectables.setAttribute('selectable', false);
-	// $(e.target).setAttribute('selectable', true);
-	// console.log($(this));
-	// console.log(e.target);
-    // console.log('drag left');
-	// const dropFiles = $(e.target).closest('.task');
-	
-    // $(dropFiles).removeClass('drag-over').find('a.fm-icon-box').removeClass('folder-over-dragged');
-}
-
-/* ************************************************* */
 /* ****************** CONTEXT MENU ***************** */
 /* ************************************************* */
 initContextMenu(['download', 'move', 'rename', 'select', 'selects', 'insight', 'delete', 'massDownload', 'massMove', 'massRename', 'massDelete']);
@@ -596,4 +573,3 @@ $('#dataFilesTable').DataTable( {
 	],
 	order: [[1, 'asc']]
 });
-// new $.fn.dataTable.FixedHeader( table );
