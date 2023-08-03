@@ -1,4 +1,3 @@
-<!-- BEGIN MODAL VID FILES -->
 <div class="modal fade" id="modal_vid_files" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
@@ -17,4 +16,3 @@
 		</div>
 	</div>
 </div>
-<!-- END MODAL VID FILES -->
