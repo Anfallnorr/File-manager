@@ -95,7 +95,7 @@
 										<input name="file_renamer[path][]" type="hidden" id="file_renamer_path_<?php echo $modal ?>" value="<?php echo $folderPath ."/". $file ?>" />
 									</div>
 									<div class="col-md-12">
-										<label for="file_renamer_<?php echo $modal ?>" class="form-label">Renomer</label>
+										<label for="file_renamer_<?php echo $modal ?>" class="form-label"><?php $langs->lang("DATA_RENAME", "datas") ?></label>
 										<input name="file_renamer[file][]" type="text" id="file_renamer_<?php echo $modal ?>" class="form-control mb-3" placeholder="<?php echo pathinfo($file, PATHINFO_FILENAME) ?>" aria-label="<?php echo pathinfo($file, PATHINFO_FILENAME) ?>" autocomplete="off" value="" />
 									</div>
 								</div>
@@ -112,7 +112,7 @@
 							<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Déplacer <?php echo $file ?></h5>
+										<h5 class="modal-title"><?php $langs->lang("DATA_MOVE", "datas"); echo ' '. $file ?></h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSED") ?>" aria-label="<?php $langs->lang("JSCLOSED") ?>"></button>
 									</div>
 									<div class="modal-body text-end">
@@ -151,7 +151,6 @@
 							</div>
 						</div>
 					<?php }
-					// ***** END MODAL *****
 				endif; // IS FILE
 				$modal++;
 			endforeach; /* GLOBAL FILE */ ?>
