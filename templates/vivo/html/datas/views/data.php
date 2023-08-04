@@ -1,6 +1,4 @@
-<?php
-
-if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
+<?php if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
 	if( !empty($path) ) {
 		$folderPath = "/". implode("/", $path);
 		$files = scandir(_ROOTURL_ ."/uploads/datas/". $personnalFolder ."/". $folderPath);
@@ -222,10 +220,32 @@ if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
 				</div>
 			</div>
 		</div>
-		
 		<?php if( $personnalAllDirs != '' ) {
 			include $dataDir ."/data_full-modals.php";
 		} ?>
+		<div class="modal fade" id="modal_mass_renamer" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
+					</div>
+					<div class="modal-body">
+						<div class="block-form d-none">
+							<input name="mass_renamer[path]" type="hidden" id="mass_renamer_path" class="form-control empty" value="<?php echo $folderPath .'/' ?>" />
+						</div>
+						<div class="col-md-12">
+							<label for="mass_renamer" class="form-label"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></label>
+							<input name="mass_renamer[name]" type="text" id="mass_renamer" class="form-control mb-3 empty" placeholder="<?php $langs->lang("JSRENAME_SELECTION") ?>" aria-label="<?php $langs->lang("JSRENAME_SELECTION") ?>" autocomplete="off" value="" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light" data-bs-dismiss="modal" title="<?php $langs->lang("JSCANCEL") ?>"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCANCEL") ?></button>
+						<button type="submit" name="action_mass_rename" value="action_mass_rename" class="btn btn-success"><i class="bi bi-input-cursor-text"></i> <?php $langs->lang("JSRENAME_SELECTION") ?></button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</form>
 	<?php if( isset($breadcrumb) && !empty($breadcrumb) && $breadcrumb != '' ) : ?>
 		<div class="card">
@@ -261,32 +281,6 @@ else : ?>
 	</div>
 <?php endif; ?>
 
-<div class="modal fade" id="modal_upload" tabindex="-1" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title"><?php $langs->lang("DATA_MODAL_LOADING_PROGRESS", "datas") ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" title="<?php $langs->lang("JSCLOSE") ?>" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="progress mb-3" style="height: 15px;">
-							<div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-value="0" data-max="100"></div>
-							<div class="d-block w-100 text-center pos-absolute lh-15">
-								<span class="loading"></span> <span><?php $langs->lang("DATA_MODAL_ACCOMPLISHED", "datas") ?></span>
-							</div>
-						</div>
-						<div class="upload-weight">
-							<h3 id="status"><?php $langs->lang("DATA_MODAL_LOADING_WAIT", "datas") ?></h3>
-							<p><?php $langs->lang("DATA_MODAL_LOAD", "datas") ?> : <span id="loading_weight" class="loading-weight"></span> <?php $langs->lang("DATA_MODAL_KB_OF", "datas") ?> <span id="total_weight" class="total-weight"></span> <?php $langs->lang("DATA_MODAL_KB", "datas") ?></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="modal fade" id="modal_compress" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
@@ -306,6 +300,7 @@ else : ?>
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="modal_viewer" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
@@ -322,6 +317,7 @@ else : ?>
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="modal_download" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
