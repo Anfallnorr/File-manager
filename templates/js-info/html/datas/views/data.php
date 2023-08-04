@@ -201,6 +201,29 @@
 				<?php if( $personnalAllDirs != '' ) {
 					include $dataDir ."/data_full-modals.php";
 				} ?>
+				<div class="modal fade" id="modal_mass_renamer" tabindex="-1" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
+							</div>
+							<div class="modal-body">
+								<div class="block-form d-none">
+									<input name="mass_renamer[path]" type="hidden" id="mass_renamer_path" class="form-control" value="<?php echo $folderPath .'/' ?>" />
+								</div>
+								<div class="col-md-12">
+									<label for="mass_renamer" class="form-label"><?php $langs->lang("DATA_FULL_MODAL_RENAME_SELECTION", "datas") ?></label>
+									<input name="mass_renamer[name]" type="text" id="mass_renamer" class="form-control mb-3" placeholder="<?php $langs->lang("JSRENAME_SELECTION") ?>" aria-label="<?php $langs->lang("JSRENAME_SELECTION") ?>" autocomplete="off" value="" />
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="bx bx-arrow-back"></i> <?php $langs->lang("JSCANCEL") ?></button>
+								<input type="submit" name="action_mass_rename" class="btn btn-light" value="<?php $langs->lang("JSRENAME_SELECTION") ?>" />
+							</div>
+						</div>
+					</div>
+				</div>
 			</form>
 			<?php if( isset($breadcrumb) && !empty($breadcrumb) && $breadcrumb != '' ) : ?>
 				<div class="card">
@@ -262,7 +285,7 @@
 		</div>
 	</div>
 </div>
-<!-- BEGIN MODAL COMPRESS -->
+
 <div class="modal fade" id="modal_compress" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
@@ -282,7 +305,7 @@
 		</div>
 	</div>
 </div>
-<!-- BEGIN MODAL VIEWER -->
+
 <div class="modal fade" id="modal_viewer" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
@@ -299,7 +322,7 @@
 		</div>
 	</div>
 </div>
-<!-- BEGIN MODAL DOWNLOAD -->
+
 <div class="modal fade" id="modal_download" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
