@@ -8,7 +8,6 @@
 		var JSCANCEL = "<?php $langs->lang("JSCANCEL") ?>";
 		var JSARE_YOU_SURE_YOU_WANT_TO_DELETE = "<?php $langs->lang("JSARE_YOU_SURE_YOU_WANT_TO_DELETE") ?>";
 	</script>
-	
 	<div class="mt-sm-5">
 		<?php if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
 			if( !empty($path) ) {
