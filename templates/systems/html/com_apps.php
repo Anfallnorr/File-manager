@@ -54,7 +54,6 @@ class com_apps extends Controllers {
 
 		echo json_encode($return);
 		exit;
-		die;
 	}
 	
 }
