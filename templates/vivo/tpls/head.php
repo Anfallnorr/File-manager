@@ -12,12 +12,12 @@
 <link href="<?php echo $params['favicon_site'] ?>" type="image/vnd.microsoft.icon" rel="icon" />
 <link href="<?php echo $params['favicon_site'] ?>" type="image/x-icon" rel="shortcut icon" />
 
-<link href="/js/plugins/notifications/css/lobibox.min.css" type="text/css" rel="stylesheet" async />
-<link href="/js/plugins/overlay-scroll/OverlayScrollbars.min.css" type="text/css" rel="stylesheet" async />
-<link href="/js/plugins/datatables/dataTables.bs5.css" rel="stylesheet" async />
-<link href="/js/plugins/dropzone/dropzone.min.css" rel="stylesheet" async />
+<link href="/js/plugins/notifications/css/lobibox.min.css" type="text/css" rel="stylesheet" />
+<link href="/js/plugins/overlay-scroll/OverlayScrollbars.min.css" type="text/css" rel="stylesheet" />
+<link href="/js/plugins/datatables/dataTables.bs5.css" rel="stylesheet" />
+<link href="/js/plugins/dropzone/dropzone.min.css" rel="stylesheet" />
 
-<link href="/templates/<?php echo $theme ?>/assets/css/bootstrap.min.css" type="text/css" rel="stylesheet" async />
-<link href="/templates/<?php echo $theme ?>/assets/fonts/bootstrap/bootstrap-icons.css" type="text/css" rel="stylesheet" async />
-<link href="/templates/<?php echo $theme ?>/assets/css/main.min.css" type="text/css" rel="stylesheet" async />
-<link href="/templates/<?php echo $theme ?>/assets/css/vivo.css" type="text/css" rel="stylesheet" async />
+<link href="/templates/<?php echo $theme ?>/assets/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="/templates/<?php echo $theme ?>/assets/fonts/bootstrap/bootstrap-icons.css" type="text/css" rel="stylesheet" />
+<link href="/templates/<?php echo $theme ?>/assets/css/main.min.css" type="text/css" rel="stylesheet" />
+<link href="/templates/<?php echo $theme ?>/assets/css/vivo.css" type="text/css" rel="stylesheet" />
