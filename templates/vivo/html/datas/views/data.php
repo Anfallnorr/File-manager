@@ -21,7 +21,6 @@
 		var JSCANCEL = "<?php $langs->lang("JSCANCEL") ?>";
 		var JSARE_YOU_SURE_YOU_WANT_TO_DELETE = "<?php $langs->lang("JSARE_YOU_SURE_YOU_WANT_TO_DELETE") ?>";
 	</script>
-	
 	<div class="card">
 		<div class="card-header">
 			<div class="card-title"><?php $langs->lang("DATA_INFORMATIONS", "datas") ?></div>
