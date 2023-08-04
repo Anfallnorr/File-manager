@@ -25,4 +25,3 @@
 <link href="/templates/<?php echo $this->theme ?>/assets/css/app.min.css" type="text/css" rel="stylesheet" async />
 <link href="/templates/<?php echo $this->theme ?>/assets/css/icons.min.css" type="text/css" rel="stylesheet" async />
 <link href="/templates/<?php echo $this->theme ?>/assets/css/js-info.css" type="text/css" rel="stylesheet" async />
-<link href="/templates/<?php echo $this->theme ?>/html/datas/assets/css/data.css" type="text/css" rel="stylesheet" async />
