@@ -1,6 +1,6 @@
 <?php defined('_EXEC') or die; ?>
 <script src="/js/plugins/jquery/jquery-3.7.0.js" type="text/javascript"></script>
-<script src="/templates/<?php echo $this->theme ?>/assets/js/bootstrap.bundle.min.js" type="text/javascript" async></script>
+<script src="/templates/<?php echo $this->theme ?>/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script src="/js/functions.js" type="text/javascript" async></script>
 
 <script src="/js/plugins/simplebar/js/simplebar.min.js" type="text/javascript" async></script>
