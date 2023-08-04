@@ -1,0 +1,6 @@
+user-agent: *
+disallow: /language/
+disallow: /classes/
+disallow: /includes/
+disallow: /uploads/
+disallow: /var/
