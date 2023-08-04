@@ -4,12 +4,6 @@ defined('_EXEC') or die;
 
 class com_apps extends Controllers {
 	
-	// public $Address;
-	// public $Appointmentsrequest;
-	// public $Orders;
-	// public $Products;
-	// public $Webmailconnections;
-	
 	public function app(): void {
 		if( $this->session->readSession('user') === null ) {
 			header('Location: /dashboards/dashboard');
@@ -28,21 +22,6 @@ class com_apps extends Controllers {
 			$this->{$trackFunction}();
 		}
 	}
-	
-	/* public function trackMenuToggle(object $post): void {
-		if( $this->session->readSession('trackMenuToggle') === null ) {
-			$this->session->writeSession('trackMenuToggle', array());
-		}
-		
-		if( $post->hasToggle == "true" ) {
-			$toggle = "not-toggled";
-		} else {
-			$toggle = "toggled";
-		}
-		
-		$this->session->editSession('trackMenuToggle', array('menuToggle' => $toggle));		
-		exit;
-	} */
 	
 	public function trackExpander(object $post): void {
 		if( !empty($post->expandDatas) ) {			
@@ -75,7 +54,6 @@ class com_apps extends Controllers {
 
 		echo json_encode($return);
 		exit;
-		die;
 	}
 	
 }
