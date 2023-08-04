@@ -21,4 +21,3 @@
 <link href="/templates/<?php echo $theme ?>/assets/fonts/bootstrap/bootstrap-icons.css" type="text/css" rel="stylesheet" async />
 <link href="/templates/<?php echo $theme ?>/assets/css/main.min.css" type="text/css" rel="stylesheet" async />
 <link href="/templates/<?php echo $theme ?>/assets/css/vivo.css" type="text/css" rel="stylesheet" async />
-<link href="/templates/<?php echo $theme ?>/html/datas/assets/css/data.css" type="text/css" rel="stylesheet" async />
