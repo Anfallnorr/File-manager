@@ -1,6 +1,6 @@
 <?php defined('_EXEC') or die; ?>
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-	<div class="breadcrumb-title pe-3">Accueil</div>
+	<div class="breadcrumb-title pe-3"><?php $langs->lang("JSHOME") ?></div>
 	<div class="ps-3">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0 p-0">
@@ -9,7 +9,7 @@
 						<i class="bx bx-home-alt"></i>
 					</a>
 				</li>
-				<li class="breadcrumb-item active" aria-current="page">Mon drive</li>
+				<li class="breadcrumb-item active" aria-current="page"><?php $langs->lang("DATA_MY_DRIVE", "datas") ?></li>
 			</ol>
 		</nav>
 	</div>
