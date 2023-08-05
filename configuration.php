@@ -18,5 +18,5 @@ class Config {
 	public $MetaDesc = "Espace personnel Js info";
 	public $MetaAuthor = "Julien Senechal - Js info";
 	public $MetaVersion = "1.2.8";
-	public $robots = "noindex,nofollow";
+	public $robots = "index,follow";
 }
