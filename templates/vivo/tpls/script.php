@@ -15,5 +15,5 @@
 <script src="/templates/<?php echo $theme ?>/assets/js/main.min.js" type="text/javascript"></script>
 <script src="/js/context-menu.js" type="text/javascript"></script>
 <script src="/templates/<?php echo $theme ?>/assets/js/vivo.js" type="text/javascript"></script>
-<script src="/templates/<?php echo $this->theme ?>/assets/js/ajax-dropzone.js" type="text/javascript"></script>
-<script src="/templates/<?php echo $this->theme ?>/assets/js/data.js" type="text/javascript"></script>
+<script src="/templates/<?php echo $theme ?>/assets/js/ajax-dropzone.js" type="text/javascript"></script>
+<script src="/templates/<?php echo $theme ?>/assets/js/data.js" type="text/javascript"></script>
