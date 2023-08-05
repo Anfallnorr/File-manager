@@ -4,19 +4,6 @@ $('#function_debug .btn-close-white').click(function () {
 	$(this).closest('#function_debug').slideUp();
 });
 
-$(function() {
-	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')),
-		popoverList = popoverTriggerList.map(function (el) {
-		let opts = {
-			html: true,
-			trigger: 'focus'
-		}
-		return new bootstrap.Popover(el, opts)
-	});
-	
-	$('[data-bs-toggle="tooltip"]').tooltip();
-});
-
 /* ************************************************************ */
 /* ********************* KEYBOARD SHORTCUT ******************** */
 /* ************************************************************ */
