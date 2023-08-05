@@ -249,6 +249,9 @@ body .context-menu.card {
     height: 52px;
 	border-radius: 15px;
 }
+#file_zone .card-title,
+#file_zone .search-container,
+#ajax_upload_result *,
 #data_folders-list *,
 #data_files-list * {
 	user-select: none;
