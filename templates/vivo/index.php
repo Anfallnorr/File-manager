@@ -1,9 +1,8 @@
 <?php
 $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hotkeys-enabled" : "";
 ?>
-
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang ?>" lang="<?php echo $lang ?>" data-bs-theme="_light">
+<!DOCTYPE html>
+<html lang="<?php echo $lang ?>">
 	<head>
 		<?php include _ROOTURL_ ."/templates/". $theme ."/tpls/head.php" ?>
 	</head>
