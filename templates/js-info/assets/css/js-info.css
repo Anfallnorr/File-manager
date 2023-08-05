@@ -390,6 +390,9 @@ form.dropzone > button {
     border-left: 1px dashed #fff;
     border-bottom: 1px dashed #fff;
 }
+#file_zone .card-title,
+#file_zone .btn-group,
+#ajax_upload_result *,
 #data_folders-list *,
 #data_files-list * {
 	user-select: none;
