@@ -1,21 +1,5 @@
 $('a.link-disabled').click(function() { return false; });
 
-$(function() {
-	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')),
-		popoverList = popoverTriggerList.map(function (el) {
-		let opts = {
-			html: true,
-			trigger: 'focus'
-		}
-		return new bootstrap.Popover(el, opts);
-	});
-	
-	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-		return new bootstrap.Tooltip(tooltipTriggerEl);
-	});
-});
-
 if( $('.pace').length > 0 ) {
 	window.onbeforeunload = renderLoading;
 }
