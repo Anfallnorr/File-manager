@@ -247,7 +247,7 @@ class com_datas extends Controllers {
 					
 					try {
 						$downloader = new Downloader($pathToFile, $this->tmpRoot, $get['file']);
-						$getAction = $downloader->download($this->requests->path);
+						$getAction = $downloader->download();
 					} catch (Exception $e) {
 						$getAction = array($e->getMessage(), "danger");
 					}
