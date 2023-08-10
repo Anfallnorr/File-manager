@@ -12,7 +12,7 @@ class Downloader {
 		$this->filename = $filename;
     }
 	
-	public function download(string $redirect) {
+	public function download() {
 		$fileDestination = $this->destination . $this->filename;
         $fileContents = file_get_contents($this->url);
 		
