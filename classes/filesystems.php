@@ -6,11 +6,9 @@ class FileSystems {
 		'documents' => array('doc','docx','odf','odp','ods','odt','otf','ppt','csv','pps','pptx','xls','xlsx','rtf','txt','pdf'),
 		'images' => array('jpg','jpeg','png','tif','webp','bmp','ico','svg','gif'),
 		'audios' => array('mp3','wav','wave','wma','aac','mid','midi','ogg','aif','aiff'),
-		'videos' => array('mp4','mpg','mpeg','mov','3gp','avi'),
-		/* 'other' => array() */
+		'videos' => array('mp4','mpg','mpeg','mov','3gp','avi')
 	);
 	const ACCEPT_FILE_FORMAT = array(
-		/*"text/*",*/
 		"text/txt","text/plain","text/rtf","text/richtext","text/csv","text/xml","text/html","text/css","text/x-asm","text/javascript","text/x-java","text/x-php","text/vcard","text/x-vcard",
 		"image/gif","image/png","image/jpeg","image/pjpeg","image/tiff","image/bmp","image/svg","image/webp","image/svg+xml","image/eps","image/x-eps","image/x-xcf","image/x-icon","image/vnd.microsoft.icon","image/vnd.adobe.photoshop",
 		"audio/aac","audio/mpeg","audio/midi","audio/webm","audio/ogg","audio/wav","audio/wave","audio/x-wav","audio/x-pn-wav","audio/webm",
@@ -113,13 +111,13 @@ class FileSystems {
             usort($directories, function($a, $b) {
                 return $b["date"] - $a["date"];
             });
+			
 			// Trie le tableau de fichiers par date de modification décroissante
             usort($files, function($a, $b) {
                 return $b["date"] - $a["date"];
             });
         }
 		
-		// Fusionne les tableaux de dossiers et de fichiers et retourne le résultat
         return array_merge($directories, $files);
     }
 	
@@ -200,6 +198,7 @@ class FileSystems {
 				}
 			}
 		}
+		
 		return $categories;
 	}
 	
@@ -216,26 +215,26 @@ class FileSystems {
 	 * Si aucun fichier n'est trouvé dans le chemin, la fonction retourne une chaîne vide.
 	 */
 	public static function getExtractedFolder(string $folder): string {
-		$uploads_datas = "datas";
-		$folder_parts = explode("/", $folder);
-		$uploads_datas_index = array_search($uploads_datas, $folder_parts);
-		$personal_folder_index = $uploads_datas_index + 1;
-		$personal_folder = $folder_parts[$personal_folder_index];
+		$uploadsDatas = "datas";
+		$folderParts = explode("/", $folder);
+		$uploadsDatasIndex = array_search($uploadsDatas, $folderParts);
+		$personalFolderIndex = $uploadsDatasIndex + 1;
 		
-		$next_is_dir = true;
-		$i = $personal_folder_index + 1;
-		$extracted_folder = "";
+		$nextIsDir = true;
+		$i = $personalFolderIndex + 1;
+		$extractedFolder = "";
 		
-		while ($next_is_dir && $i < count($folder_parts) - 1) {
-			if (strpos($folder_parts[$i], ".") === false) {
-				$extracted_folder .= "/" . $folder_parts[$i];
+		while ($nextIsDir && $i < count($folderParts) - 1) {
+			if (strpos($folderParts[$i], ".") === false) {
+				$extractedFolder .= "/" . $folderParts[$i];
 			} else {
-				$next_is_dir = false;
+				$nextIsDir = false;
 			}
+			
 			$i++;
 		}
 		
-		return $extracted_folder;
+		return $extractedFolder;
 	}
 	
 	/**
@@ -273,21 +272,17 @@ class FileSystems {
     public static function getSizeName(int|float $size): string {
         $unite = array("Octets","Ko","Mo","Go");
 		
-        if ($size < 1000) {
-            // Octets
+        if ($size < 1000) { // Octets
             return $size ." " .$unite[0];
         } else {
-            if ($size < 1000000) {
-                // Ko
+            if ($size < 1000000) { // Ko
                 $ko = round($size/1000,2);
                 return $ko ." ". $unite[1];
             } else {
-                if ($size < 1000000000) {
-                    // Mo
+                if ($size < 1000000000) { // Mo
                     $mo = round($size/(1000*1000),2);
                     return $mo ." ". $unite[2];
-                } else {
-                    // Go
+                } else { // Go
                     $go = round($size/(1000*1000*1000),2);
                     return $go ." ". $unite[3];
                 }
@@ -303,16 +298,16 @@ class FileSystems {
 	 */
 	public static function getScanFiles(string $dirDest): array|bool {
 		$files = scandir($dirDest);
-		$min_files = array();
+		$minFiles = array();
 		
 		foreach($files as $file) {
-			if( $file != "." && $file != ".." && $file != "" && $file != "index.php" && $file != "index.html"/* && $file != "miniatures"*/ ) {
-				$min_files[] = $file;
+			if( $file != "." && $file != ".." && $file != "" && $file != "index.php" && $file != "index.html" ) {
+				$minFiles[] = $file;
 			}
 		}
 		
-		if( isset($min_files) && !empty($min_files) ) {
-			return $min_files;
+		if( isset($minFiles) && !empty($minFiles) ) {
+			return $minFiles;
 		} else {
 			return false;
 		}
@@ -644,17 +639,15 @@ class FileSystems {
 					break;
 			}
 			
-			// Redimensionner l'image
 			// Création de l'image de sortie
 			$outputImage = imagecreatetruecolor($newWidth, $newHeight);
-			// Redimensionnement de l'image source vers l'image de sortie
+			
 			if (imagecopyresampled($outputImage, $source, 0, 0, 0, 0, $newWidth, $newHeight, $oldWidth, $oldHeight)) {
 				// Créer le chemin de destination en conservant l'arborescence de l'image source
 				if (!is_dir($targetDir)) {
 					mkdir($targetDir, 0777, true);
 				}
 				
-				// Enregistrer l'image redimensionnée
 				switch ($type) {
 					case 'jpg':
 					case 'jpeg':
@@ -1111,17 +1104,17 @@ class FileSystems {
     /**
      * Récupère la taille d'un tableau de fichiers en octets.
      * 
-     * @param array $files Les fichiers dont on veut récupérer la taille.
+     * @param string $files Les fichiers dont on veut récupérer la taille.
      * @return int La taille des fichiers en octets.
      */
     public static function getFilesSize(array $files): int {
-		$total_file_size = 0;
+		$totalFileSize = 0;
 		
 		foreach($files as $size) {
-			$total_file_size = $total_file_size + filesize($size);
+			$totalFileSize = $totalFileSize + filesize($size);
 		}
 		
-		return $total_file_size;
+		return $totalFileSize;
 	}
 	
     /**
