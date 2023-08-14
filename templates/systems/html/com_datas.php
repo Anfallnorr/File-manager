@@ -374,11 +374,15 @@ class com_datas extends Controllers {
 				$type = $massRemoved[1];
 			} 
 			elseif(!empty($post->file_renamer) || !empty($post->dir_renamer) || !empty($post->file_move) || !empty($post->dir_move)) {
+				$outputAction = array($this->langs->lang("PLEASE_FILL_IN_THE_FIELD", "system", true), "warning");
+				
 				if( !empty($post->file_renamer) ) {
 					foreach( $post->file_renamer['file'] as $key => $value ) {
 						if( !empty($value) ) {
-							$fileRenamerKey = $key;
-							$fileRenamer['newname'] = $value;
+							$fileRenamer['oldname'] = $this->personnalRoot . $post->file_renamer['path'][$key];
+							$pdt = gettype($personnalDriveTotal) != "boolean" ? $personnalDriveTotal : array();
+							$outputAction = FileSystems::renamer($fileRenamer['oldname'], $value, $pdt, $this->personnalRoot);
+							
 							break;
 						}
 					}
@@ -387,8 +391,10 @@ class com_datas extends Controllers {
 				if( !empty($post->dir_renamer) ) {
 					foreach( $post->dir_renamer['dir'] as $key => $value ) {
 						if( !empty($value) ) {
-							$dirRenamerKey = $key;
-							$dirRenamer['newname'] = $value;
+							$dirRenamer['oldname'] = $this->personnalRoot . $post->dir_renamer['path'][$key];
+							$pdt = gettype($personnalDriveTotal) != "boolean" ? $personnalDriveTotal : array();
+							$outputAction = FileSystems::renamer($dirRenamer['oldname'], $value, $pdt, $this->personnalRoot);
+							
 							break;
 						}
 					}
@@ -397,8 +403,10 @@ class com_datas extends Controllers {
 				if( !empty($post->file_move) ) {
 					foreach( $post->file_move['new_path'] as $key => $value ) {
 						if( !empty($value) ) {
-							$fileMoveKey = $key;
-							$fileMove['new_path'] = $value;
+							$fileMove['new_path'] = $this->personnalRoot . $value;
+							$fileMove['old_path'] = $this->personnalRoot . $post->file_move['old_path'][$key];
+							$outputAction = FileSystems::move($fileMove['old_path'], $fileMove['new_path'], $this->personnalFolder);
+							
 							break;
 						}
 					}
@@ -407,35 +415,13 @@ class com_datas extends Controllers {
 				if( !empty($post->dir_move) ) {
 					foreach( $post->dir_move['new_path'] as $key => $value ) {
 						if( !empty($value) ) {
-							$dirMoveKey = $key;
-							$dirMove['new_path'] = $value;
+							$dirMove['new_path'] = $this->personnalRoot . $value;
+							$dirMove['old_path'] = $this->personnalRoot . $post->dir_move['old_path'][$key];
+							$outputAction = FileSystems::move($dirMove['old_path'], $dirMove['new_path'], $this->personnalFolder);
+							
 							break;
 						}
 					}
-				}
-				
-				if( isset($fileRenamerKey) ) {
-					$fileRenamer['oldname'] = $this->personnalRoot . $post->file_renamer['path'][$fileRenamerKey];
-					$pdt = gettype($personnalDriveTotal) != "boolean" ? $personnalDriveTotal : array();
-					$outputAction = FileSystems::renamer($fileRenamer['oldname'], $fileRenamer['newname'], $pdt, $this->personnalRoot);
-				} 
-				elseif( isset($dirRenamerKey) ) {
-					$dirRenamer['oldname'] = $this->personnalRoot . $post->dir_renamer['path'][$dirRenamerKey];
-					$pdt = gettype($personnalDriveTotal) != "boolean" ? $personnalDriveTotal : array();
-					$outputAction = FileSystems::renamer($dirRenamer['oldname'], $dirRenamer['newname'], $pdt, $this->personnalRoot);
-				} 
-				elseif( isset($fileMoveKey) ) {
-					$fileMove['new_path'] = $this->personnalRoot . $fileMove['new_path'];
-					$fileMove['old_path'] = $this->personnalRoot . $post->file_move['old_path'][$fileMoveKey];
-					$outputAction = FileSystems::move($fileMove['old_path'], $fileMove['new_path'], $this->personnalFolder);
-				} 
-				elseif( isset($dirMoveKey) ) {
-					$dirMove['new_path'] = $this->personnalRoot . $dirMove['new_path'];
-					$dirMove['old_path'] = $this->personnalRoot . $post->dir_move['old_path'][$dirMoveKey];
-					$outputAction = FileSystems::move($dirMove['old_path'], $dirMove['new_path'], $this->personnalFolder);
-				} 
-				else {
-					$outputAction = array("Veuillez remplir le champ", "warning");
 				}
 				
 				$message = $outputAction[0];
@@ -453,6 +439,87 @@ class com_datas extends Controllers {
 			}
 		}
 	}
+	
+	/* public function massUploads(array $datas, array $getCustomer): array {
+		if( $this->requests->post->max_size_folder < 100 ) {
+			set_time_limit(3600);
+			
+			$file_format = $this->fileFormat();
+			$accept_file_format = FileSystems::ACCEPT_FILE_FORMAT;
+			
+			if( is_array($datas) ) {
+				$file_counter = count($datas['name']);
+				$get_files = FileSystems::getFiles($this->personnalRoot);
+				
+				if( !empty($datas["file_path"]) ) {
+					$target_dir = $this->personnalRoot ."/". $datas['file_path'] ."/";
+				} else {
+					$target_dir = $this->personnalRoot ."/";
+				}
+				
+				if( !is_dir($target_dir) ) {
+					mkdir($target_dir, 0705, true);
+				}
+				
+				$redim = array();
+				
+				for( $i = 0; $i < $file_counter; $i++ ) {
+					$datas['name'][$i] = FileSystems::strReplace($datas['name'][$i]);
+					
+					$target_file[$i] = $target_dir . basename($datas['name'][$i]);
+					$imageFileType[$i] = strtolower(pathinfo($target_file[$i], PATHINFO_EXTENSION));
+					
+					// if( !empty($get_files) ) {
+						// foreach($get_files as $get_file) {
+							// if( basename($get_file) === basename($target_file[$i]) ) {
+								// $slice_file = array_slice(explode("/", $get_file), 10);
+								// $message = array("Un fichier du même nom existe déjà, '/". implode('/', $slice_file) ."'", "warning");
+								
+								// return $message;
+							// }
+						// }
+					// }
+					
+					if( $getCustomer['access'] > 2 ) {
+						if( $datas['size'][$i] > 10000000 ) {
+							$message = array("Désolé, le fichier est trop volumineux, taille max. 10Mo", "warning");
+							
+							return $message;
+						}
+					}
+					
+					if( empty(in_array($imageFileType[$i], $this->fileFormat())) ) {
+						$message = array("Désolé, les fichiers autorisé sont de type ". implode(", ", $this->fileFormat()) ."", "warning");
+						
+						return $message;
+					}
+					
+					if( move_uploaded_file($datas['tmp_name'][$i], $target_file[$i]) ) {
+						if( !empty(in_array(mime_content_type($target_file[$i]), $accept_file_format)) ) {
+							if( $file_counter > 1 ) {
+								$message = array("L'enregistrement des fichiers s'est déroulé avec succès", "success");
+							} else {
+								$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($datas['name'][$i])) ." s'est déroulé avec succès", "success");
+							}
+						} else {
+							unlink($target_file[$i]);
+							$message = array("L'enregistrement des fichiers doit être de type ". implode(", ", $accept_file_format) ."", "danger");
+						}
+					} else {
+						if( $file_counter > 1 ) {
+							$message = array("L'enregistrement des fichiers ont rencontrés une erreur !", "danger");
+						} else {
+							$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($datas['name'][$i])) ." à rencontré une erreur !", "danger");
+						}
+					}
+				}
+			}
+		} else {
+			$message = array("Votre espace de stockage est plein, veuillez supprimer des fichiers avant de continuer !", "danger");
+		}
+		
+		return $message;
+	} */
 	
 	function fileFormat(): ?array {
 		if( !class_exists('Params') ) {
