@@ -326,7 +326,7 @@ class com_datas extends Controllers {
 						$getAction = array($e->getMessage(), "danger");
 					}
 				} else {
-					$message = "Aucun fichier sélectionné";
+					$message = $this->langs->lang("NO_FILE_SELECTED", "system", true);
 					$type = "warning";
 				}
 			} 
@@ -334,7 +334,7 @@ class com_datas extends Controllers {
 				if( !empty($post->select_file) ) {
 					$massMoved = FileSystems::move($post->mass_move['old_path'], $post->mass_move['new_path'], $this->personnalRoot, $post->select_file);
 				} else {
-					$massMoved = array("Aucun fichier sélectionné", "warning");
+					$massMoved = array($this->langs->lang("NO_FILE_SELECTED", "system", true), "warning");
 				}
 				
 				$message = $massMoved[0];
@@ -350,7 +350,7 @@ class com_datas extends Controllers {
 					
 					$massRenamer = FileSystems::renamer($massRenamerSelectFile, $post->mass_renamer['name'], $personnalDriveTotal, $this->personnalRoot);
 				} else {
-					$massRenamer = array("Aucun fichier sélectionné". __LINE__, "warning");
+					$massRenamer = array($this->langs->lang("NO_FILE_SELECTED", "system", true), "warning");
 				}
 				
 				$message = $massRenamer[0];
@@ -367,7 +367,7 @@ class com_datas extends Controllers {
 					
 					$massRemoved = FileSystems::remove($massRemoveFilePath, $massRemoveSelectFile, "", $this->personnalRoot);
 				} else {
-					$massRemoved = array("Aucun fichier sélectionné", "warning");
+					$massRemoved = array($this->langs->lang("NO_FILE_SELECTED", "system", true), "warning");
 				}
 				
 				$message = $massRemoved[0];
