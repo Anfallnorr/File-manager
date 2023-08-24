@@ -215,10 +215,10 @@ class com_datas extends Controllers {
 							}
 						}
 					} else {
-						$getAction = array("Votre espace de stockage est plein, veuillez supprimer des fichiers avant de continuer !", "danger");
+						$getAction = array($this->langs->lang("YOUR_STORAGE_SPACE_IS_FULL", "system", true), "danger");
 					}
 				} else {
-					$getAction = array("Une erreur est survenue !", "danger");
+					$getAction = array($this->langs->lang("AN_ERROR_HAS_OCCURRED", "system", true), "danger");
 				}
 				
 				if( $get['action'] == "uploadAjax" ) {
@@ -269,10 +269,10 @@ class com_datas extends Controllers {
 						$getAction = array($e->getMessage(), "danger");
 					}
 				} else {
-					$getAction = array("Un dossier doit être sélectionné !", "warning");
+					$getAction = array($this->langs->lang("A_FOLDER_MUST_BE_SELECTED", "system", true), "warning");
 				}
 			} else {
-				$getAction = array("Une erreur est survenue", "danger");
+				$getAction = array($this->langs->lang("AN_ERROR_HAS_OCCURRED", "system", true), "danger");
 			}
 			
 			$message = $getAction[0];
