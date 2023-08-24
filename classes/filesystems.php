@@ -450,14 +450,14 @@ class FileSystems {
 				// Vérifier la taille du fichier en octets (ex: 20000o = 20Ko), (ex: 19300357o = 19.3Mo)
 				if ($access > 2) {
 					if ($file['size'][$i] > 10000000) {
-						return array("Désolé, le fichier est trop volumineux, taille max. 10Mo", "warning");
+						return array("SORRY_THE_FILE_IS_TOO_LARGE", "warning");
 					}
 				}
 				
 				// Autoriser certains formats de fichiers
 				if (!empty($fileFormat)) {
 					if (empty(in_array($imageFileType[$i], $fileFormat))) {
-						return array("Désolé, les fichiers autorisé sont de type ". implode(", ", $fileFormat) ."", "warning");
+						return array("SORRY_THE_AUTHORIZED_FILES_ARE_OF_TYPE", "warning", implode(", ", $fileFormat));
 					}
 				}
 				
@@ -466,21 +466,21 @@ class FileSystems {
 					if (!empty(in_array(mime_content_type($targetFile[$i]), self::ACCEPT_FILE_FORMAT))) {
 						// Si tout va bien, essayez de télécharger le fichier
 						if ($fileCounter > 1) {
-							$message = array("L'enregistrement des fichiers s'est déroulé avec succès.", "success");
+							$message = array("FILES_SAVED_SUCCESSFULLY", "success");
 						} else {
-							$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($file['name'][$i])) ." s'est déroulé avec succès.", "success");
+							$message = array("FILE_SAVING_WAS_SUCCESSFUL", "success", htmlspecialchars(basename($file['name'][$i])));
 						}
 						$filePath['src'][] = base64_encode(substr($targetFile[$i], strpos($targetFile[$i], "/uploads")));
 					} else {
 						// Pas bon, on supprime le fichier
 						unlink($targetFile[$i]);
-						$message = array("L'enregistrement des fichiers doit être de type ". implode(", ", self::ACCEPT_FILE_FORMAT) ." !", "danger");
+						$message = array("SAVING_FILES_MUST_BE_OF_TYPE", "danger", implode(", ", self::ACCEPT_FILE_FORMAT));
 					}
 				} else {
 					if ($fileCounter > 1) {
-						$message = array("L'enregistrement des fichiers ont rencontrés une erreur !", "danger");
+						$message = array("SAVING_FILES_ENCOUNTERED_AN_ERROR", "danger");
 					} else {
-						$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($file['name'][$i])) ." à rencontré une erreur !", "danger");
+						$message = array("SAVING_THE_FILE_ENCOUNTERED_AN_ERROR", "danger", htmlspecialchars(basename($file['name'][$i])));
 					}
 				}
 				
@@ -517,14 +517,14 @@ class FileSystems {
 			// Vérifier la taille du fichier en octets (ex: 20000o = 20Ko), (ex: 19300357o = 19.3Mo)
 			if ($access > 2) {
 				if ($file['size'] > 10000000) {
-					return array("Désolé, le fichier est trop volumineux, taille max. 10Mo", "warning");
+					return array("SORRY_THE_FILE_IS_TOO_LARGE", "warning");
 				}
 			}
 			
 			// Autoriser certains formats de fichiers
 			if (!empty($fileFormat)) {
 				if (empty(in_array($imageFileType, $fileFormat))) {
-					return array("Désolé, les fichiers autorisé sont de type ". implode(", ", $fileFormat) ."", "warning");
+					return array("SORRY_THE_AUTHORIZED_FILES_ARE_OF_TYPE", "warning", implode(", ", $fileFormat));
 				}
 			}
 			
@@ -532,15 +532,15 @@ class FileSystems {
 				// Si tout va bien, on vérifie le type mime du fichier
 				if (!empty(in_array(mime_content_type($targetFile), self::ACCEPT_FILE_FORMAT))) {
 					// Si tout va bien, essayez de télécharger le fichier
-					$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($file['name'])) ." s'est déroulé avec succès.", "success");
+					$message = array("FILE_SAVING_WAS_SUCCESSFUL", "success", htmlspecialchars(basename($file['name'])));
 					$filePath['src'] = base64_encode(substr($targetFile, strpos($targetFile, "/uploads")));
 				} else {
 					// Pas bon, on supprime le fichier
 					unlink($targetFile);
-					$message = array("L'enregistrement des fichiers doit être de type ". implode(", ", self::ACCEPT_FILE_FORMAT) ." !", "danger");
+					$message = array("SAVING_FILES_MUST_BE_OF_TYPE", "danger", implode(", ", self::ACCEPT_FILE_FORMAT));
 				}
 			} else {
-				$message = array("L'enregistrement du fichier ". htmlspecialchars(basename($file['name'])) ." à rencontré une erreur !", "danger");
+				$message = array("SAVING_THE_FILE_ENCOUNTERED_AN_ERROR", "danger", htmlspecialchars(basename($file['name'])));
 			}
 			
 			if( in_array($imageFileType, array("jpg", "jpeg", "png", "bmp", "gif")) ) {
