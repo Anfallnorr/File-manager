@@ -90,12 +90,14 @@
 	 * Initialise l'application.
 	 */
 	function initContextMenu( getAction = [], getItemClassName = "" ) {
-		if( getAction !== [] ) {
+		if (getAction.length > 0) {
 			constructContextMenu(getAction);
 		}
+		
 		if( getItemClassName !== "" ) {
 			taskItemClassName = getItemClassName;
 		}
+		
 		contextListener();
 		clickListener();
 		keyupListener();
