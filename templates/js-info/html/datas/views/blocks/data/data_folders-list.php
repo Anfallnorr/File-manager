@@ -77,7 +77,7 @@ foreach($files as $file) :
 						</div>
 						<div class="col-md-12">
 							<label for="dir_renamer_<?php echo $modal ?>" class="form-label"><?php $langs->lang("DATA_FOLDERS_LIST_RENAME_A_FOLDER", "datas") ?></label>
-							<input name="dir_renamer[dir][]" type="text" id="dir_renamer_<?php echo $modal ?>" class="form-control" placeholder="<?php echo $file ?>" aria-label="<?php echo $file ?>" data-value="<?php echo $file ?>" autocomplete="off" value="telephone" />
+							<input name="dir_renamer[dir][]" type="text" id="dir_renamer_<?php echo $modal ?>" class="form-control" placeholder="<?php echo $file ?>" aria-label="<?php echo $file ?>" data-value="<?php echo $file ?>" autocomplete="off" value="" />
 						</div>
 					</div>
 					<div class="modal-footer">
