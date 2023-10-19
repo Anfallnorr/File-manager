@@ -2,7 +2,7 @@
 <p>A simple file manager</p>
 <p>This version of the manager is limited in functionality. It has been adapted to work with sessions. This code does not require a database.</p>
 <p>This file manager comes from my CRM <a href="https://crm.js-info.fr" target="_blank">crm.js-info.fr</a>.</p>
-<h3>Pre-requisite:</h3>
+<h3>Requirements:</h3>
 <ol>
 <li>PHP 8.1 or higher</li>
 </ol>
