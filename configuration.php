@@ -3,20 +3,20 @@
 defined('_EXEC') or die;
 
 class Config {
-	public $theme = "js-info";
+	public string $theme = "js-info";
 	// public $theme = "vivo";
-	public $debug = 0;
-	public $error_reporting = "devloppment";
-	// public $default_lang = "fr-FR";
-	public $default_lang = "en-EN";
-	// public $default_lang = "de-DE";
-	public $siteurl = "https://crm.js-info.fr";
-	public $contact_siteurl = "https://js-info.fr/nous-contacter";
-	public $root_path = $_SERVER['DOCUMENT_ROOT'];
-	public $sitename = "Js info";
-	public $MetaTitle = "Espace personnel";
-	public $MetaDesc = "Espace personnel Js info";
-	public $MetaAuthor = "Julien Senechal - Js info";
-	public $MetaVersion = "1.2.8";
-	public $robots = "index,follow";
+	public int $debug = 0;
+	public string $error_reporting = "devloppment";
+	// public string $default_lang = "fr-FR";
+	public string $default_lang = "en-EN";
+	// public string $default_lang = "de-DE";
+	public string $siteurl = "https://crm.js-info.fr";
+	public string $contact_siteurl = "https://js-info.fr/nous-contacter";
+	public string $root_path = $_SERVER['DOCUMENT_ROOT'];
+	public string $sitename = "Js info";
+	public string $MetaTitle = "Espace personnel";
+	public string $MetaDesc = "Espace personnel Js info";
+	public string $MetaAuthor = "Julien Senechal - Js info";
+	public string $MetaVersion = "1.2.8";
+	public string $robots = "index,follow";
 }
