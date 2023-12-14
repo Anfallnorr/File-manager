@@ -9,6 +9,10 @@ class Requests {
 	public $files;
 	public $path;
 	
+	public $controller;
+	public $view;
+	public $params;
+	
 	function __construct() {
 		$path = $_SERVER['ORIG_PATH_INFO'];
 		
