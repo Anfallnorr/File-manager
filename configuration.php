@@ -17,6 +17,6 @@ class Config {
 	public string $MetaTitle = "Espace personnel";
 	public string $MetaDesc = "Espace personnel Js info";
 	public string $MetaAuthor = "Julien Senechal - Js info";
-	public string $MetaVersion = "1.2.8";
+	public string $MetaVersion = "1.2.9";
 	public string $robots = "index,follow";
 }
