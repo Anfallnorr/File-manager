@@ -3,11 +3,11 @@
 $modal = 0;
 sort($files, SORT_REGULAR);
 
-foreach($files as $file) :
-	if( !in_array($file, $excludeScan) ) :
+foreach ($files as $file) :
+	if (!in_array($file, $excludeScan)) :
 		$pathInfo = pathinfo($file, PATHINFO_EXTENSION);
 		
-		if( empty($pathInfo) ) { // IS FOLDER
+		if (empty($pathInfo)) { // IS FOLDER
 			$actualDir = _ROOTURL_ ."/uploads/datas/". $personnalFolder . $folderPath ."/". $file;
 			$downloadFile = "/datas/data". $folderPath ."?action=download&path=". $folderPath ."&file=". $file ."&type=dir";
 			$compressFile = "/datas/data". $folderPath ."?action=archive&path=". $folderPath ."&file=". $file ."&type=dir";
@@ -17,8 +17,8 @@ foreach($files as $file) :
 			$scanActualDir = scandir($actualDir);
 			$dirCounter = array();
 			
-			foreach($scanActualDir as $includeDirs) {
-				if( !in_array($includeDirs, $excludeScan) && is_dir($actualDir ."/". $includeDirs) ) {
+			foreach ($scanActualDir as $includeDirs) {
+				if (!in_array($includeDirs, $excludeScan) && is_dir($actualDir ."/". $includeDirs)) {
 					$dirCounter[] = $includeDirs;
 				}
 			}
@@ -41,7 +41,7 @@ foreach($files as $file) :
 										<ul class="dropdown-menu dropdown-folder">
 											<li><a href="#" class="dropdown-item download-item" data-url="<?php echo $downloadFile ?>" data-bs-toggle="modal" data-bs-target="#modal_download" title="<?php $langs->lang("DATA_DOWNLOAD", "datas"); echo ' '. $file ?>" context="download"><i class="bi bi-download"></i> <?php $langs->lang("DATA_DOWNLOAD", "datas") ?></a></li>
 											<li><a href="#" class="dropdown-item compress-item" data-url="<?php echo $compressFile ?>" data-bs-toggle="modal" data-bs-target="#modal_compress" title="<?php $langs->lang("DATA_ZIP", "datas"); echo ' '. $file ?>" context="zip"><i class="bi bi-file-earmark-zip"></i> <?php $langs->lang("DATA_ZIP", "datas") ?></a></li>
-											<?php if( $personnalAllDirs != '' ) { ?>
+											<?php if ($personnalAllDirs != '') { ?>
 												<li><a href="#" class="dropdown-item move-item" data-bs-toggle="modal" data-bs-target="#modal_move_<?php echo $modal ?>" title="<?php $langs->lang("DATA_MOVE", "datas"); echo ' '. $file ?>" context="move"><i class="bi bi-arrows-move"></i> <?php $langs->lang("DATA_MOVE", "datas") ?></a></li>
 											<?php } ?>
 											<li><a href="#" class="dropdown-item rename-item" data-bs-toggle="modal" data-bs-target="#modal_rename_<?php echo $modal ?>" title="<?php $langs->lang("DATA_RENAME", "datas"); echo ' '. $file ?>" context="rename"><i class="bi bi-input-cursor-text"></i> <?php $langs->lang("DATA_RENAME", "datas") ?></a></li>
@@ -87,7 +87,7 @@ foreach($files as $file) :
 				</div>
 			</div>
 			
-			<?php if( $personnalAllDirs != '' ) { ?>
+			<?php if ($personnalAllDirs != '') { ?>
 				<div class="modal fade" id="modal_move_<?php echo $modal ?>" tabindex="-1" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable modal-lg">
 						<div class="modal-content">
@@ -104,16 +104,16 @@ foreach($files as $file) :
 										<?php $langs->lang("DATA_FOLDERS_LIST_MY_DOCUMENTS", "datas") ?>
 									</label>
 								</div>
-								<?php foreach($personnalAllDirs as $allDirs) {
-									$exploDir = explode('/', $allDirs);
+								<?php foreach ($personnalAllDirs as $allDirs) {
+									$exploDir = explode("/", $allDirs);
 									$sliceDir = array_slice($exploDir, 10);
 									$choseDir = end($exploDir);
 									
-									if( $choseDir == $personnalFolder ) {
+									if ($choseDir == $personnalFolder) {
 										$choseDir = $langs->lang("DATA_FOLDERS_LIST_MY_DOCUMENTS", "datas");
 									}
 									
-									if( $file != $choseDir ) {
+									if ($file != $choseDir) {
 										$widthPercentMove = "wp-". 100 - ((count($sliceDir) - 1) * 5) ." tree-before-". (count($sliceDir) - 1) * 5; ?>
 										<div class="radio radio-success btn btn-light my-1 <?php echo $widthPercentMove ?> text-start">
 											<label>

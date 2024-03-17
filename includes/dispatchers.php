@@ -2,13 +2,14 @@
 
 defined('_EXEC') or die;
 
-class Dispatchers {
-	
+class Dispatchers
+{
 	public $session;
 	public $requests;
 	public $config;
 	
-	function __construct() {
+	function __construct()
+    {
 		$this->session = new Sessions();
 		$this->requests = new Requests();
 		$this->config =  new Config();
@@ -25,10 +26,10 @@ class Dispatchers {
 		
 		$arrayDiffResult = array_diff($getClassMethods, $getClassMethodsControllers);
 		
-		if( !in_array($views, $arrayDiffResult, true) ) {
+		if (!in_array($views, $arrayDiffResult, true)) {
 			$this->error404("La méthode ". $views ." n'existe pas dans le controller ". $this->requests->controller);
 		} else {
-			if( is_array($params) ) {
+			if (is_array($params)) {
 				call_user_func_array(array($controllers, $views), $params);
 			} else {
 				call_user_func_array(array($controllers, $views), array($params));
@@ -38,10 +39,11 @@ class Dispatchers {
 		$controllers->templates($views);
 	}
 	
-	public function loader(string $loader, string $theme) {
+	public function loader(string $loader, string $theme)
+    {
 		$comLoader = "com_". $loader;
 		
-		if( file_exists(_ROOTURL_ ."/templates/systems/html/". $comLoader .".php") ) {
+		if (file_exists(_ROOTURL_ ."/templates/systems/html/". $comLoader .".php")) {
 			require _ROOTURL_ ."/templates/systems/html/". $comLoader .".php";
 			$controller = new $comLoader($this->requests, $this->session, $this->config);
 			return $controller;
@@ -50,10 +52,11 @@ class Dispatchers {
 		}
 	}
 	
-	public function error404($errorMessage) {
+	public function error404($errorMessage)
+    {
 		die($errorMessage);
 	}
-	
+
 }
 
 ?>

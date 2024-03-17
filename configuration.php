@@ -2,7 +2,8 @@
 
 defined('_EXEC') or die;
 
-class Config {
+class Config
+{
 	public string $theme = "js-info";
 	// public $theme = "vivo";
 	public int $debug = 0;

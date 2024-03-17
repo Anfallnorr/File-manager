@@ -1,8 +1,11 @@
 <?php
 
-class Customers {
-	
-	public function getCustomers(array $condition = [], bool $current = false) {
+defined('_EXEC') or die;
+
+class Customers
+{
+	public function getCustomers(array $condition = [], bool $current = false)
+    {
 		$getCustomers = array(
 			array(
 				'id' => 1,
@@ -17,14 +20,15 @@ class Customers {
 			)
 		);
 		
-		if( $current == true ) {
+		if ($current == true) {
 			return current($getCustomers);
 		} else {
 			return $getCustomers;
 		}
 	}
 	
-	public function getCustomer(int $idCustomer, array $condition = []) {
+	public function getCustomer(int $idCustomer, array $condition = [])
+    {
 		$getCustomer = array(
 			'id' => 1,
 			'gender' => "hf",

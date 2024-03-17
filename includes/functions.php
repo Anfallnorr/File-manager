@@ -6,7 +6,8 @@ $exectutionTimeStart = microtime(true);
 /* ************************************************************* */
 /* *************************** DEBUG *************************** */
 /* ************************************************************* */
-function debug($debug, bool $bool = false): void {
+function debug($debug, bool $bool = false): void
+{
 	Global $exectutionTimeStart;
 	
 	$debug_backtrace = debug_backtrace();
@@ -34,7 +35,7 @@ function debug($debug, bool $bool = false): void {
 			</div>
 		</div>
 	</div>';
-	if( $bool === true ) {
+	if ($bool === true) {
 		die;
 	}
 }
@@ -42,17 +43,18 @@ function debug($debug, bool $bool = false): void {
 /* ********************************************************* */
 /* *********************** IN ARRAYS *********************** */
 /* ********************************************************* */
-function in_arrays(array|string|int|null $needle, array $haystack, int|string $indexNeedle = "", int|string $indexHaystack = ""): ?array {
-	if( !is_null($needle) ) {
-		if( !empty($indexNeedle) && !empty($indexHaystack) ) {
-			foreach($haystack as $value) {
-				if( $needle[$indexNeedle] === $value[$indexHaystack] ) {
+function in_arrays(array|string|int|null $needle, array $haystack, int|string $indexNeedle = "", int|string $indexHaystack = ""): ?array
+{
+	if (!is_null($needle)) {
+		if (!empty($indexNeedle) && !empty($indexHaystack)) {
+			foreach ($haystack as $value) {
+				if ($needle[$indexNeedle] === $value[$indexHaystack]) {
 					return $value;
 				}
 			}
 		} else {
 			foreach($haystack as $value) {
-				if( in_array($needle, $value) ) {
+				if (in_array($needle, $value)) {
 					return $value;
 				}
 			}
@@ -64,7 +66,8 @@ function in_arrays(array|string|int|null $needle, array $haystack, int|string $i
 /* *************************************************************** */
 /* ********************* GET PERSONNAL FOLDER ******************** */
 /* *************************************************************** */
-function getPersonnalFolder(int $id): string {
+function getPersonnalFolder(int $id): string
+{
 	return md5($id) ."-". $id;
 }
 

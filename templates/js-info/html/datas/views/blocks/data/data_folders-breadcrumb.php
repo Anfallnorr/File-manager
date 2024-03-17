@@ -6,14 +6,14 @@
 	<div class="ps-3">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0 p-0">
-				<?php if( isset($breadcrumb) && !empty($breadcrumb) && $breadcrumb != "" ) {
+				<?php if (isset($breadcrumb) && !empty($breadcrumb) && $breadcrumb != "") {
 					$breadcrumbCount = count($breadcrumb);
 					$last = end($breadcrumb);
 					$pathLink = "";
 					
-					for( $i = 0; $i < $breadcrumbCount; $i++ ) {
+					for ($i = 0; $i < $breadcrumbCount; $i++) {
 						$pathLink .= "/". $breadcrumb[$i];
-						if( $last != $breadcrumb[$i] ) {
+						if ($last != $breadcrumb[$i]) {
 							echo '<li class="breadcrumb-item active droptarget" aria-current="page">
 								<input type="hidden" value="'. $pathLink .'" class="drop-files-path">
 								<a href="/datas/data'. $pathLink .'" class="text-underline" title="'. $breadcrumb[$i] .'">'. $breadcrumb[$i] .'</a>

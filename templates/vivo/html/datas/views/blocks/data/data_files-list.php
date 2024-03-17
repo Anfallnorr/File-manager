@@ -15,17 +15,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach($files as $file) :
-				if( !in_array($file, $excludeScan) ) :
+			<?php foreach ($files as $file) :
+				if (!in_array($file, $excludeScan)) :
 					$pathInfo = pathinfo($file, PATHINFO_EXTENSION);
 					
-					if( !empty($pathInfo) ) { // IS FILE
+					if (!empty($pathInfo)) { // IS FILE
 						$pathToTheFile = _ROOTURL_ ."/uploads/datas/". $personnalFolder . $folderPath ."/". $file;
 						$downloadFile = "/datas/data". $folderPath ."?action=download&path=". $folderPath ."&file=". $file ."&type=file";
 						$removeFile = "/datas/data". $folderPath ."?action=remove&path=". $folderPath ."&file=". $file ."&type=file";
 						$viewFile = $folderPath ."/". $file;
 						
-						if( $pathInfo == "jpg" || $pathInfo == "jpeg" || $pathInfo == "png" || $pathInfo == "gif" ) {
+						if ($pathInfo == "jpg" || $pathInfo == "jpeg" || $pathInfo == "png" || $pathInfo == "gif") {
 							$imgSize = getimagesize($pathToTheFile);
 							$imgSize = $imgSize[0] ." x ". $imgSize[1];
 						} else {
@@ -41,13 +41,13 @@
 							</td>
 							<td class="file-type-name">
 								<div class="d-flex align-items-center">
-									<?php if( in_array($pathInfo, array("pdf"/*, "doc", "txt", "html", "css", "js"*/)) ) { ?>
+									<?php if (in_array($pathInfo, array("pdf"/*, "doc", "txt", "html", "css", "js"*/))) { ?>
 										<div><i class="bi bi-file-<?php echo $pathInfo ?> me-2 text-center fs-24 w-36 img-drag"></i></div>
-									<?php } elseif( in_array($pathInfo, array("jpg", "jpeg", "png", "tif", "webp", "bmp", "ico", "svg", "gif")) ) { ?>
+									<?php } elseif (in_array($pathInfo, array("jpg", "jpeg", "png", "tif", "webp", "bmp", "ico", "svg", "gif"))) { ?>
 										<div><i class="bi bi-image me-2 text-center fs-24 w-36 img-drag"></i></div>
-									<?php } elseif( in_array($pathInfo, array("mp3", "wav", "wave", "wma", "aac", "mid", "midi", "ogg")) ) { ?>
+									<?php } elseif (in_array($pathInfo, array("mp3", "wav", "wave", "wma", "aac", "mid", "midi", "ogg"))) { ?>
 										<div><i class="bi bi-music-note-beamed me-2 text-center fs-24 w-36 img-drag"></i></div>
-									<?php } elseif( in_array($pathInfo, array("mp4","mpg","mpeg","mov","3gp","avi")) ) { ?>
+									<?php } elseif (in_array($pathInfo, array("mp4","mpg","mpeg","mov","3gp","avi"))) { ?>
 										<div><i class="bi bi-film me-2 text-center fs-24 w-36 img-drag"></i></div>
 									<?php } else { ?>
 										<div><i class="bi bi-file-earmark-text me-2 text-center fs-24 w-36 img-drag"></i></div>
@@ -65,7 +65,7 @@
 									</button>
 									<ul class="dropdown-menu dropdown-file pl-5">
 										<li><a href="<?php echo $downloadFile ?>" class="dropdown-item download-item" title="<?php $langs->lang("DATA_DOWNLOAD", "datas"); echo ' '. $file ?>" context="download"><i class="bi bi-download"></i> <?php $langs->lang("DATA_DOWNLOAD", "datas") ?></a></li>
-										<?php if( $personnalAllDirs != '' ) { ?>
+										<?php if ($personnalAllDirs != '') { ?>
 											<li><a href="#" class="dropdown-item move-item" data-bs-toggle="modal" data-bs-target="#modal_move_<?php echo $modal ?>" title="<?php $langs->lang("DATA_MOVE", "datas"); echo ' '. $file ?>" context="move"><i class="bi bi-arrows-move"></i> <?php $langs->lang("DATA_MOVE", "datas") ?></a></li>
 										<?php } ?>
 										<li><a href="#" class="dropdown-item rename-item" data-bs-toggle="modal" data-bs-target="#modal_rename_<?php echo $modal ?>" title="<?php $langs->lang("DATA_RENAME", "datas"); echo ' '. $file ?>" context="rename"><i class="bi bi-input-cursor-text"></i> <?php $langs->lang("DATA_RENAME", "datas") ?></a></li>
@@ -101,7 +101,7 @@
 								</div>
 							</div>
 						</div>
-						<?php if( $personnalAllDirs != '' ) { ?>
+						<?php if ($personnalAllDirs != '') { ?>
 							<div class="modal fade" id="modal_move_<?php echo $modal ?>" tabindex="-1" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 									<div class="modal-content">
@@ -119,12 +119,12 @@
 													Mes documents
 												</label>
 											</div>
-											<?php foreach($personnalAllDirs as $allFiles) {
+											<?php foreach ($personnalAllDirs as $allFiles) {
 												$exploFile = explode("/", $allFiles);
 												$sliceFile = array_slice($exploFile, 10);
 												$choseFile = end($exploFile);
 												
-												if( $choseFile == $personnalFolder ) {
+												if ($choseFile == $personnalFolder) {
 													$choseFile = $langs->lang("DATA_FILES_LIST_MY_DOCUMENTS", "datas");;
 												}
 												

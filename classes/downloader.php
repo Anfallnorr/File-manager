@@ -1,18 +1,20 @@
 <?php
 
-class Downloader {
-	
+class Downloader
+{
 	private $url;
     private $destination;
     private $filename;
     
-    public function __construct(string $url, string $destination, string $filename) {
+    public function __construct(string $url, string $destination, string $filename)
+    {
         $this->url = $url;
         $this->destination = $destination;
 		$this->filename = $filename;
     }
 	
-	public function download() {
+	public function download()
+    {
 		$fileDestination = $this->destination . $this->filename;
         $fileContents = file_get_contents($this->url);
 		

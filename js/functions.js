@@ -1,7 +1,8 @@
 /* ***************************************************************** */
 /* ************************** DRAGSELECTOR ************************* */
 /* ***************************************************************** */
-function dragSelector(event) {
+function dragSelector(event)
+{
 	var div = document.createElement('div'),
 		targetElements = [],
 		isMouseDown = true;
@@ -34,7 +35,7 @@ function dragSelector(event) {
 			div.style.left = posx2 +"px";
 		}
 		
-		if( (posy1 - posy2) < 0 ) {
+		if ((posy1 - posy2) < 0) {
 			div.style.height = Math.round(posy2 - posy1) +"px";
 		} else {
 			div.style.height = Math.round(posy1 - posy2) +"px";
@@ -96,7 +97,8 @@ function dragSelector(event) {
 /* ********************************************************* */
 /* ********************* GET ALERT FILE ******************** */
 /* ********************************************************* */
-function getAlert(theme, message, type = "success", icon = "bx bx-check-circle") {
+function getAlert(theme, message, type = "success", icon = "bx bx-check-circle")
+{
 	return fetch("/templates/"+ theme +"/tpls/alert.html")
 	.then(response => response.text())
 	.then(html => {
@@ -111,7 +113,8 @@ function getAlert(theme, message, type = "success", icon = "bx bx-check-circle")
 /* ***************************************************** */
 /* ******************* CUSTOM CONSOLE ****************** */
 /* ***************************************************** */
-function customLog(e, group) {
+function customLog(e, group)
+{
 	let styles = "padding: 5px 10px; background-color: #550000; color: #ffffff; border: 1px solid #ffffff; border-radius: 5px; font-style: italic; border: 1px solid black; font-size: 1.2em;";
 	
 	console.group(group);
@@ -122,7 +125,8 @@ function customLog(e, group) {
 /* **************************************************************** */
 /* ********************** IMAGE BASE64 > FILE ********************* */
 /* **************************************************************** */
-function dataUrlToFile(dataURL, filename) {
+function dataUrlToFile(dataURL, filename)
+{
 	var arr = dataURL.split(',');
 	var mime = arr[0].match(/:(.*?);/)[1];
 	var bstr = atob(arr[1]);
@@ -139,7 +143,8 @@ function dataUrlToFile(dataURL, filename) {
 /* *************************************************************** */
 /* ********************** GET IMAGE FROM URL ********************* */
 /* *************************************************************** */
-function getImageFromUrl(url, classImg = "") {
+function getImageFromUrl(url, classImg = "")
+{
 	url = window.location.origin + url;
 	
 	return new Promise((resolve, reject) => {

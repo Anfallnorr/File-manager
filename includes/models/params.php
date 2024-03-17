@@ -1,8 +1,11 @@
 <?php
 
-class Params {
-	
-	public function getParams(array $condition = [], bool $current = false) {
+defined('_EXEC') or die;
+
+class Params
+{
+	public function getParams(array $condition = [], bool $current = false)
+    {
 		$getParams = array(
 			'id' => 1,
 			'logo_site' => "/assets/img/logo-light-blue.png",
@@ -23,7 +26,7 @@ class Params {
 			'search_sidebar' => 1,
 		);
 		
-		if( $current == true ) {
+		if ($current == true) {
 			return current($getParams);
 		} else {
 			return $getParams;

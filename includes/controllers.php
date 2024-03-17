@@ -2,8 +2,8 @@
 
 defined('_EXEC') or die;
 
-class Controllers {
-	
+class Controllers
+{
 	public $requests;
 	public $session;
 	public $config;
@@ -22,7 +22,8 @@ class Controllers {
 	
 	private $vars = [];
 	
-	function __construct(object $requests, object $session, object $config) {
+	function __construct(object $requests, object $session, object $config)
+    {
 		$this->requests = $requests;
 		$this->session = $session;
 		$this->config = $config;
@@ -30,15 +31,15 @@ class Controllers {
 		$this->default_lang = $this->config->default_lang;
 		$this->notifications = $this->session->getNotifications();
 		
-		if($this->session->readSession('user') !== null) {
+		if ($this->session->readSession('user') !== null) {
 			$this->customer = $this->session->readSession('user');
 			
-			if( $this->customer['datas']['personnal_folder'] != session_id() ) {
+			if ($this->customer['datas']['personnal_folder'] != session_id()) {
 				$this->customer['datas']['personnal_folder'] = session_id();
 				$this->session->writeSession('user', $this->customer);
 			}
 		} else {
-			if( !class_exists('Customers') ) {
+			if (!class_exists('Customers')) {
 				$this->loadModels('Customers');
 			}
 			$this->customer = $this->Customers->getCustomer(1);
@@ -47,7 +48,7 @@ class Controllers {
 			$this->session->writeSession('user', $this->customer);
 		}
 		
-		if( !class_exists('Params') ) {
+		if (!class_exists('Params')) {
 			$this->loadModels('Params');
 		}
 		$this->params = $this->Params->getParams();
@@ -71,20 +72,22 @@ class Controllers {
 		);
 	}
 	
-	public function loadModels(string $loadModels): void {
-		if( file_exists(_ROOTURL_ ."/includes/models/". strtolower($loadModels) .".php") ) {
-			if( !isset($this->$loadModels) ) {
+	public function loadModels(string $loadModels): void
+    {
+		if (file_exists(_ROOTURL_ ."/includes/models/". strtolower($loadModels) .".php")) {
+			if (!isset($this->$loadModels)) {
 				require _ROOTURL_ ."/includes/models/". strtolower($loadModels) .".php";
 				$this->$loadModels = new $loadModels();
 			}
 		}
 	}
 	
-	public function templates(string $view): void {
+	public function templates(string $view): void
+    {
 		$controller = $this->requests->controller;
 		extract($this->vars);
 		
-		if( file_exists(_ROOTURL_ ."/templates/". $this->theme ."/html/". $controller ."/views/". $view .".php") ) {
+		if (file_exists(_ROOTURL_ ."/templates/". $this->theme ."/html/". $controller ."/views/". $view .".php")) {
 			ob_start();
 				require _ROOTURL_ ."/templates/". $this->theme ."/html/". $controller ."/views/". $view .".php";
 					$view_out = ob_get_clean();
@@ -95,12 +98,14 @@ class Controllers {
 		require _ROOTURL_ ."/templates/". $this->theme ."/index.php";
 	}
 	
-	public function error404Controller($errorMessage): void {
+	public function error404Controller($errorMessage): void
+    {
 		die($errorMessage);
 	}
 	
-	public function globalVars(string|array $varsName, null|string|array $varValue = null ): void {
-		if( !is_array($varsName) ) {
+	public function globalVars(string|array $varsName, null|string|array $varValue = null ): void
+    {
+		if (!is_array($varsName)) {
 			$varsName = array($varsName => $varValue);
 			$this->vars = array_merge($this->vars, $varsName);
 		} else {

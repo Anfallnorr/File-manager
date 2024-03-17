@@ -4,7 +4,7 @@
 var formDropzone = $('form#dropzone_form'),
 	locationPathname = window.location.pathname;
 	
-if( formDropzone.length > 0 ) {
+if (formDropzone.length > 0) {
 	var maxSizeFolder = document.getElementById('max_size_folder').value;
 	var dropzoneForm = new Dropzone("#dropzone_form", {
 		dictCancelUpload: "Annuler",
@@ -33,7 +33,7 @@ if( formDropzone.length > 0 ) {
 		var waiting = false;
 		
 		$.each(response.src, function(index, element) {
-			if( response.height[index] >= 9000 || response.width[index] >= 9000 ) {
+			if (response.height[index] >= 9000 || response.width[index] >= 9000) {
 				waiting = true;
 				var canvas = document.createElement('canvas');
 				var context = canvas.getContext('2d');
@@ -77,11 +77,11 @@ if( formDropzone.length > 0 ) {
 			}
 		});
 			
-		if( document.getElementById('notification') ) {
+		if (document.getElementById('notification')) {
 			document.getElementById('notification').classList.add("d-none");
 		}
 		
-		if( response[1] == "warning" || response[1] == "danger" ) {
+		if (response[1] == "warning" || response[1] == "danger") {
 			getNotify(response[0], response[1], "auto", "normal");
 		} else {
 			let personnalFolder = document.getElementById('file_path').value,
@@ -91,12 +91,12 @@ if( formDropzone.length > 0 ) {
 				"mp3", "wav", "wave", "wma", "aac", "mid", "midi", "ogg",
 				"mp4", "mpg", "mpeg", "mov", "3gp", "avi");
 			
-			for( var i = 0; i < response.name.length; i++ ) {
+			for (var i = 0; i < response.name.length; i++) {
 				var tableGrid = `<div class="col-12 col-lg-4 task">
 					<div class="card bg-light _shadow-none border radius-15">
 						<div class="card-body">
 							<div class="d-flex align-items-center">`;
-								if( Array("image/jpeg", "image/jpg", "image/png").includes(response.type[i]) ) {
+								if (Array("image/jpeg", "image/jpg", "image/png").includes(response.type[i])) {
 									tableGrid += `<div class="bi-icon-box"><i class="bi bi-file-earmark-text fs-35"></i></div>`;
 								} else {
 									tableGrid += `<div class="bi-icon-box"><i class="bi bi-file-earmark-text"></i></div>`;
@@ -156,7 +156,7 @@ if( formDropzone.length > 0 ) {
 			}
 			
 			getNotify(response[0], response[1]);
-			if( waiting == true ) {
+			if (waiting == true) {
 				getNotify("Veuillez patientez quelques secondes, l'image est en cours de miniaturisation !", "warning", "auto", "normal");
 			}
 		}

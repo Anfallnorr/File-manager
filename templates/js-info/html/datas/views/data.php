@@ -9,8 +9,8 @@
 		var JSARE_YOU_SURE_YOU_WANT_TO_DELETE = "<?php $langs->lang("JSARE_YOU_SURE_YOU_WANT_TO_DELETE") ?>";
 	</script>
 	<div class="mt-sm-5">
-		<?php if( is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder) ) :
-			if( !empty($path) ) {
+		<?php if (is_dir(_ROOTURL_ ."/uploads/datas/". $personnalFolder)) :
+			if (!empty($path)) {
 				$folderPath = "/". implode("/", $path);
 				$files = scandir(_ROOTURL_ ."/uploads/datas/". $personnalFolder . $folderPath);
 			} else {
@@ -18,7 +18,7 @@
 				$files = scandir(_ROOTURL_ ."/uploads/datas/". $personnalFolder);
 			}
 			
-			if( $folderPath == "/" ) {
+			if ($folderPath == "/") {
 				$folderPath = "";
 			}
 			
@@ -26,7 +26,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title mb-3"><?php $langs->lang("DATA_INFORMATIONS", "datas") ?></h5>
-					<div class="storage<?php if( $expander === "true" ) : echo " icon-reverse"; endif; ?>" data-expand="<?php echo ( $expander === "true" ) ? "false" : "true"; ?>">
+					<div class="storage<?php if ($expander === "true") : echo " icon-reverse"; endif; ?>" data-expand="<?php echo ( $expander === "true") ? "false" : "true"; ?>">
 						<h5 class="mb-0 font-weight-bold"><?php echo $sizeName ?> <span class="float-end">100 MO</span></h5>
 						<p class="mb-0 mt-2"><span class=""><?php $langs->lang("DATA_SPACE_USED", "datas") ?> <?php echo $totalSize ?>%</span><span class="float-end">100 %</span></p>
 						<div class="progress mt-3" style="height:15px;">
@@ -37,9 +37,9 @@
 							<div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $totalOtherSizePercent ?>%" aria-valuenow="<?php echo $totalOtherSizePercent ?>" aria-valuemin="0" aria-valuemax="100" aria-label="Espace des autres fichiers totaux"></div>
 						</div>
 					</div>
-					<div class="info-storage"<?php if( $expander == "false" ) : echo ' style="display: none;"'; endif; ?>>
+					<div class="info-storage"<?php if ($expander == "false") : echo ' style="display: none;"'; endif; ?>>
 						<div class="mt-3"></div>
-						<?php if( $nbDocFiles > 0 ) : ?>
+						<?php if ($nbDocFiles > 0) : ?>
 							<div class="d-flex align-items-center">
 								<div class="fm-file-box bg-light-success text-success"><i class="bx bxs-file-doc"></i></div>
 								<div class="flex-grow-1 ms-2">
@@ -50,7 +50,7 @@
 								<span class="fs-14 lh-20 text-secondary"><?php echo $totalDocSizePercent ?>%</span></h6>
 							</div>
 						<?php endif; ?>
-						<?php if( $nbImgFiles > 0 ) : ?>
+						<?php if ($nbImgFiles > 0) : ?>
 							<div class="d-flex align-items-center mt-3">
 								<div class="fm-file-box bg-light-primary text-primary"><i class="bx bx-image"></i></div>
 								<div class="flex-grow-1 ms-2">
@@ -61,7 +61,7 @@
 								<span class="fs-14 lh-20 text-secondary"><?php echo $totalImgSizePercent ?>%</span></h6>
 							</div>
 						<?php endif; ?>
-						<?php if( $nbAudioFiles > 0 ) : ?>
+						<?php if ($nbAudioFiles > 0) : ?>
 							<div class="d-flex align-items-center mt-3">
 								<div class="fm-file-box bg-light-info text-info"><i class="bx bx-music"></i></div>
 								<div class="flex-grow-1 ms-2">
@@ -72,7 +72,7 @@
 								<span class="fs-14 lh-20 text-secondary"><?php echo $totalAudioSizePercent ?>%</span></h6>
 							</div>
 						<?php endif; ?>
-						<?php if( $nbVidFiles > 0 ) : ?>
+						<?php if ($nbVidFiles > 0) : ?>
 							<div class="d-flex align-items-center mt-3">
 								<div class="fm-file-box bg-light-danger text-danger"><i class="bx bx-video"></i></div>
 								<div class="flex-grow-1 ms-2">
@@ -83,7 +83,7 @@
 								<span class="fs-14 lh-20 text-secondary"><?php echo $totalVidSizePercent ?>%</span></h6>
 							</div>
 						<?php endif; ?>
-						<?php if( $nbOtherFiles > 0 ) : ?>
+						<?php if ($nbOtherFiles > 0) : ?>
 							<div class="d-flex align-items-center mt-3">
 								<div class="fm-file-box bg-light-warning text-warning"><i class="bx bx-image"></i></div>
 								<div class="flex-grow-1 ms-2">
@@ -97,19 +97,19 @@
 					</div>
 				</div>
 			</div>
-			<?php if( $nbDocFiles > 0 ) {
+			<?php if ($nbDocFiles > 0) {
 				include $dataDir ."/data_modal-doc-files.php";
 			}
-			if( $nbImgFiles > 0 ) {
+			if ($nbImgFiles > 0) {
 				include $dataDir ."/data_modal-img-files.php";
 			}
-			if( $nbAudioFiles > 0 ) {
+			if ($nbAudioFiles > 0) {
 				include $dataDir ."/data_modal-audio-files.php";
 			}
-			if( $nbVidFiles > 0 ) {
+			if ($nbVidFiles > 0) {
 				include $dataDir ."/data_modal-vid-files.php";
 			}
-			if( $nbOtherFiles > 0 ) {
+			if ($nbOtherFiles > 0) {
 				include $dataDir ."/data_modal-other-files.php";
 			} ?>
 			<div class="card">
@@ -158,7 +158,7 @@
 								<button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="<?php $langs->lang("JSBULK_ACTION") ?>"><?php $langs->lang("JSBULK_ACTION") ?></button>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
 									<a href="#" class="dropdown-item massdownload-item" data-bs-toggle="modal" data-bs-target="#modal_download" title="<?php $langs->lang("JSDOWNLOAD_SELECTION") ?>" context="massDownload"><i class="bx bx-download"></i> <?php $langs->lang("JSDOWNLOAD_SELECTION") ?></a>
-									<?php if( $personnalAllDirs != '' ) : ?>
+									<?php if ($personnalAllDirs != '') : ?>
 										<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_mass_move" title="<?php $langs->lang("JSMOVE_SELECTION") ?>" context="massMove"><i class="bx bx-move"></i> <?php $langs->lang("JSMOVE_SELECTION") ?></a>
 									<?php endif; ?>
 									<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_mass_renamer" title="<?php $langs->lang("JSRENAME_SELECTION") ?>" context="massRename"><i class="bx bx-rename"></i> <?php $langs->lang("JSRENAME_SELECTION") ?></a>
@@ -197,7 +197,7 @@
 						</div>
 					</div>
 				</div>
-				<?php if( $personnalAllDirs != '' ) {
+				<?php if ($personnalAllDirs != '') {
 					include $dataDir ."/data_full-modals.php";
 				} ?>
 				<div class="modal fade" id="modal_mass_renamer" tabindex="-1" aria-hidden="true">
@@ -224,10 +224,10 @@
 					</div>
 				</div>
 			</form>
-			<?php if( isset($breadcrumb) && !empty($breadcrumb) && $breadcrumb != '' ) : ?>
+			<?php if (isset($breadcrumb) && !empty($breadcrumb) && $breadcrumb != '') : ?>
 				<div class="card">
 					<div class="card-body">
-						<?php if( count($breadcrumb) > 1 ) : 
+						<?php if (count($breadcrumb) > 1) : 
 							array_pop($breadcrumb) ?>
 							<a href="/datas/data/<?php echo implode('/', $breadcrumb) ?>" class="btn btn-light px-5 return-page" title="<?php $langs->lang("JSRETURN") ?>"><i class="bx bx-arrow-back"></i> <?php echo ucfirst(end($breadcrumb)) ?></a>
 						<?php else : ?>

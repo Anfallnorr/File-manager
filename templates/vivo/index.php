@@ -8,7 +8,7 @@ $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hot
 	</head>
 	
 	<body requests="" theme="<?php echo $theme ?>" bgtheme="bg-theme0" class="bg-theme data-page datas-data <?php echo $hotkeys ?>">
-		<?php if( $params['pre_loader'] !== 0 ) { ?>
+		<?php if ($params['pre_loader'] !== 0) { ?>
 			<div id="loading-wrapper"><div class="spinner"><div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div><div class="line5"></div><div class="line6"></div></div></div>
 		<?php } ?>
 		<div class="page-wrapper no-sidebar">
@@ -29,7 +29,7 @@ $hotkeys = (!empty($customer['hotkeys']) && $customer['hotkeys'] == '1') ? " hot
 					</noscript>
 					<div id="content_wrapper" class="content-wrapper">
 						<div id="notification_ajax" class="preview active d-none"></div>
-						<?php if( !empty($this->notifications) ) { ?>
+						<?php if (!empty($this->notifications)) { ?>
 							<div id="notification" class="alert alert-<?php echo $this->notifications['type'] ?> border-0 border-start border-5 border-<?php echo $this->notifications['type'] ?> alert-dismissible fade show" role="alert">
 								<?php echo $this->notifications['value'] ?>
 								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

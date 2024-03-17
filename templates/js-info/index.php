@@ -19,7 +19,7 @@
 					</noscript>
 					
 					<div id="notification_ajax" class="preview active d-none"></div>
-					<?php if( !empty($this->notifications) ) { ?>
+					<?php if (!empty($this->notifications)) { ?>
 						<div id="notification" class="alert border-0 border-start border-5 border-<?php echo $this->notifications['type']; ?> alert-dismissible fade show py-2">
 							<div class="d-flex align-items-center">
 								<div class="fs-35 text-white">

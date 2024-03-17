@@ -25,7 +25,7 @@ $('.storage').click(function() {
 	$(this).closest('.card-body').find('.info-storage').slideToggle();
 	var expandDatas = $(this).attr('data-expand');
 	
-	if( $(this).attr('data-expand') === 'true' ) {
+	if ($(this).attr('data-expand') === 'true') {
 		$(this).attr('data-expand', 'false');
 	} else {
 		$(this).attr('data-expand', 'true');
@@ -71,12 +71,12 @@ $('#file_zone').on('keydown', function(e) {
 	}
 });
 $(document).on('keyup', '[name="file_move[new_path][]"], [name="file_move[old_path][]"], [name="file_renamer[file][]"], [name="dir_renamer[dir][]"]', function enterToSubmitModal(e) {
-	if( e.keyCode == "13" ) {
+	if (e.keyCode == "13") {
 		$(this).closest('.modal-content').find('.modal-footer [type="submit"]').click();
 	}
 });
 $(document).on('keyup', '[name="folder_name"]', function enterToSubmitNewFolder(e) {
-	if( e.keyCode == "13" ) {
+	if (e.keyCode == "13") {
 		$(this).submit();
 	}
 });
@@ -116,7 +116,7 @@ function insightView(data) {
 		arrAudio = Array("mp3", "wav", "wave", "wma", "aac", "mid", "midi", "ogg"),
 		arrVideo = Array("mp4", "webm", "ogg");
 	
-	if( arrImg.includes(ext) ) {
+	if (arrImg.includes(ext)) {
 		let imgBase = atob(basePath),
 			imgThumb = imgBase +"/thumbnails"+ src,
 			imgOrig = imgBase + src,
@@ -138,25 +138,25 @@ function insightView(data) {
 			});
 		};
 	}
-	else if( arrDoc.includes(ext) ) {
+	else if (arrDoc.includes(ext)) {
 		$('#modal_viewer .modal-body #content_result').removeClass('processing');
 		$('#modal_viewer .modal-body #content_result').html(`<iframe src="`+ (atob(basePath) + src) +`" class="modal-iframe" title="`+ filename +`" allow="fullscreen"></iframe>`);
 	}
-	else if( arrAudio.includes(ext) ) {
+	else if (arrAudio.includes(ext)) {
 		$('#modal_viewer .modal-body #content_result').removeClass('processing');
 		$('#modal_viewer .modal-body #content_result').html(`<audio class="modal-audio" controls>
 			<source src="`+ (atob(basePath) + src) +`" type="audio/`+ ext +`">
 			Your browser does not support the audio element.
 		</audio>`);
 	}
-	else if( arrVideo.includes(ext) ) {
+	else if (arrVideo.includes(ext)) {
 		$('#modal_viewer .modal-body #content_result').removeClass('processing');
 		$('#modal_viewer .modal-body #content_result').html(`<video class="modal-video" controls>
 			<source src="`+ (atob(basePath) + src) +`" type="video/`+ ext +`">
 			Your browser does not support the video tag.
 		</video>`);
 	}
-	else if( ext == "html" || ext == "css" || ext == "js" || ext == "sql" ) {
+	else if (ext == "html" || ext == "css" || ext == "js" || ext == "sql") {
 		$('#modal_viewer .modal-body #content_result').removeClass('processing');
 		$('#modal_viewer .modal-body #content_result').html(`<iframe src="`+ (atob(basePath) + src) +`" class="modal-iframe" title="`+ filename +`" allow="fullscreen"></iframe>`);
 	} 
@@ -210,7 +210,7 @@ draggables.forEach(draggable => {
 });
 
 function dragStart(e) {
-	if( $(this).find('input[type="checkbox"]').is(':checked') == true ) {
+	if ($(this).find('input[type="checkbox"]').is(':checked') == true) {
 		let listRowFolders = $(this).closest('#data_folders-list').find('.card .form-check-label input:checked'),
 			listRowFiles = $(this).closest('#data_files-list').find('tbody tr input:checked'),
 			listRowFoldersLength = listRowFolders.length,
@@ -236,7 +236,7 @@ function dragStart(e) {
 	e.dataTransfer.setDragImage(img, 15, 15);
 }
 function dragEnd(e) {
-	if( $(this).find('input[type="checkbox"]').is(':checked') == true ) {
+	if ($(this).find('input[type="checkbox"]').is(':checked') == true) {
 		let listRowFolders = $(this).closest('#data_folders-list').find('.card .form-check-label input:checked'),
 			listRowFiles = $(this).closest('#data_files-list').find('tbody tr input:checked'),
 			listRowFilesLength = listRowFiles.length;
@@ -280,7 +280,7 @@ function dragDrop(e) {
 			dragFiles = $(element).find('.drag-files').val(),
 			oldPath = $(element).find('.drag-files-path').val();
 		
-		if( oldPath +"/"+ dragFiles != newPath ) {
+		if (oldPath +"/"+ dragFiles != newPath) {
 			$.ajax({
 				type: 'post',
 				url: '/apps/get/dataDragAndDrop',
@@ -298,10 +298,10 @@ function dragDrop(e) {
 				let counterFolder = parseInt(thisItem.find('span.'+ notif[2] +'-counter').text()) + 1;
 				thisItem.find('span.'+ notif[2] +'-counter').text(counterFolder);
 				
-				if( notif[2] == "folder" ) {
+				if (notif[2] == "folder") {
 					removeItem.closest('.task').addClass('hidden-item').hide();
 				} 
-				else if( notif[2] == "file" ) {
+				else if (notif[2] == "file") {
 					removeItem.addClass('hidden-item').hide();
 				}
 				
@@ -333,10 +333,10 @@ $(document).on('click', '#cancel_remove_drop', function cancelRemoveDrop() {
 		let notif = getDatas.notif,
 			data = getDatas.data;
 		
-		if( notif[2] == "folder" ) {
+		if (notif[2] == "folder") {
 			$('#data_folders-list .hidden-item').show();
 		} 
-		else if( notif[2] == "file" ) {
+		else if (notif[2] == "file") {
 			$('#data_files-list .hidden-item').show();
 		}
 	})
@@ -362,8 +362,8 @@ $(document).on('click', '#data_folders-list .download-item', function downloadFo
 	.done(function(response) {
 		let icon = getResponseIcon(response[1]);
 		
-		if( response[2] ) {
-			console.log( response[2] );
+		if (response[2]) {
+			console.log( response[2]);
 			$('#download_link').html(`<a href="/uploads/tmp/`+ response[2] +`" type="button" class="btn btn-success mb-3">Télécharger</a>`);
 		}
 		
@@ -460,8 +460,8 @@ $(document).on('click', '#file_zone .massdownload-item', function massDownload(e
 		$('#modal_download .process').removeClass('processing');
 		let icon = getResponseIcon(response[1]);
 		
-		if( response[2] ) {
-			console.log( response[2] );
+		if (response[2]) {
+			console.log( response[2]);
 			$('#download_link').html(`<a href="/uploads/tmp/`+ response[2] +`" type="button" class="btn btn-success mb-3">Télécharger</a>`);
 		}
 		
@@ -499,13 +499,13 @@ $(document).on('input', '#search_folders', function searchFiles() {
 	let dirsZone = $('#data_folders-list .task-folders');
 		dirsSearch = $(this).val();
 	
-	if( dirsSearch.length > 1 ) {
+	if (dirsSearch.length > 1) {
 		dirsZone.removeClass('d-none');
 		
 		dirsZone.each(function(index, element) {
 			find = $(element).data('dirsearch').toLowerCase();
 			
-			if( !find.includes(dirsSearch.toLowerCase()) ) {
+			if (!find.includes(dirsSearch.toLowerCase())) {
 				$(element).addClass('d-none');
 				$(element).find('[type="checkbox"]').prop('checked', false);
 			}
@@ -522,13 +522,13 @@ $(document).on('input', '#search_files', function searchFiles() {
 	let filesZone = $('#dataFilesTable tbody tr');
 		filesSearch = $(this).val();
 	
-	if( filesSearch.length > 1 ) {
+	if (filesSearch.length > 1) {
 		filesZone.removeClass('d-none');
 		
 		filesZone.each(function(index, element) {
 			find = $(element).data('filesearch').toLowerCase();
 			
-			if( !find.includes(filesSearch.toLowerCase()) ) {
+			if (!find.includes(filesSearch.toLowerCase())) {
 				$(element).addClass('d-none');
 				$(element).find('[type="checkbox"]').prop('checked', false);
 			}

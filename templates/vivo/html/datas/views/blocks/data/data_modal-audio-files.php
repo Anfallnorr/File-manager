@@ -6,7 +6,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>" title="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body">
-				<?php foreach($audioBasename as $key => $audio) {
+				<?php foreach ($audioBasename as $key => $audio) {
 					echo '<a href="/datas/data'. $audioBasePath[$key] .'" class="btn btn-light text-start mb-1 w-100">'. basename($audio) .'</a>';
 				} ?>
 			</div>

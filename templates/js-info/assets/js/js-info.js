@@ -1,6 +1,6 @@
 $('a.link-disabled').click(function() { return false; });
 
-if( $('.pace').length > 0 ) {
+if ($('.pace').length > 0) {
 	window.onbeforeunload = renderLoading;
 }
 function renderLoading() {
@@ -27,7 +27,8 @@ function renderLoading() {
 /* ************************************************************** */
 /* ********************** GET RESPONSE ICON ********************* */
 /* ************************************************************** */
-function getResponseIcon(type = "") {
+function getResponseIcon(type = "")
+{
 	let icon = "bx bx-message-square-x";
 	
 	if (type == "success") {
@@ -46,7 +47,8 @@ function getResponseIcon(type = "") {
 /* ****************************************************** */
 /* ********************** GETNOTIFY ********************* */
 /* ****************************************************** */
-function getNotify(msg, type, width = 400, size = "mini", position = "bottom right") {
+function getNotify(msg, type, width = 400, size = "mini", position = "bottom right")
+{
 	// Lobibox
 	let icon = getResponseIcon(type);
 	

@@ -6,8 +6,8 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body text-end">
-				<?php foreach($personnalAllDepthDirs as $allDirs) {
-					$goTo = implode('/', $allDirs);
+				<?php foreach ($personnalAllDepthDirs as $allDirs) {
+					$goTo = implode("/", $allDirs);
 					$choseDir = end($allDirs);
 					$scanFolder = scandir(_ROOTURL_ .'/uploads/datas/'. $personnalFolder .'/'. $goTo);
 					
@@ -37,8 +37,8 @@
 						<?php $langs->lang("DATA_FULL_MODAL_ROOT", "datas") ?>
 					</label>
 				</div>
-				<?php foreach($personnalAllDirs as $allDirs) {
-					$exploDir = explode('/', $allDirs);
+				<?php foreach ($personnalAllDirs as $allDirs) {
+					$exploDir = explode("/", $allDirs);
 					$sliceDir = array_slice($exploDir, 10);
 					$allDirs = implode("/", $sliceDir);
 					$choseDir = end($exploDir);

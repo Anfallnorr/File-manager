@@ -2,30 +2,33 @@
 
 defined('_EXEC') or die;
 
-class com_apps extends Controllers {
-	
-	public function app(): void {
-		if( $this->session->readSession('user') === null ) {
+class com_apps extends Controllers
+{
+	public function app(): void
+    {
+		if ($this->session->readSession('user') === null) {
 			header('Location: /dashboards/dashboard');
 			exit;
 		}
 	}
 	
-	public function get(string $trackFunction, string $trackView = ""): void {
-		if( !empty($trackFunction) && !empty($trackView) && !empty($this->requests->post) ) {
+	public function get(string $trackFunction, string $trackView = ""): void
+    {
+		if (!empty($trackFunction) && !empty($trackView) && !empty($this->requests->post)) {
 			$this->{$trackFunction}($trackView, $this->requests->post);
 		}
-		elseif( !empty($trackFunction) && empty($trackView) && !empty($this->requests->post) ) {
+		elseif (!empty($trackFunction) && empty($trackView) && !empty($this->requests->post)) {
 			$this->{$trackFunction}($this->requests->post);
 		}
-		elseif( !empty($trackFunction) && empty($trackView) ) {
+		elseif (!empty($trackFunction) && empty($trackView)) {
 			$this->{$trackFunction}();
 		}
 	}
 	
-	public function trackExpander(object $post): void {
-		if( !empty($post->expandDatas) ) {			
-			if( $post->expandDatas == "true" ) {
+	public function trackExpander(object $post): void
+    {
+		if (!empty($post->expandDatas)) {			
+			if ($post->expandDatas == "true") {
 				$this->session->editSession('user', array('expander' => "true"), 'datas');
 			} else {
 				$this->session->editSession('user', array('expander' => "false"), 'datas');
@@ -35,8 +38,9 @@ class com_apps extends Controllers {
 		exit;
 	}
 	
-	public function dataDragAndDrop(array|object $post): string {
-		if( !is_array($post) ) {
+	public function dataDragAndDrop(array|object $post): string
+    {
+		if (!is_array($post)) {
 			$post = get_object_vars($post);
 		}
 		

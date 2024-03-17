@@ -4,7 +4,6 @@ defined('_EXEC') or die;
 
 class Langs
 {
-	
 	protected object $config;
 	public $lang;
 	
@@ -25,7 +24,7 @@ class Langs
 		if (file_exists(_ROOTURL_ . $iniFile)) {
 			$get_translation = parse_ini_file(_ROOTURL_ . $iniFile, true, INI_SCANNER_NORMAL);
 			
-			if( array_key_exists($needle, $get_translation) ) {
+			if (array_key_exists($needle, $get_translation)) {
 				$needle = $get_translation[$needle];
 			}
 		}

@@ -6,7 +6,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>" title="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body">
-				<?php foreach($vidBasename as $key => $vid) {
+				<?php foreach ($vidBasename as $key => $vid) {
 					echo '<a href="/datas/data'. $vidBasePath[$key] .'" class="btn btn-light text-start mb-1 w-100">'. basename($vid) .'<span class="float-end badge bg-light rounded-pill">'. basename($vidBasePath[$key]) .'</span></a>';
 				} ?>
 			</div>

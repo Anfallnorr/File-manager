@@ -6,7 +6,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php $langs->lang("JSCLOSE") ?>" title="<?php $langs->lang("JSCLOSE") ?>"></button>
 			</div>
 			<div class="modal-body">
-				<?php foreach($docBasename as $key => $doc) {
+				<?php foreach ($docBasename as $key => $doc) {
 					echo '<a href="/datas/data'. $docBasePath[$key] .'" class="btn btn-light text-start mb-1 w-100">'. basename($doc) .'</a>';
 				} ?>
 			</div>

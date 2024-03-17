@@ -4,8 +4,8 @@
  * Classe Archiver
  * Manipule des archives ZIP en PHP
  */
-class Archiver {
-	
+class Archiver
+{
     private $zip;
     protected $archive;
     protected $destination;
@@ -15,7 +15,8 @@ class Archiver {
      * @param string $archive Chemin de l'archive à manipuler
      * @param string $destination Chemin de destination de l'archive
      */
-    public function __construct(string|array $archive, string $destination, string $filename = "archive-js") {
+    public function __construct(string|array $archive, string $destination, string $filename = "archive-js")
+    {
         $this->zip = new ZipArchive;
 		$this->filename = $filename ."_". date("Ymd-His") .".zip";
 		
@@ -28,7 +29,8 @@ class Archiver {
      * 
      * @return bool Renvoie TRUE si l'archive a été créée avec succès, FALSE sinon
      */
-	public function downloadArchive(bool $ajax = false): ?string {
+	public function downloadArchive(bool $ajax = false): ?string
+    {
 		// Initialisation des tableaux de suivi des fichiers et des dossiers
 		$hasFile = array();
 		$hasDir = array();
@@ -56,7 +58,7 @@ class Archiver {
 			
 			// Ajout des dossiers de l'archive à l'archive créée
 			if (isset($this->archive['dir'])) {
-				for($i = 0; $i < count($this->archive['dir']); $i++) {
+				for ($i = 0; $i < count($this->archive['dir']); $i++) {
 					$thisDir = $this->archive['dir'][$i];
 					$rootDirArchive = $thisRoot ."/". $thisDir;
 					
@@ -134,7 +136,8 @@ class Archiver {
      * 
      * @return array Renvoie TRUE Si des fichiers ont été ajoutés, retourne un tableau indiquant la réussite de la compression, FALSE sinon
      */
-    public function createArchive(bool $ajax = false): string|array {
+    public function createArchive(bool $ajax = false): string|array
+    {
 		// Crée un tableau pour stocker les noms des fichiers ajoutés à l'archive
 		$hasFile = array();
 		// Détermine le chemin complet du fichier d'archive à créer
@@ -193,7 +196,8 @@ class Archiver {
      * @param string|null $name Nom sous lequel le fichier sera ajouté à l'archive (optionnel)
      * @return bool Renvoie TRUE si le fichier a été ajouté avec succès, FALSE sinon
      */
-    public function addFile(string $file, string $name = null): bool {
+    public function addFile(string $file, string $name = null): bool
+    {
 		if (is_null($name)) {
 			$name = basename($file);
 		}
@@ -207,8 +211,9 @@ class Archiver {
      * @param string $root Nom du chemin racine
      * @return bool Renvoie TRUE si les fichiers ont été ajouté avec succès, FALSE sinon
      */
-    public function addFiles(array $files, string $root, array &$hasFile, bool $ajax = false): bool {
-		for($i = 0; $i < count($files); $i++) {
+    public function addFiles(array $files, string $root, array &$hasFile, bool $ajax = false): bool
+    {
+		for ($i = 0; $i < count($files); $i++) {
 			if ($files[$i] != "on") {
 				$thisFile = $files[$i];
 				$rootFileArchive = $root ."/". $thisFile;
@@ -242,7 +247,8 @@ class Archiver {
 	 * @param callable $progressCallback Fonction de rappel pour suivre la progression de l'ajout de fichiers
 	 * @return bool Renvoie TRUE si les fichiers ont été ajoutés avec succès, FALSE sinon
 	 */
-	public function addFilesBatched(array $files, string $root, array &$hasFile, int $batchSize, callable $progressCallback): bool {
+	public function addFilesBatched(array $files, string $root, array &$hasFile, int $batchSize, callable $progressCallback): bool
+    {
 		for ($i = 0; $i < count($files); $i += $batchSize) {
 			$batchFiles = array_slice($files, $i, $batchSize);
 			$batchHasFile = array();
@@ -269,7 +275,8 @@ class Archiver {
 		}
 	}
 	
-	public static function progressCallback(int $numFilesAdded, int $totalNumFiles): void {
+	public static function progressCallback(int $numFilesAdded, int $totalNumFiles): void
+    {
 		$progressPercentage = round(($numFilesAdded / $totalNumFiles) * 100);
 		echo "Progress: $progressPercentage%\n";
 	}
@@ -280,7 +287,8 @@ class Archiver {
      * @param string $dir Chemin du répertoire à ajouter
      * @param string $root Chemin de base à partir duquel les fichiers sont ajoutés à l'archive (optionnel, par défaut le répertoire courant)
      */
-    public function addDir(string $dir, string $root, array &$hasFile, bool $ajax = false) {
+    public function addDir(string $dir, string $root, array &$hasFile, bool $ajax = false)
+    {
 		$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
 		
 		foreach ($iterator as $file) {
@@ -314,7 +322,8 @@ class Archiver {
 	 * @param int $status Le code de statut à rechercher.
 	 * @return string La chaîne de statut correspondante.
 	 */
-	function getZipStatus(int $status): string {
+	function getZipStatus(int $status): string
+    {
 		$statusMap = [
 			ZipArchive::ER_OK => 'N No error',
 			ZipArchive::ER_MULTIDISK => 'N Multi-disk zip archives not supported',
