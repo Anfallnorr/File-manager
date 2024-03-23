@@ -7,7 +7,7 @@ if (version_compare(PHP_VERSION, MINIMUM_PHP, "<")) {
 	die("Votre version de php : ". PHP_VERSION ." doit être supérieur à ". MINIMUM_PHP ." pour exécuter cette version de Js-info !");
 }
 
-if (in_array($_SERVER['ORIG_PATH_INFO'], array("", "/index.php"))) {
+if (in_array($_SERVER['REQUEST_URI'], array("", "/", "/index.php"))) {
 	header('Location: /datas/data');
 	exit;
 }
