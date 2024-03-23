@@ -15,7 +15,7 @@ class Requests
 	
 	function __construct()
     {
-		$path = $_SERVER['ORIG_PATH_INFO'];
+		$path = $_SERVER['REQUEST_URI'];
 		
 		$get = new stdClass();
 		$post = new stdClass();
@@ -39,8 +39,12 @@ class Requests
 			}
 			$this->files = $files;
 		}
-		
-		$this->path = $path;
+	    	
+		if (strpos($path, "?") === false) {
+			$this->path = $path;
+		} else {
+			$this->path = strstr($path, "?", true);
+		}
 	}
     
 }
