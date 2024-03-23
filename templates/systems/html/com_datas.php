@@ -6,7 +6,7 @@ class com_datas extends Controllers
 {
 	public function data(): void
     {
-		$myFolder = $_SERVER['ORIG_PATH_INFO'];
+		$myFolder = $_SERVER['REQUEST_URI'];
 		
 		$userSession = $this->session->readSession('user');
 		$getCustomer = $userSession;
