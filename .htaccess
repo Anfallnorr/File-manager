@@ -1,14 +1,53 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine on
 	
+	## Begin - Rewrite rules to block out some common exploits.
+	# If you experience problems on your site then comment out the operations listed
+	# below by adding a # to the beginning of the line.
+	# This attempts to block the most common type of exploit `attempts` on Js info!
+	#
+	# Block any script trying to base64_encode data within the URL.
+	RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+	# Block any script that includes a <script> tag in URL.
+	RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+	# Block any script trying to set a PHP GLOBALS variable via URL.
+	RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+	# Block any script trying to modify a _REQUEST variable via URL.
+	RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+	# Return 403 Forbidden header and show the content of the root home page
+	RewriteRule .* index.php [F]
+	#
+	## End - Rewrite rules to block out some common exploits.
+	
+	## Begin - Custom redirects
+	#
+	# If you need to redirect some pages, or set a canonical non-www to
+	# www redirect (or vice versa), place that code here. Ensure those
+	# redirects use the correct RewriteRule syntax and the [R=301,L] flags.
+	#
 	RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
 	RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+	#
+	## End - Custom redirects
 	
 	RewriteBase /
-	
-	RewriteCond %{REQUEST_FILENAME} !-d
+
+	## Begin - core SEF Section.
+	#
+	# PHP FastCGI fix for HTTP Authorization, required for the API application
+	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+	# -- SEF URLs for the public frontend application
+	# If the requested path and file is not /index.php and the request
+	# has not already been internally rewritten to the index.php script
+	RewriteCond %{REQUEST_URI} !^/index\.php
+	# and the requested path and file doesn't directly match a physical file
 	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule ^(.*)$ /index.php/$1 [L]
+	# and the requested path and file doesn't directly match a physical folder
+	RewriteCond %{REQUEST_FILENAME} !-d
+	# internally rewrite the request to the index.php script
+	RewriteRule .* index.php [L]
+	#
+	## End - core SEF Section.
 	
 	RewriteCond %{HTTPS} off [OR]
 	RewriteCond %{HTTP_HOST} ^www. [NC]
