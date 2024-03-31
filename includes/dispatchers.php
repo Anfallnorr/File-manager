@@ -4,9 +4,18 @@ defined('_EXEC') or die;
 
 class Dispatchers
 {
-	public $session;
-	public $requests;
-	public $config;
+	/**
+	 * @var \Sessions
+	 */
+	public Sessions $session;
+	/**
+	 * @var \Requests
+	 */
+	public Requests $requests;
+	/**
+	 * @var \Config
+	 */
+	public Config $config;
 	
 	function __construct()
     {
@@ -39,21 +48,29 @@ class Dispatchers
 		$controllers->templates($views);
 	}
 	
+	/**
+	 * @param string $loader
+	 * @param string $theme
+	 * @return mixed|void
+	 */
 	public function loader(string $loader, string $theme)
     {
 		$comLoader = "com_". $loader;
 		
 		if (file_exists(_ROOTURL_ ."/templates/systems/html/". $comLoader .".php")) {
 			require _ROOTURL_ ."/templates/systems/html/". $comLoader .".php";
-			$controller = new $comLoader($this->requests, $this->session, $this->config);
-			return $controller;
+			return new $comLoader($this->requests, $this->session, $this->config);
 		} else {
 			$this->error404("Le controller ". $comLoader ." n'existe pas");
 		}
 	}
 	
-	public function error404($errorMessage)
-    {
+	/**
+	 * @param $errorMessage
+	 * @return void
+	 */
+	public function error404($errorMessage): void
+	{
 		die($errorMessage);
 	}
 

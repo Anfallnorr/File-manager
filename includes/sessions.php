@@ -5,13 +5,18 @@ defined('_EXEC') or die;
 class Sessions
 {
 	function __construct()
-    {
+	{
 		session_save_path(_ROOTURL_ . "/var/sessions");
 		session_start();
 	}
 	
-	public function setNotifications($notifications, $type = "")
-    {
+	/**
+	 * @param string $notifications
+	 * @param string $type
+	 * @return void
+	 */
+	public function setNotifications(string $notifications, string $type = ""): void
+	{
 		if ($type != "") {
 			$notification = array(
 				'value' => $notifications,
@@ -29,8 +34,11 @@ class Sessions
 		$_SESSION['notifications'] = $notification;
 	}
 	
-	public function getNotifications()
-    {
+	/**
+	 * @return string|array
+	 */
+	public function getNotifications(): string|array
+	{
 		if (!empty($_SESSION['notifications'])) {
 			$notifications = $_SESSION['notifications'];
 			unset($_SESSION['notifications']);
@@ -41,8 +49,13 @@ class Sessions
 		return $notifications;
 	}
 	
+	/**
+	 * @param string $key
+	 * @param string|array $value
+	 * @return string|array
+	 */
 	public function writeSession(string $key, string|array $value): string|array
-    {
+	{
 		if (is_array($value) && !empty($value[0])) {
 			$sessionUser = $_SESSION[$key] = $value[0];
 		} else {
@@ -52,8 +65,12 @@ class Sessions
 		return $sessionUser;
 	}
 	
+	/**
+	 * @param string $key
+	 * @return string|array|null
+	 */
 	public function readSession(string $key = ""): null|string|array
-    {
+	{
 		if (isset($_SESSION[$key])) {
 			return $_SESSION[$key];
 		} else {
@@ -61,21 +78,27 @@ class Sessions
 		}
 	}
 	
+	/**
+	 * @param string $key
+	 * @param string|array|object $valueChange
+	 * @param string $keyMerge
+	 * @return array|null
+	 */
 	public function editSession(string $key, string|array|object $valueChange, string $keyMerge = ""): ?array
-    {
+	{
 		if (!is_array($valueChange)) {
 			$valueChange = get_object_vars($valueChange);
 		}
 		
 		if (isset($_SESSION[$key])) {
 			if ($keyMerge === "") {
-				foreach ($valueChange as $change => $value) {
+				foreach($valueChange as $change => $value) {
 					if ($change !== "id") {
 						$_SESSION[$key][$change] = $value;
 					}
 				}
 			} else {
-				foreach ($valueChange as $change => $value) {
+				foreach($valueChange as $change => $value) {
 					$_SESSION[$key][$keyMerge][$change] = $value;
 				}
 			}
@@ -85,23 +108,27 @@ class Sessions
 		}
 	}
 	
+	/**
+	 * @param string $key
+	 * @param string|array $sessionKeys
+	 * @return bool
+	 */
 	public function deleteSession(string $key, string|array $sessionKeys = []): bool
-    {
+	{
 		if (is_array($sessionKeys) && !empty($sessionKeys)) {
-			foreach ($sessionKeys as $sessionKey) {
+			foreach($sessionKeys as $sessionKey) {
 				unset($_SESSION[$key][$sessionKey]);
 			}
-		} 
+		}
 		elseif (is_string($sessionKeys) && !empty($sessionKeys)) {
 			unset($_SESSION[$key][$sessionKeys]);
-		} 
+		}
 		else {
 			unset($_SESSION[$key]);
 		}
 		
 		return true;
 	}
-    
 }
 
 ?>

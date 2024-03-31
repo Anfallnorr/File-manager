@@ -4,10 +4,10 @@ defined('_EXEC') or die;
 
 class Requests
 {
-	public $get;
-	public $post;
-	public $files;
-	public $path;
+	public stdClass $get;
+	public stdClass $post;
+	public stdClass $files;
+	public mixed $path;
 
 	public $controller;
 	public $view;
@@ -39,8 +39,8 @@ class Requests
 			}
 			$this->files = $files;
 		}
-	    	
-		if (strpos($path, "?") === false) {
+		
+		if (!str_contains($path, "?")) {
 			$this->path = $path;
 		} else {
 			$this->path = strstr($path, "?", true);

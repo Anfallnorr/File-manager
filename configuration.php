@@ -5,7 +5,7 @@ defined('_EXEC') or die;
 class Config
 {
 	public string $theme = "js-info";
-	// public $theme = "vivo";
+	// public string $theme = "vivo";
 	public int $debug = 0;
 	public string $error_reporting = "development";
 	// public string $default_lang = "fr-FR";

@@ -4,8 +4,13 @@ defined('_EXEC') or die;
 
 class Customers
 {
-	public function getCustomers(array $condition = [], bool $current = false)
-    {
+	/**
+	 * @param array $condition
+	 * @param bool $current
+	 * @return array|false
+	 */
+	public function getCustomers(array $condition = [], bool $current = false): array|false
+	{
 		$getCustomers = array(
 			array(
 				'id' => 1,
@@ -20,16 +25,21 @@ class Customers
 			)
 		);
 		
-		if ($current == true) {
+		if($current) {
 			return current($getCustomers);
 		} else {
 			return $getCustomers;
 		}
 	}
 	
-	public function getCustomer(int $idCustomer, array $condition = [])
-    {
-		$getCustomer = array(
+	/**
+	 * @param int $idCustomer
+	 * @param array $condition
+	 * @return array
+	 */
+	public function getCustomer(int $idCustomer, array $condition = []): array
+	{
+		return array(
 			'id' => 1,
 			'gender' => "hf",
 			'name' => "John",
@@ -43,8 +53,6 @@ class Customers
 				'personnal_folder' => ""
 			)
 		);
-		
-		return $getCustomer;
 	}
 	
 }
