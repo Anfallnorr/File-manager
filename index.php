@@ -28,7 +28,7 @@ if ($config->debug === 1) {
 	elseif ($mod_debug === "minimum") {error_reporting(E_NOTICE);} 
 	elseif ($mod_debug === "default") {error_reporting(E_WARNING | E_PARSE);} 
 	elseif ($mod_debug === "maximum") {error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);} 
-	elseif ($mod_debug === "devloppment") {
+	elseif ($mod_debug === "development") {
 		error_reporting(E_ALL);
 	}
 } else {

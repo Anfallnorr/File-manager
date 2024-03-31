@@ -7,7 +7,7 @@ class Config
 	public string $theme = "js-info";
 	// public $theme = "vivo";
 	public int $debug = 0;
-	public string $error_reporting = "devloppment";
+	public string $error_reporting = "development";
 	// public string $default_lang = "fr-FR";
 	public string $default_lang = "en-EN";
 	// public string $default_lang = "de-DE";
