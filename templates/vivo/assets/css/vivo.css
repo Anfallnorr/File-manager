@@ -73,7 +73,7 @@ body > #function_debug {
 #function_debug {
 	margin-bottom: 1rem;
 }
-#function_debug .degug-function {
+#function_debug .debug-function {
 	position: relative;
 	z-index: 1;
 	padding: 1.5rem;
@@ -86,7 +86,7 @@ body > #function_debug {
 #function_debug .debug-close {
 	color: var(--bs-dark);
 }
-#function_debug .degug-path {
+#function_debug .debug-path {
 	padding: .5rem 1rem;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
@@ -94,17 +94,17 @@ body > #function_debug {
 	border: 1px solid rgba(0,0,0,.125);
 	background-color: #fff;
 }
-#function_debug .degug-path pre {
+#function_debug .debug-path pre {
 	margin: 0px;
 }
-#function_debug .degug-backtrace ul {
+#function_debug .debug-backtrace ul {
 	display: flex;
 	flex-direction: column;
 	padding-left: 0;
 	border-radius: .25rem;
 	margin-bottom: 0;
 }
-#function_debug .degug-backtrace ul li {
+#function_debug .debug-backtrace ul li {
 	position: relative;
 	display: block;
 	padding: .5rem 1rem;
@@ -113,11 +113,11 @@ body > #function_debug {
 	background-color: #fff;
 	border: 1px solid rgba(0,0,0,.125);
 }
-#function_debug .degug-backtrace ul li:first-child {
+#function_debug .debug-backtrace ul li:first-child {
 	border-top-left-radius: inherit;
 	border-top-right-radius: inherit;
 }
-#function_debug .degug-backtrace ul li:last-child {
+#function_debug .debug-backtrace ul li:last-child {
 	border-bottom-right-radius: inherit;
 	border-bottom-left-radius: inherit;
 }
@@ -172,7 +172,7 @@ body .context-menu.card {
 	body > #function_debug {
 		padding-left: 10px
 	}
-	#function_debug .degug-function {
+	#function_debug .debug-function {
 		padding: 0.5rem;
 	}
 }

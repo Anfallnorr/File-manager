@@ -14,16 +14,16 @@ function debug($debug, bool $bool = false): void
 	echo '<div id="function_debug" class="ml-240 mt-50">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="degug-function">
+				<div class="debug-function">
 					<button type="button" class="btn-close btn-close-white debug-close" aria-label="Close"></button>
-					<div class="degug-backtrace">
+					<div class="debug-backtrace">
 						<ul>';
 							foreach($debug_backtrace as $backtrace) {
 								echo '<li><strong>'. str_replace(_ROOTURL_, "", $backtrace['file']) .'</strong> Ligne.'. $backtrace['line'] .'</li>';
 							}
 						echo '</ul>
 					</div>
-					<div class="degug-path">
+					<div class="debug-path">
 						<code>
 							<pre>';
 								print_r($debug);

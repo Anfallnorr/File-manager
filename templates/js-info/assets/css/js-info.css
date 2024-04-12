@@ -127,18 +127,18 @@ body header > #function_debug > .row > .col-md-12 {
 	flex: 1 1 auto;
     padding: 1rem 1rem;
 }
-body .page-content > #function_debug .degug-backtrace > ul,
-body > #function_debug .degug-backtrace > ul,
-body header > #function_debug .degug-backtrace > ul {
+body .page-content > #function_debug .debug-backtrace > ul,
+body > #function_debug .debug-backtrace > ul,
+body header > #function_debug .debug-backtrace > ul {
 	display: flex;
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
     border-radius: 0;
 }
-body .page-content > #function_debug .degug-backtrace > ul > li,
-body > #function_debug .degug-backtrace > ul > li,
-body header > #function_debug .degug-backtrace > ul > li {
+body .page-content > #function_debug .debug-backtrace > ul > li,
+body > #function_debug .debug-backtrace > ul > li,
+body header > #function_debug .debug-backtrace > ul > li {
     position: relative;
     display: block;
     padding: .5rem 1rem;
@@ -147,15 +147,15 @@ body header > #function_debug .degug-backtrace > ul > li {
     border: 1px solid rgb(255 255 255 / 12%);
     border-width: 0 0 1px;
 }
-body .page-content > #function_debug .degug-backtrace > ul > li:first-child,
-body > #function_debug .degug-backtrace > ul > li:first-child,
-body header > #function_debug .degug-backtrace > ul > li:first-child {
+body .page-content > #function_debug .debug-backtrace > ul > li:first-child,
+body > #function_debug .debug-backtrace > ul > li:first-child,
+body header > #function_debug .debug-backtrace > ul > li:first-child {
 	border-top-left-radius: .3rem;
     border-top-right-radius: .3rem;
 }
-body .page-content > #function_debug .degug-backtrace > ul > li:last-child,
-body > #function_debug .degug-backtrace > ul > li:last-child,
-body header > #function_debug .degug-backtrace > ul > li:last-child {
+body .page-content > #function_debug .debug-backtrace > ul > li:last-child,
+body > #function_debug .debug-backtrace > ul > li:last-child,
+body header > #function_debug .debug-backtrace > ul > li:last-child {
 	border-bottom-left-radius: .3rem;
     border-bottom-right-radius: .3rem;
 }
@@ -169,12 +169,12 @@ body > #function_debug .debug-close,
 body header > #function_debug .debug-close {
     display: none;
 }
-body .page-content > #function_debug .degug-path + p,
-body .page-content > #function_debug .degug-path,
-body > #function_debug .degug-path + p,
-body > #function_debug .degug-path,
-body header > #function_debug .degug-path + p,
-body header > #function_debug .degug-path {
+body .page-content > #function_debug .debug-path + p,
+body .page-content > #function_debug .debug-path,
+body > #function_debug .debug-path + p,
+body > #function_debug .debug-path,
+body header > #function_debug .debug-path + p,
+body header > #function_debug .debug-path {
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -191,17 +191,17 @@ body header > #function_debug .degug-path {
     border-color: rgb(255 255 255 / 35%);
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-body .page-content > #function_debug .degug-path:hover,
-body > #function_debug .degug-path:hover,
-body header > #function_debug .degug-path:hover {
+body .page-content > #function_debug .debug-path:hover,
+body > #function_debug .debug-path:hover,
+body header > #function_debug .debug-path:hover {
     color: #fff;
     background-color: rgb(255 255 255 / 20%);
     border-color: rgb(255 255 255 / 40%);
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-body .page-content > #function_debug .degug-path pre,
-body > #function_debug .degug-path pre,
-body header > #function_debug .degug-path pre {
+body .page-content > #function_debug .debug-path pre,
+body > #function_debug .debug-path pre,
+body header > #function_debug .debug-path pre {
     color: #fff;
     -webkit-user-select: text;
     -moz-user-select: text;
