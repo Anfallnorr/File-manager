@@ -48,8 +48,44 @@
 					<div class="dropdown-divider mb-0"></div>
 					<a href="https://js-info.fr" target="_blank" title="<?php $langs->lang("VISIT_THE_JS_INFO_WEBSITE", "topbar") ?>"><?php $langs->lang("VISIT_THE_JS_INFO_WEBSITE", "topbar") ?></a>
 					<a href="https://js-info.fr/nous-contacter" target="_blank" title="<?php $langs->lang("CONTACT_US", "topbar") ?>"><?php $langs->lang("CONTACT_US", "topbar") ?></a>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#modalLegalNotice" title="<?php $langs->lang("LEGAL_NOTICE", "topbar") ?>"><?php $langs->lang("LEGAL_NOTICE", "topbar") ?></a>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#modalTermsOfUse" title="<?php $langs->lang("TERMS_OF_USE", "topbar") ?>"><?php $langs->lang("TERMS_OF_USE", "topbar") ?></a>
 				</div>
 			</div>
 		</li>
 	</ul>
+</div>
+
+<div class="modal fade" id="modalLegalNotice" tabindex="-1" aria-labelledby="modalLegalNoticeLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="modalLegalNoticeLabel"><?php $langs->lang("LEGAL_NOTICE", "topbar") ?></h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCLOSE") ?></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalTermsOfUse" tabindex="-1" aria-labelledby="modalTermsOfUseLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="modalTermsOfUseLabel"><?php $langs->lang("TERMS_OF_USE", "topbar") ?></h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="bi bi-arrow-left-circle"></i> <?php $langs->lang("JSCLOSE") ?></button>
+			</div>
+		</div>
+	</div>
 </div>
