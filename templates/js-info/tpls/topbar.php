@@ -24,8 +24,44 @@
 					<li><div class="dropdown-divider mb-0"></div></li>
 					<li><a class="dropdown-item" href="https://js-info.fr" target="_blank" title="<?php $langs->lang("VISIT_THE_JS_INFO_WEBSITE", "topbar") ?>"><i class="bx bx-download"></i><span><?php $langs->lang("VISIT_THE_JS_INFO_WEBSITE", "topbar") ?></span></a></li></li>
 					<li><a class="dropdown-item" href="https://js-info.fr/nous-contacter" target="_blank" title="<?php $langs->lang("CONTACT_US", "topbar") ?>"><i class="bx bx-lock"></i><span><?php $langs->lang("CONTACT_US", "topbar") ?></span></a></li></li>
+					<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalLegalNotice" title="<?php $langs->lang("LEGAL_NOTICE", "topbar") ?>"><i class="bx bx-shield"></i><span><?php $langs->lang("LEGAL_NOTICE", "topbar") ?></span></a></li></li>
+					<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalTermsOfUse" title="<?php $langs->lang("TERMS_OF_USE", "topbar") ?>"><i class="bx bx-shield"></i><span><?php $langs->lang("TERMS_OF_USE", "topbar") ?></span></a></li></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 </header>
+
+<div class="modal fade" id="modalLegalNotice" tabindex="-1" aria-labelledby="modalLegalNoticeLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="modalLegalNoticeLabel"><?php $langs->lang("LEGAL_NOTICE", "topbar") ?></h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php $langs->lang("JSCLOSE") ?></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalTermsOfUse" tabindex="-1" aria-labelledby="modalTermsOfUseLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="modalTermsOfUseLabel"><?php $langs->lang("TERMS_OF_USE", "topbar") ?></h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php $langs->lang("JSCLOSE") ?></button>
+			</div>
+		</div>
+	</div>
+</div>
